@@ -1,4 +1,3 @@
-# jadebourdens.github.io
 # Data Analyst/ Report Builder
 ### Experience
 Insight Analyst @ Tead Gloabl Adtech, Paris
