@@ -549,19 +549,21 @@
             }
         });
 
-        // CV Download function
-        function downloadCV() {
-            // Replace 'path/to/your/cv.pdf' with the actual path to your CV file
-            const link = document.createElement('a');
-            link.href = 'https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit?utm_content=DAGgPOcgud0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'; // Update this with your actual CV file path
-            link.download = 'Jade_Bourdens_CV.pdf'; // The filename for the download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Optional: Show a message to the user
-            alert('CV download started!');
-        }
+      // CV Download function
+function downloadCV() {
+    // Replace with your actual Canva direct download URL
+    const link = document.createElement('a');
+    link.href = 'https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit?utm_content=DAGgPOcgud0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'; // Get this from Canva's download link
+    link.download = 'Jade_Bourdens_CV.pdf';
+    link.target = '_blank'; // Open in new tab as fallback
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Optional: Show a message to the user
+    alert('CV download started!');
+}
     </script>
 </body>
 </html>
