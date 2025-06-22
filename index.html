@@ -85,6 +85,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
 
         .download-cv:hover {
@@ -373,7 +374,7 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <a href="#" class="download-cv" onclick="downloadCV()">Download CV</a>
+                <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit?utm_content=DAGgPOcgud0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="download-cv" target="_blank" rel="noopener noreferrer">Download CV</a>
             </div>
         </nav>
     </header>
@@ -444,8 +445,8 @@
                             <span class="tech-tag">Lag Features</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs">Live Demo</a>
-                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs">GitHub</a>
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link primary-link">Live Demo</a>
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link secondary-link">GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -518,10 +519,10 @@
                 <a href="mailto:jadebourdens@gmail.com" class="contact-link">
                     📧 jadebourdens@gmail.com
                 </a>
-                <a href="https://linkedin.com/in/yourprofile" class="contact-link">
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
                     💼 LinkedIn
                 </a>
-                <a href="https://github.com/jadebourdens.github.io" class="contact-link">
+                <a href="https://github.com/jadebourdens.github.io" target="_blank" class="contact-link">
                     🐙 GitHub
                 </a>
             </div>
@@ -548,22 +549,6 @@
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
-
-      // CV Download function
-function downloadCV() {
-    // Replace with your actual Canva direct download URL
-    const link = document.createElement('a');
-    link.href = 'https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit?utm_content=DAGgPOcgud0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'; // Get this from Canva's download link
-    link.download = 'Jade_Bourdens_CV.pdf';
-    link.target = '_blank'; // Open in new tab as fallback
-    
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Optional: Show a message to the user
-    alert('CV download started!');
-}
     </script>
 </body>
 </html>
