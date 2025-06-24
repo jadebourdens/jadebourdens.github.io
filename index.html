@@ -72,4 +72,506 @@
             color: #667eea;
         }
 
-        .
+        .download-cv {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .download-cv:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-cv::before {
+            content: "📄";
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #e9ecef;
+            color: #495057;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .primary-link {
+            background: #667eea;
+            color: white;
+        }
+
+        .primary-link:hover {
+            background: #5a6fd8;
+        }
+
+        .secondary-link {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .secondary-link:hover {
+            background: #dee2e6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #333;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #667eea;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-right {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .download-cv {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-right {
+                gap: 0.5rem;
+            }
+            
+            .download-cv {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Jade Bourdens (Ngoc)</div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit?utm_content=DAGgPOcgud0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="download-cv" target="_blank" rel="noopener noreferrer">Download CV</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Data Analyst</h1>
+            <p>Data Analysis 🦄 Insight Visualization 🦄 Automated Reporting</p>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <h2>About Me</h2>
+                    <p>From my first role as an Assistant Executive for the Director of Sales & Marketing, working with multiple Excel files and building reports, I evolved into SQL, Python, and Tableau, shifting my career to Data Analyst for Sales, Marketing, and recently AdTech statistical studies.</p>
+                    <p>My core focus is transforming raw data into strategic insights—not just for one-time reports, but to build scalable analytics frameworks that drive measurable value and sustainable outcomes.</p>
+                </div>
+                <div>
+                    <h3>Technical Skills</h3>
+                    <div class="skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- Python Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🐍</div>
+                        <h3 class="project-title">Power Forecasting Consumption ML</h3>
+                        <p class="project-subtitle">Predictive Analytics with Python</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Built machine learning models to forecast power consumption.
+                            Implemented time series analysis, feature engineering, and ensemble methods
+                            to predict future energy usage.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">seaborn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">XGBoost Model Training</span>
+                            <span class="tech-tag">Time Series Cross Validation</span>
+                            <span class="tech-tag">Score RMSE</span>
+                            <span class="tech-tag">Lag Features</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link primary-link">Live Demo</a>
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link secondary-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SQL Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🗃️</div>
+                        <h3 class="project-title">Sales Performance and Customer Satisfaction Analysis</h3>
+                        <p class="project-subtitle">PostgreSQL, pgAdmin 4</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            This analysis breaks down customer satisfaction and product sales by fat content, outlet size, and item type using SQL queries in PostgreSQL. Key insights include the performance of "Low Fat" items and rating breakdowns.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL Aggregation</span>
+                            <span class="tech-tag">Window Functions</span>
+                            <span class="tech-tag">Performance Optimization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/jadebourdens/Create-blinkit-analysis-sales-performance-customersatisfaction/blob/f11d544a4d76551e1590697e8238f999fa5117f4/analyzing-blinkit-salesperformance-customersatisfaction.sql" target="_blank" class="project-link primary-link">View Queries</a>
+                            <a href="https://github.com/yourusername/retail-chain-analysis/blob/main/README.md" target="_blank" class="project-link secondary-link">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tableau Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <h3 class="project-title">Marketing Dashboard</h3>
+                        <p class="project-subtitle">Interactive Tableau Visualization</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Created executive-level marketing dashboard tracking campaign performance, 
+                            customer acquisition costs, and ROI across multiple channels. 
+                            Enabled data-driven decision making that improved campaign efficiency by 28%.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Data Visualization</span>
+                            <span class="tech-tag">KPI Design</span>
+                            <span class="tech-tag">Interactive Filters</span>
+                            <span class="tech-tag">Mobile Responsive</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://public.tableau.com/views/YourDashboardName/Dashboard1" target="_blank" class="project-link primary-link">Live Dashboard</a>
+                            <a href="https://github.com/yourusername/marketing-dashboard-case-study" target="_blank" class="project-link secondary-link">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Customer Segmentation Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">👥</div>
+                        <h3 class="project-title">Customer Segmentation Analysis</h3>
+                        <p class="project-subtitle">RFM Analysis with Python</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Performed customer segmentation using RFM (Recency, Frequency, Monetary) analysis to identify high-value customer groups. Developed targeted marketing strategies for each segment resulting in 22% increase in campaign response rates.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">K-means Clustering</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Seaborn</span>
+                            <span class="tech-tag">RFM Analysis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="project-link primary-link">Live Demo</a>
+                            <a href="#" target="_blank" class="project-link secondary-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>Open to remote work • Freelance projects • Long-term roles</p>
+            <p>Paris-based</p>
+            <div class="contact-links">
+                <a href="mailto:jadebourdens@gmail.com" class="contact-link">
+                    📧 jadebourdens@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+                    💼 LinkedIn
+                </a>
+                <a href="https://github.com/jadebourdens.github.io" target="_blank" class="contact-link">
+                    🐙 GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
