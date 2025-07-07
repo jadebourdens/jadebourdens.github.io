@@ -246,8 +246,10 @@
         .project-links {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
+        /* IMPORTANT: This is the main button styling that was getting lost */
         .project-link {
             display: inline-block;
             padding: 10px 20px;
@@ -255,6 +257,10 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            min-width: 100px;
         }
 
         .primary-link {
@@ -264,6 +270,8 @@
 
         .primary-link:hover {
             background: #5a6fd8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         .secondary-link {
@@ -273,6 +281,8 @@
 
         .secondary-link:hover {
             background: #dee2e6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* Contact Section */
@@ -349,6 +359,10 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .project-links {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -359,6 +373,11 @@
             .download-cv {
                 padding: 6px 12px;
                 font-size: 0.7rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -521,11 +540,10 @@
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">d3blocks</span>
                             <span class="tech-tag">pandas</span>
-                         
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6?usp=sharing">Google Colab Code</a>
-                            <a href="https://youtu.be/5BrO8q89qHw">Watch Demo</a>
+                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6?usp=sharing" target="_blank" class="project-link primary-link">Google Colab Code</a>
+                            <a href="https://youtu.be/5BrO8q89qHw" target="_blank" class="project-link secondary-link">Watch Demo</a>
                         </div>
                     </div>
                 </div>
