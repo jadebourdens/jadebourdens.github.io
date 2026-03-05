@@ -5,367 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jade Bourdens - Data Analyst Portfolio</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #667eea; }
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #667eea; }
+        .download-cv { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 25px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); display: flex; align-items: center; gap: 8px; cursor: pointer; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .hero { padding: 120px 0 80px; text-align: center; color: white; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; }
+        .cta-button { display: inline-block; background: rgba(255, 255, 255, 0.2); color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease; }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
+        .about { background: white; padding: 80px 0; }
+        .about-content { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; }
+        .skills { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+        .skill-tag { background: #667eea; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .projects { background: #f8f9fa; padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .project-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-10px); }
+        .project-header { padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .project-header.ovh-header { background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 60%, #0E7490 100%); }
+        .project-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .project-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .project-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-description { margin-bottom: 1.5rem; color: #666; line-height: 1.6; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tech-tag { background: #e9ecef; color: #495057; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; }
+        .tech-tag.ovh-tag { background: #e8eef7; color: #0D2B55; font-weight: 600; }
+        .project-links { display: flex; gap: 1rem; margin-top: auto; }
+        .project-link { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; text-align: center; }
+        .primary-link { background: #667eea; color: white; }
+        .primary-link.ovh-link { background: #0D2B55; }
+        .secondary-link { background: #e9ecef; color: #495057; }
+        .presentation-link { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .download-cv {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .download-cv:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .download-cv::before {
-            content: "📄";
-            font-size: 1rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* About Section */
-        .about {
-            background: white;
-            padding: 80px 0;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .skill-tag {
-            background: #667eea;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Projects Section */
-        .projects {
-            background: #f8f9fa;
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        /* OVH card header gradient */
-        .project-header.ovh-header {
-            background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 60%, #0E7490 100%);
-        }
-
-        .project-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-subtitle {
-            opacity: 0.9;
-            font-size: 1rem;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-description {
-            margin-bottom: 1.5rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-        }
-
-        .tech-tag.ovh-tag {
-            background: #e8eef7;
-            color: #0D2B55;
-            font-weight: 600;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-link {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .primary-link {
-            background: #667eea;
-            color: white;
-        }
-
-        .primary-link:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .presentation-link {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .presentation-link::before {
-            content: "✦";
-            font-size: 0.75rem;
-        }
-
-        .presentation-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.45);
-        }
-
-        .primary-link.ovh-link {
-            background: #0D2B55;
-        }
-
-        .primary-link.ovh-link:hover {
-            background: #1A4A8A;
-            box-shadow: 0 4px 12px rgba(13, 43, 85, 0.35);
-        }
-
-        .secondary-link {
-            background: #e9ecef;
-            color: #495057;
-        }
-
-        .secondary-link:hover {
-            background: #dee2e6;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #333;
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact-link:hover {
-            color: #667eea;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .contact { background: #333; color: white; padding: 80px 0; text-align: center; }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+        .contact-link { color: white; text-decoration: none; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .about-content { grid-template-columns: 1fr; text-align: center; }
-            .nav-right { flex-direction: column; gap: 1rem; }
+            .about-content { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .contact-links { flex-direction: column; align-items: center; }
-            .project-links { justify-content: center; }
         }
     </style>
 </head>
@@ -379,7 +69,7 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit" class="download-cv" target="_blank" rel="noopener noreferrer">Download CV</a>
+                <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit" class="download-cv" target="_blank">Download CV</a>
             </div>
         </nav>
     </header>
@@ -387,7 +77,7 @@
     <section class="hero">
         <div class="container">
             <h1>Data Analyst</h1>
-            <p>Cloud Data Architecture 🦄 Insight Visualization 🦄 Predictive Procurement</p>
+            <p>Data Analysis 🦄 Insight Visualization 🦄 Automated Reporting</p>
             <a href="#projects" class="cta-button">View My Work</a>
         </div>
     </section>
@@ -397,18 +87,18 @@
             <div class="about-content">
                 <div>
                     <h2>About Me</h2>
-                    <p>Analytical professional with a proven track record in Sales, Marketing, and AdTech statistical studies. Expert in transforming raw data into actionable insights for campaign effectiveness. Currently expanding my expertise into SAP S/4HANA and Cloud-native data workflows to bridge the gap between technical data engineering and high-level business strategy.</p>
+                    <p> Analytical professional with a proven track record in Sales, Marketing, and AdTech statistical studies. Expert in transforming raw data into actionable insights for campaign effectiveness. Currently expanding my expertise into SAP S/4HANA and Cloud-native data workflows to bridge the gap between technical data engineering and high-level business strategy.</p>
                 </div>
                 <div>
                     <h3>Technical Skills</h3>
                     <div class="skills">
-                        <span class="skill-tag">Python (XGBoost)</span>
-                        <span class="skill-tag">SQL & BigQuery ML</span>
-                        <span class="skill-tag">Tableau / Looker Studio</span>
-                        <span class="skill-tag">SAP MM / PS Logic</span>
-                        <span class="skill-tag">Predictive Analytics</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">BigQuery ML</span>
                         <span class="skill-tag">Scikit-learn</span>
                         <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">SAP Logic</span>
                     </div>
                 </div>
             </div>
@@ -423,19 +113,15 @@
                 <div class="project-card">
                     <div class="project-header ovh-header">
                         <div class="project-icon">🏗️</div>
-                        <h3 class="project-title">Data Cloud Construction Budget Control Framework</h3>
+                        <h3 class="project-title">Construction Budget Control Framework</h3>
                         <p class="project-subtitle">BigQuery ML · SAP MM · Predictive Procurement</p>
                     </div>
                     <div class="project-content">
-                        <p class="project-description">
-                            Architected a predictive framework for Data Center construction CAPEX. By joining real-time commodity market trends with SAP WBS structures, this model alerts managers to budget overruns 3 months in advance, enabling strategic "Forward-Buying."
-                        </p>
+                        <p class="project-description">Architected a predictive framework for construction CAPEX. Alerts managers to overruns 3 months in advance via market trends and SAP WBS data.</p>
                         <div class="project-tech">
                             <span class="tech-tag ovh-tag">BigQuery ML</span>
                             <span class="tech-tag ovh-tag">SAP MM / PS</span>
-                            <span class="tech-tag ovh-tag">ARIMA Forecast</span>
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Looker Studio</span>
                         </div>
                         <div class="project-links">
                             <a href="ovh-w26-framework.html" target="_blank" class="project-link primary-link ovh-link">View Framework</a>
@@ -450,19 +136,15 @@
                         <p class="project-subtitle">Predictive Analytics with XGBoost</p>
                     </div>
                     <div class="project-content">
-                        <p class="project-description">
-                            Built time-series machine learning models to forecast hourly power consumption. Implemented feature engineering (lag features) and cross-validation to optimize RMSE scores for grid operations.
-                        </p>
+                        <p class="project-description">Built time-series models to forecast hourly consumption. Implemented feature engineering and cross-validation for grid optimization.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">XGBoost</span>
-                            <span class="tech-tag">Scikit-learn</span>
                             <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Time Series CV</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds" target="_blank" class="project-link primary-link">Google Colab Code</a>
-                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds" target="_blank" class="project-link primary-link">View Code</a>
+                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">Presentation</a>
                         </div>
                     </div>
                 </div>
@@ -474,41 +156,70 @@
                         <p class="project-subtitle">PostgreSQL & Window Functions</p>
                     </div>
                     <div class="project-content">
-                        <p class="project-description">
-                            Deep dive into business performance across Product Trends, Outlet Performance, and Customer Sentiment using advanced SQL techniques.
-                        </p>
+                        <p class="project-description">Deep dive into business performance across Product Trends, Outlet Performance, and Customer Sentiment using advanced SQL.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Window Functions</span>
                             <span class="tech-tag">COALESCE</span>
-                            <span class="tech-tag">Conditional Logic</span>
-                            <span class="tech-tag">Outlier Detection</span>
+                            <span class="tech-tag">SQL</span>
                         </div>
                         <div class="project-links">
-                            <a href="sales-performance.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
+                            <a href="sales-performance.html" target="_blank" class="project-link presentation-link">Presentation</a>
                         </div>
                     </div>
                 </div>
 
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <h3 class="project-title">Marketing Statistical Test</h3>
+                        <p class="project-subtitle">Statistical Analysis with Python</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Analyzed campaign effectiveness through A/B testing and ANOVA to determine optimal promotional strategies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Anova Test</span>
+                            <span class="tech-tag">A/B Testing</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://colab.research.google.com/drive/1IXKqria34MqJaSiT_H32gNBa6AY5G6f4" target="_blank" class="project-link primary-link">View Code</a>
+                        </div>
+                    </div>
                 </div>
-        </div>
 
-    <div class="project-card">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📈</div>
+                        <h3 class="project-title">Marketing Dashboard</h3>
+                        <p class="project-subtitle">Interactive Tableau Visualization</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Created executive-level marketing dashboard tracking campaign performance and ROI across multiple channels.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">KPI Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://public.tableau.com/app/profile/ngoc.phung" target="_blank" class="project-link primary-link">Live Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">👥</div>
-                        <h3 class="project-title">Life in Motion: Tracking Vietnamese Activities</h3>
+                        <h3 class="project-title">Life in Motion</h3>
                         <p class="project-subtitle">Data Viz with Python</p>
                     </div>
                     <div class="project-content">
-                        <p class="project-description">
-                            Visualizing how Vietnamese people spend their time using moving bubble charts.
-                        </p>
+                        <p class="project-description">Visualizing how Vietnamese people spend their time using moving bubble charts and D3 blocks.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">d3blocks</span>
-                            <span class="tech-tag">pandas</span>
+                            <span class="tech-tag">Pandas</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6" target="_blank" class="project-link primary-link">Google Colab Code</a>
+                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6" target="_blank" class="project-link primary-link">Code</a>
                             <a href="https://youtu.be/5BrO8q89qHw" target="_blank" class="project-link secondary-link">Watch Demo</a>
                         </div>
                     </div>
@@ -521,24 +232,12 @@
     <footer id="contact" class="contact">
         <div class="container">
             <h2>Let's Connect</h2>
-            <p>Paris-based | Open to Alternance & Long-term roles</p>
             <div class="contact-links">
-                <a href="mailto:ngoc.phung@example.com" class="contact-link">📧 Email Me</a>
+                <a href="mailto:ngoc.phung@example.com" class="contact-link">📧 Email</a>
                 <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="contact-link">💼 LinkedIn</a>
                 <a href="https://github.com/jadebourdens" target="_blank" class="contact-link">🐙 GitHub</a>
             </div>
         </div>
     </footer>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
