@@ -42,12 +42,102 @@
         .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .tech-tag { background: #e9ecef; color: #495057; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; }
         .tech-tag.ovh-tag { background: #e8eef7; color: #0D2B55; font-weight: 600; }
-        .project-links { display: flex; gap: 1rem; margin-top: auto; }
-        .project-link { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; text-align: center; }
-        .primary-link { background: #667eea; color: white; }
-        .primary-link.ovh-link { background: #0D2B55; }
-        .secondary-link { background: #e9ecef; color: #495057; }
-        .presentation-link { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+
+        /* ── REDESIGNED BUTTONS ── */
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border: 2px solid transparent;
+            transition: all 0.25s cubic-bezier(.4,0,.2,1);
+            white-space: nowrap;
+        }
+        .project-link .arrow {
+            font-style: normal;
+            transition: transform 0.2s ease;
+            font-size: 0.9em;
+        }
+        .project-link:hover .arrow { transform: translateX(3px); }
+
+        /* solid purple — primary action */
+        .primary-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+        }
+        .primary-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.55);
+        }
+
+        /* dark navy — OVH card */
+        .primary-link.ovh-link {
+            background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 100%);
+            box-shadow: 0 4px 14px rgba(13, 43, 85, 0.4);
+        }
+        .primary-link.ovh-link:hover {
+            box-shadow: 0 8px 24px rgba(13, 43, 85, 0.55);
+        }
+
+        /* outline ghost — secondary action */
+        .secondary-link {
+            background: transparent;
+            color: #667eea;
+            border-color: #667eea;
+        }
+        .secondary-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.35);
+        }
+
+        /* shimmer — presentation */
+        .presentation-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(118, 75, 162, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .presentation-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -80%;
+            width: 55%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
+            transition: left 0.5s ease;
+        }
+        .presentation-link:hover::before { left: 130%; }
+        .presentation-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(118, 75, 162, 0.55);
+        }
+
+        /* teal — live dashboard */
+        .live-link {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+        }
+        .live-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.55);
+        }
+        /* ── END BUTTONS ── */
 
         .contact { background: #333; color: white; padding: 80px 0; text-align: center; }
         .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
@@ -87,7 +177,7 @@
             <div class="about-content">
                 <div>
                     <h2>About Me</h2>
-                    <p> Analytical professional with a proven track record in Sales, Marketing, and AdTech statistical studies. Expert in transforming raw data into actionable insights for campaign effectiveness. Currently expanding my expertise into SAP S/4HANA and Cloud-native data workflows to bridge the gap between technical data engineering and high-level business strategy.</p>
+                    <p>Analytical professional with a proven track record in Sales, Marketing, and AdTech statistical studies. Expert in transforming raw data into actionable insights for campaign effectiveness. Currently expanding my expertise into SAP S/4HANA and Cloud-native data workflows to bridge the gap between technical data engineering and high-level business strategy.</p>
                 </div>
                 <div>
                     <h3>Technical Skills</h3>
@@ -109,7 +199,7 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                
+
                 <div class="project-card">
                     <div class="project-header ovh-header">
                         <div class="project-icon">🏗️</div>
@@ -124,7 +214,9 @@
                             <span class="tech-tag">Python</span>
                         </div>
                         <div class="project-links">
-                            <a href="ovh-w26-framework.html" target="_blank" class="project-link primary-link ovh-link">View Framework</a>
+                            <a href="ovh-w26-framework.html" target="_blank" class="project-link primary-link ovh-link">
+                                View Framework <i class="arrow">→</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -143,8 +235,12 @@
                             <span class="tech-tag">Pandas</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds" target="_blank" class="project-link primary-link">View Code</a>
-                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">Presentation</a>
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds" target="_blank" class="project-link primary-link">
+                                View Code <i class="arrow">→</i>
+                            </a>
+                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">
+                                Presentation <i class="arrow">→</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -163,7 +259,9 @@
                             <span class="tech-tag">SQL</span>
                         </div>
                         <div class="project-links">
-                            <a href="sales-performance.html" target="_blank" class="project-link presentation-link">Presentation</a>
+                            <a href="sales-performance.html" target="_blank" class="project-link presentation-link">
+                                Presentation <i class="arrow">→</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -182,7 +280,9 @@
                             <span class="tech-tag">Python</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/1IXKqria34MqJaSiT_H32gNBa6AY5G6f4" target="_blank" class="project-link primary-link">View Code</a>
+                            <a href="https://colab.research.google.com/drive/1IXKqria34MqJaSiT_H32gNBa6AY5G6f4" target="_blank" class="project-link primary-link">
+                                View Code <i class="arrow">→</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -200,7 +300,9 @@
                             <span class="tech-tag">KPI Design</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://public.tableau.com/app/profile/ngoc.phung" target="_blank" class="project-link primary-link">Live Dashboard</a>
+                            <a href="https://public.tableau.com/app/profile/ngoc.phung" target="_blank" class="project-link live-link">
+                                Live Dashboard <i class="arrow">↗</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -219,8 +321,12 @@
                             <span class="tech-tag">Pandas</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6" target="_blank" class="project-link primary-link">Code</a>
-                            <a href="https://youtu.be/5BrO8q89qHw" target="_blank" class="project-link secondary-link">Watch Demo</a>
+                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6" target="_blank" class="project-link primary-link">
+                                Code <i class="arrow">→</i>
+                            </a>
+                            <a href="https://youtu.be/5BrO8q89qHw" target="_blank" class="project-link secondary-link">
+                                ▶ Watch Demo
+                            </a>
                         </div>
                     </div>
                 </div>
