@@ -285,6 +285,28 @@
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
+        /* Presentation link — gradient pill, stands out */
+        .presentation-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .presentation-link::before {
+            content: "✦";
+            font-size: 0.75rem;
+        }
+
+        .presentation-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.45);
+            opacity: 0.92;
+        }
+
         /* OVH primary button uses navy */
         .primary-link.ovh-link {
             background: #0D2B55;
@@ -485,6 +507,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link primary-link">Google Colab Code</a>
+                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
                         </div>
                     </div>
                 </div>
@@ -589,7 +612,7 @@
                     </div>
                 </div>
 
-                <!-- ✦ NEW: OVH W26 Construction Budget Control Framework ✦ -->
+                <!-- OVH W26 Construction Budget Control Framework -->
                 <div class="project-card">
                     <div class="project-header ovh-header">
                         <div class="project-icon">🏗️</div>
@@ -615,7 +638,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- ✦ END OVH CARD ✦ -->
 
             </div>
         </div>
@@ -645,7 +667,6 @@
     </section>
 
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -655,7 +676,6 @@
             });
         });
 
-        // Add scroll effect to header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
