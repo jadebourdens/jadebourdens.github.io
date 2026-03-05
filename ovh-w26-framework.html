@@ -4,22 +4,21 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Construction Budget Control Framework — OVH W26</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --ink:      #0A0E1A;
-    --paper:    #F4F1EA;
-    --navy:     #0D2B55;
-    --blue:     #1A4A8A;
-    --gold:     #C9A227;
-    --teal:     #0E7490;
+    --ink:      #333333;
+    --paper:    #f8f9fa;
+    --navy:     #5a6fd6;
+    --blue:     #764ba2;
+    --gold:     #ffffff;
+    --teal:     #764ba2;
     --green:    #166534;
     --red:      #991B1B;
     --orange:   #9A3412;
-    --pale:     #E8E4DA;
-    --rule:     #C4BAAA;
-    --mono:     'Space Mono', monospace;
-    --sans:     'Syne', sans-serif;
+    --pale:     #dee2e6;
+    --rule:     #ced4da;
+    --mono:     'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --sans:     'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,18 +31,9 @@
     overflow-x: hidden;
   }
 
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0;
-    opacity: 0.5;
-  }
-
   /* ── HEADER ── */
   header {
-    background: var(--navy);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     padding: 3rem 4rem 2.5rem;
     position: relative;
@@ -53,7 +43,7 @@
     content: '';
     position: absolute; bottom: 0; left: 0; right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--gold) 0%, var(--teal) 50%, var(--gold) 100%);
+    background: rgba(255,255,255,0.25);
   }
   .header-grid {
     display: grid;
@@ -63,39 +53,65 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: background 0.2s;
+    margin-bottom: 0.5rem;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.3); }
+  code {
+    background: #eef0fc;
+    color: #667eea;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
+  }
   .header-eyebrow {
     font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: rgba(255,255,255,0.75);
     margin-bottom: 0.75rem;
   }
   header h1 {
     font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     max-width: 680px;
   }
-  header h1 em { color: var(--gold); font-style: normal; }
+  header h1 em { color: rgba(255,255,255,0.85); font-style: normal; }
   .header-meta {
     text-align: right;
     font-family: var(--mono);
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
     line-height: 1.8;
   }
   .header-badge {
     display: inline-block;
-    background: var(--gold);
-    color: var(--navy);
+    background: rgba(255,255,255,0.2);
+    color: #fff;
     font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
     margin-top: 1rem;
+    border: 1px solid rgba(255,255,255,0.3);
   }
 
   /* ── LAYOUT ── */
@@ -113,9 +129,10 @@
     gap: 0;
     margin: 2.5rem 0 3.5rem;
     padding: 1.5rem 2rem;
-    background: var(--navy);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     overflow-x: auto;
     position: relative;
+    border-radius: 12px;
   }
   .arch-node {
     display: flex;
@@ -148,29 +165,30 @@
     text-align: center;
   }
   .arch-arrow {
-    color: var(--gold);
+    color: rgba(255,255,255,0.5);
     font-size: 1.4rem;
     flex-shrink: 0;
     padding: 0 0.5rem;
     opacity: 0.8;
   }
   .arch-node.highlight .arch-icon {
-    border-color: var(--gold);
-    background: rgba(201,162,39,0.15);
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.2);
   }
-  .arch-node.highlight .arch-name { color: var(--gold); }
+  .arch-node.highlight .arch-name { color: #fff; font-weight: 800; }
 
   /* ── SECTION DIVIDER ── */
   .section-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--rule);
+    color: #999;
     display: flex;
     align-items: center;
     gap: 1rem;
     margin: 3rem 0 1.5rem;
+    font-weight: 600;
   }
   .section-label::after {
     content: ''; flex: 1; height: 1px; background: var(--rule);
@@ -183,44 +201,48 @@
     gap: 1.5px;
     background: var(--rule);
     border: 1.5px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .step {
-    background: var(--paper);
+    background: #ffffff;
     padding: 2rem 1.75rem;
     position: relative;
     cursor: default;
     transition: background 0.2s;
   }
-  .step:hover { background: #EEE9DF; }
+  .step:hover { background: #f0f2ff; }
 
   .step-number {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: var(--rule);
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: #aaa;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-weight: 600;
   }
   .step-number span {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--pale);
+    color: #e9ecef;
     line-height: 1;
     font-family: var(--sans);
   }
 
   .step-tag {
     display: inline-block;
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 0.2rem 0.55rem;
+    padding: 0.2rem 0.65rem;
     margin-bottom: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
+    border-radius: 12px;
   }
   .tag-data    { background: #DBEAFE; color: #1E3A8A; }
   .tag-model   { background: #D1FAE5; color: #065F46; }
@@ -230,31 +252,30 @@
   .tag-govern  { background: #F1F5F9; color: #334155; }
 
   .step h3 {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: -0.01em;
     line-height: 1.3;
     margin-bottom: 0.75rem;
     color: var(--navy);
   }
   .step p {
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     line-height: 1.65;
-    color: #4A4540;
+    color: #666;
     margin-bottom: 1rem;
   }
 
   .step-details {
     list-style: none;
     padding: 0;
-    border-top: 1px solid var(--pale);
+    border-top: 1px solid #f0f0f0;
     padding-top: 0.85rem;
     margin-top: 0.85rem;
   }
   .step-details li {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: #6B6258;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: #777;
     line-height: 1.7;
     padding-left: 1rem;
     position: relative;
@@ -262,32 +283,34 @@
   .step-details li::before {
     content: '→';
     position: absolute; left: 0;
-    color: var(--gold);
+    color: #667eea;
   }
 
   .step-tool {
     position: absolute;
     top: 1.25rem; right: 1.25rem;
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    color: var(--rule);
-    letter-spacing: 0.08em;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: #bbb;
+    font-weight: 500;
   }
 
   /* ── FULL-WIDTH STEP (spans all 3 cols) ── */
   .step-wide {
     grid-column: 1 / -1;
-    background: var(--navy);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
     padding: 2rem 2.5rem;
   }
-  .step-wide:hover { background: #0f3366; }
-  .step-wide .step-number span { color: rgba(255,255,255,0.15); }
-  .step-wide h3 { color: #fff; font-size: 1.15rem; }
-  .step-wide p { color: rgba(255,255,255,0.7); }
-  .step-wide .step-details { border-color: rgba(255,255,255,0.15); }
-  .step-wide .step-details li { color: rgba(255,255,255,0.6); }
-  .step-wide .step-tool { color: rgba(255,255,255,0.3); }
+  .step-wide:hover { background: linear-gradient(135deg, #5a6fd6 0%, #6a3d9a 100%); }
+  .step-wide .step-number span { color: rgba(255,255,255,0.2); }
+  .step-wide .step-number { color: rgba(255,255,255,0.6); }
+  .step-wide h3 { color: #fff; font-size: 1.1rem; }
+  .step-wide p { color: rgba(255,255,255,0.8); }
+  .step-wide .step-details { border-color: rgba(255,255,255,0.2); }
+  .step-wide .step-details li { color: rgba(255,255,255,0.7); }
+  .step-wide .step-details li::before { color: rgba(255,255,255,0.9); }
+  .step-wide .step-tool { color: rgba(255,255,255,0.35); }
 
   .step-wide-inner {
     display: grid;
@@ -297,17 +320,19 @@
 
   /* ── DATA FLOW DIAGRAM ── */
   .flow-diagram {
-    background: var(--ink);
+    background: #2d2d3f;
     padding: 2.5rem;
     margin: 2.5rem 0;
     position: relative;
     overflow: hidden;
+    border-radius: 12px;
   }
   .flow-diagram::before {
     content: 'DATA FLOW';
     position: absolute; top: 1rem; right: 1.5rem;
-    font-family: var(--mono); font-size: 0.6rem;
+    font-family: var(--sans); font-size: 0.65rem;
     letter-spacing: 0.2em; color: rgba(255,255,255,0.15);
+    font-weight: 600;
   }
   .flow-row {
     display: flex;
@@ -320,30 +345,30 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
     padding: 0.65rem 1rem;
     min-width: 200px;
     flex-shrink: 0;
+    border-radius: 8px;
   }
   .flow-box-icon { font-size: 1.1rem; }
   .flow-box-text {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.8);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.75);
     line-height: 1.5;
   }
   .flow-box-text strong {
     display: block;
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     margin-bottom: 0.1rem;
   }
   .flow-connector {
-    font-family: var(--mono);
-    color: var(--gold);
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
+    font-family: var(--sans);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
     flex: 1;
     text-align: center;
     position: relative;
@@ -352,70 +377,75 @@
     content: '';
     display: block;
     height: 1px;
-    background: rgba(201,162,39,0.3);
+    background: rgba(255,255,255,0.15);
     margin: 0.25rem 0;
   }
-  .flow-box.accent { border-color: var(--gold); background: rgba(201,162,39,0.08); }
-  .flow-box.accent .flow-box-text strong { color: var(--gold); }
-  .flow-box.green  { border-color: #22C55E; background: rgba(34,197,94,0.06); }
+  .flow-box.accent { border-color: #667eea; background: rgba(102,126,234,0.12); }
+  .flow-box.accent .flow-box-text strong { color: #a5b4fc; }
+  .flow-box.green  { border-color: #22C55E; background: rgba(34,197,94,0.08); }
   .flow-box.green  .flow-box-text strong { color: #4ADE80; }
 
   /* ── ALERT PREVIEW ── */
   .alert-preview {
-    background: #FFF8E7;
-    border-left: 4px solid var(--gold);
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 10px 10px 0;
     padding: 1.25rem 1.5rem;
     margin: 2.5rem 0;
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: 1.25rem;
     align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
   }
   .alert-icon { font-size: 2rem; }
   .alert-text { }
   .alert-text strong {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: var(--orange);
+    color: #92400e;
     margin-bottom: 0.3rem;
   }
   .alert-text p {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    color: #6B5A2A;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: #78350f;
     line-height: 1.6;
   }
   .alert-badge {
-    background: var(--orange);
+    background: linear-gradient(135deg, #dc2626, #991b1b);
     color: #fff;
-    font-family: var(--mono);
-    font-size: 0.62rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.4rem 0.8rem;
-    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     white-space: nowrap;
   }
 
   /* ── SAP ACTION BOX ── */
   .sap-box {
-    background: #1E0A3C;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 2rem 2.5rem;
     margin: 2.5rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    border-radius: 12px;
   }
   .sap-col h4 {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #A78BFA;
+    color: rgba(255,255,255,0.75);
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(167,139,250,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-weight: 700;
   }
   .sap-item {
     display: flex;
@@ -425,17 +455,18 @@
   }
   .sap-item-bullet {
     width: 6px; height: 6px;
-    background: #A78BFA;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
     flex-shrink: 0;
     margin-top: 0.4rem;
   }
   .sap-item-text {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.65);
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
     line-height: 1.6;
   }
-  .sap-item-text strong { color: #C4B5FD; }
+  .sap-item-text strong { color: #fff; }
 
   /* ── OUTCOME STRIP ── */
   .outcome-strip {
@@ -445,44 +476,46 @@
     background: var(--rule);
     border: 1.5px solid var(--rule);
     margin: 2.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
   }
   .outcome-card {
-    background: var(--paper);
+    background: #fff;
     padding: 1.5rem;
     text-align: center;
+    transition: background 0.2s;
   }
+  .outcome-card:hover { background: #f0f2ff; }
   .outcome-stat {
     font-family: var(--sans);
     font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--navy);
+    font-weight: 700;
+    color: #667eea;
     line-height: 1;
     margin-bottom: 0.4rem;
   }
-  .outcome-stat em { color: var(--gold); font-style: normal; }
+  .outcome-stat em { color: #764ba2; font-style: normal; }
   .outcome-desc {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    color: #7A7268;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: #888;
     line-height: 1.5;
-    letter-spacing: 0.05em;
   }
 
   /* ── FOOTER ── */
   footer {
-    border-top: 1.5px solid var(--rule);
+    background: #333;
+    color: rgba(255,255,255,0.6);
     padding: 1.5rem 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   footer p {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    color: var(--rule);
-    letter-spacing: 0.08em;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
   }
 
   /* ── ANIMATIONS ── */
@@ -522,6 +555,7 @@
 <header>
   <div class="header-grid">
     <div>
+      <a href="index.html" class="back-btn">← Back to Portfolio</a>
       <p class="header-eyebrow">// OVH Datacenter W26 — Project Control Framework</p>
       <h1>Construction Budget Control:<br><em>From Raw Data to Forward-Buying</em></h1>
       <div class="header-badge">Step-by-Step Architecture</div>
