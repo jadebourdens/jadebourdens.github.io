@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life in Motion — Jade Bourdens</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 70px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            padding: 6px 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            position: relative;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.75;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+        .section-label .num {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .section-label h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #2d2d2d;
+        }
+        .section-label .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, #667eea33, transparent);
+        }
+        .section-gap { margin-bottom: 3rem; }
+
+        /* ── CARDS ── */
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 28px 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #667eea;
+        }
+        .card.purple { border-left-color: #764ba2; }
+        .card.green  { border-left-color: #22c55e; }
+        .card.amber  { border-left-color: #f59e0b; }
+        .card.teal   { border-left-color: #14b8a6; }
+        .card p { color: #555; font-size: 0.95rem; line-height: 1.75; }
+        .card p + p { margin-top: 0.6rem; }
+        .card h4 { font-size: 1rem; font-weight: 700; color: #2d2d2d; margin-bottom: 0.5rem; }
+
+        /* ── OVERVIEW STATS ── */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .stat-box .s-label { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+        .stat-box .s-val   { font-size: 1.5rem; font-weight: 700; color: #667eea; }
+        .stat-box .s-sub   { font-size: 0.75rem; color: #bbb; margin-top: 3px; }
+
+        /* ── PIPELINE STEPS ── */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .pipeline::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            z-index: 0;
+        }
+        .pipe-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .pipe-dot {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 14px rgba(102,126,234,0.4);
+            flex-shrink: 0;
+        }
+        .pipe-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #555;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .pipe-sub {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* ── ACTIVITY GRID ── */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .act-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 14px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .act-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .act-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .act-code {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-top: 1px;
+        }
+
+        /* ── CODE BLOCK ── */
+        .code-wrap {
+            background: #1e1e2e;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        .code-header {
+            background: #2a2a3e;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .code-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red   { background: #ff5f56; }
+        .dot-amber { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .code-title {
+            margin-left: 8px;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
+            font-family: 'Courier New', monospace;
+        }
+        .code-body {
+            padding: 20px 24px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.82rem;
+            line-height: 1.75;
+            color: #cdd6f4;
+            overflow-x: auto;
+        }
+        .c-kw  { color: #cba6f7; } /* keyword / function */
+        .c-fn  { color: #89b4fa; } /* method */
+        .c-str { color: #a6e3a1; } /* string */
+        .c-num { color: #fab387; } /* number */
+        .c-cm  { color: #6c7086; } /* comment */
+        .c-var { color: #f38ba8; } /* variable */
+        .c-param { color: #f9e2af; } /* param name */
+
+        /* ── OUTPUT PREVIEW ── */
+        .output-box {
+            background: white;
+            border-radius: 14px;
+            padding: 28px 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 1.2rem;
+            border: 2px dashed #667eea44;
+            text-align: center;
+        }
+        .output-box .out-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+        .output-box h4 { font-size: 1rem; font-weight: 700; color: #2d2d2d; margin-bottom: 0.4rem; }
+        .output-box p { font-size: 0.88rem; color: #888; }
+        .output-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .out-tag {
+            background: #ede9fe;
+            color: #667eea;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* ── INSIGHT GRID ── */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .insight-card {
+            background: white;
+            border-radius: 14px;
+            padding: 22px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .insight-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .ins-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+        .ins-title { font-size: 0.85rem; font-weight: 700; color: #2d2d2d; margin-bottom: 0.4rem; }
+        .ins-desc  { font-size: 0.8rem; color: #777; line-height: 1.55; }
+
+        /* ── CONCLUSION ── */
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 32px 36px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 10px 40px rgba(102,126,234,0.35);
+        }
+        .conclusion-icon { font-size: 3rem; flex-shrink: 0; }
+        .conclusion h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .conclusion p  { opacity: 0.88; font-size: 0.92rem; line-height: 1.7; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #2d2d2d;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 24px;
+            font-size: 0.82rem;
+        }
+        footer span { color: #667eea; }
+
+        @media(max-width: 700px) {
+            .stat-row { grid-template-columns: repeat(2, 1fr); }
+            .pipeline { grid-template-columns: 1fr; }
+            .pipeline::before { display: none; }
+            .activity-grid { grid-template-columns: repeat(2, 1fr); }
+            .insight-grid { grid-template-columns: 1fr; }
+            .conclusion { flex-direction: column; text-align: center; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">👥 Data Visualization · Python · d3blocks</div>
+    <h1>Life in Motion</h1>
+    <p>Visualizing how Vietnamese people spend their time using moving bubble charts</p>
+    <div class="hero-meta">
+        <span>🗂 Dataset: diary_main.csv</span>
+        <span>🫧 Moving Bubbles (d3blocks)</span>
+        <span>🎨 Color map: HSV</span>
+        <span>🇻🇳 Vietnamese Time-Use Survey</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ① OVERVIEW -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">1</div>
+            <h2>Project Overview</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="s-label">Visualization</div>
+                <div class="s-val">Moving</div>
+                <div class="s-sub">Bubble Chart</div>
+            </div>
+            <div class="stat-box">
+                <div class="s-label">Library</div>
+                <div class="s-val">d3blocks</div>
+                <div class="s-sub">+ Pandas</div>
+            </div>
+            <div class="stat-box">
+                <div class="s-label">Center State</div>
+                <div class="s-val">Travel</div>
+                <div class="s-sub">Pivot activity</div>
+            </div>
+            <div class="stat-box">
+                <div class="s-label">Output</div>
+                <div class="s-val">.html</div>
+                <div class="s-sub">Interactive file</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <p>This project uses <strong>d3blocks' moving bubbles</strong> to animate how individual respondents from a Vietnamese time-use survey transition between daily activities over time. Each bubble represents a person; its position reflects their current activity state, creating an organic, living visualization of collective behavior.</p>
+        </div>
+    </div>
+
+    <!-- ② PIPELINE -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">2</div>
+            <h2>Data Pipeline</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="pipeline">
+            <div class="pipe-step">
+                <div class="pipe-dot">📂</div>
+                <div class="pipe-label">Upload CSV</div>
+                <div class="pipe-sub">google.colab<br>files.upload()</div>
+            </div>
+            <div class="pipe-step">
+                <div class="pipe-dot">🕐</div>
+                <div class="pipe-label">Convert Time</div>
+                <div class="pipe-sub">minutes → datetime<br>strftime / gmtime</div>
+            </div>
+            <div class="pipe-step">
+                <div class="pipe-dot">🏷️</div>
+                <div class="pipe-label">Map Activities</div>
+                <div class="pipe-sub">activity codes →<br>readable labels</div>
+            </div>
+            <div class="pipe-step">
+                <div class="pipe-dot">⚡</div>
+                <div class="pipe-label">Reduce Size</div>
+                <div class="pipe-sub">iloc[:len/4]<br>faster rendering</div>
+            </div>
+            <div class="pipe-step">
+                <div class="pipe-dot">🫧</div>
+                <div class="pipe-label">Render Chart</div>
+                <div class="pipe-label">d3.movingbubbles<br>→ .html export</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ③ ACTIVITY MAPPING -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">3</div>
+            <h2>Activity Code Mapping</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="card amber">
+            <p>Raw survey data uses numeric codes (e.g. <code style="background:#f3f4f6;padding:1px 6px;border-radius:4px;font-size:0.85em;">Q401 = 1501</code>) to represent activities. A custom <code style="background:#f3f4f6;padding:1px 6px;border-radius:4px;font-size:0.85em;">get_activity()</code> function translates 50+ codes into 15 human-readable categories, applied at read time via Pandas <strong>converters</strong>.</p>
+        </div>
+
+        <div class="activity-grid">
+            <div class="act-card"><div class="act-icon">💼</div><div><div class="act-name">Work</div><div class="act-code">101–502</div></div></div>
+            <div class="act-card"><div class="act-icon">🚌</div><div><div class="act-name">Travelling</div><div class="act-code">198, 298…</div></div></div>
+            <div class="act-card"><div class="act-icon">🛒</div><div><div class="act-name">Shopping</div><div class="act-code">602</div></div></div>
+            <div class="act-card"><div class="act-icon">🏠</div><div><div class="act-name">Housework</div><div class="act-code">601</div></div></div>
+            <div class="act-card"><div class="act-icon">👶</div><div><div class="act-name">Caring</div><div class="act-code">701, 702</div></div></div>
+            <div class="act-card"><div class="act-icon">📚</div><div><div class="act-name">Education</div><div class="act-code">901–903</div></div></div>
+            <div class="act-card"><div class="act-icon">🎭</div><div><div class="act-name">Entertainment</div><div class="act-code">1201–1299</div></div></div>
+            <div class="act-card"><div class="act-icon">⚽</div><div><div class="act-name">Sport</div><div class="act-code">1301–1399</div></div></div>
+            <div class="act-card"><div class="act-icon">📺</div><div><div class="act-name">TV / Youtube</div><div class="act-code">1402</div></div></div>
+            <div class="act-card"><div class="act-icon">🌐</div><div><div class="act-name">Surf Web</div><div class="act-code">1404</div></div></div>
+            <div class="act-card"><div class="act-icon">😴</div><div><div class="act-name">Sleeping</div><div class="act-code">1501</div></div></div>
+            <div class="act-card"><div class="act-icon">🍜</div><div><div class="act-name">Eating</div><div class="act-code">1502</div></div></div>
+            <div class="act-card"><div class="act-icon">🚿</div><div><div class="act-name">Personal Hygiene</div><div class="act-code">1503</div></div></div>
+            <div class="act-card"><div class="act-icon">😌</div><div><div class="act-name">Relaxing</div><div class="act-code">1506</div></div></div>
+            <div class="act-card"><div class="act-icon">🍱</div><div><div class="act-name">Sell Food</div><div class="act-code">501</div></div></div>
+            <div class="act-card"><div class="act-icon">💇</div><div><div class="act-name">Provide Services</div><div class="act-code">504–508</div></div></div>
+        </div>
+    </div>
+
+    <!-- ④ KEY CODE -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">4</div>
+            <h2>Key Code Snippets</h2>
+            <div class="line"></div>
+        </div>
+
+        <!-- Time converter -->
+        <div class="code-wrap">
+            <div class="code-header">
+                <div class="code-dot dot-red"></div>
+                <div class="code-dot dot-amber"></div>
+                <div class="code-dot dot-green"></div>
+                <div class="code-title">time_converter.py — minutes → datetime</div>
+            </div>
+            <div class="code-body">
+<span class="c-kw">def</span> <span class="c-fn">convert_time</span>(<span class="c-param">minute</span>):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-cm"># Converts minutes since epoch to formatted datetime string</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">return</span> <span class="c-fn">strftime</span>(<span class="c-str">"%Y-%m-%d %H:%M:%S"</span>, <span class="c-fn">gmtime</span>(<span class="c-fn">int</span>(<span class="c-param">minute</span>) * <span class="c-num">60</span>))
+            </div>
+        </div>
+
+        <!-- Load CSV -->
+        <div class="code-wrap">
+            <div class="code-header">
+                <div class="code-dot dot-red"></div>
+                <div class="code-dot dot-amber"></div>
+                <div class="code-dot dot-green"></div>
+                <div class="code-title">load_data.py — read & transform on import</div>
+            </div>
+            <div class="code-body">
+<span class="c-var">data</span> = <span class="c-fn">pd.read_csv</span>(<span class="c-str">"4_diary_main.csv"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">usecols</span>=[ <span class="c-str">"ID"</span>, <span class="c-str">"BEGIN"</span>, <span class="c-str">"Q401"</span> ],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">encoding</span>=<span class="c-str">'latin-1'</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">converters</span>={<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"Q401"</span>: <span class="c-fn">get_activity</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"BEGIN"</span>: <span class="c-fn">convert_time</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br><br>
+<span class="c-cm"># Sort + rename for d3blocks expected schema</span><br>
+<span class="c-var">data</span> = <span class="c-var">data</span>.<span class="c-fn">sort_values</span>([<span class="c-str">"ID"</span>, <span class="c-str">"BEGIN"</span>])<br>
+<span class="c-var">data</span> = <span class="c-var">data</span>.<span class="c-fn">rename</span>(<span class="c-param">columns</span>={<span class="c-str">"ID"</span>: <span class="c-str">"sample_id"</span>, <span class="c-str">"BEGIN"</span>: <span class="c-str">"datatime"</span>, <span class="c-str">"Q401"</span>: <span class="c-str">"state"</span>})<br>
+<span class="c-var">data</span> = <span class="c-var">data</span>.<span class="c-fn">iloc</span>[:<span class="c-fn">int</span>(<span class="c-fn">len</span>(<span class="c-var">data</span>) / <span class="c-num">4</span>)]&nbsp;&nbsp;<span class="c-cm"># reduce for performance</span>
+            </div>
+        </div>
+
+        <!-- Render -->
+        <div class="code-wrap">
+            <div class="code-header">
+                <div class="code-dot dot-red"></div>
+                <div class="code-dot dot-amber"></div>
+                <div class="code-dot dot-green"></div>
+                <div class="code-title">render.py — d3blocks moving bubbles</div>
+            </div>
+            <div class="code-body">
+<span class="c-var">d3</span> = <span class="c-fn">D3Blocks</span>()<br><br>
+<span class="c-var">d3</span>.<span class="c-fn">movingbubbles</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-var">data</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">datetime</span>=<span class="c-str">"datatime"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">sample_id</span>=<span class="c-str">"sample_id"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">state</span>=<span class="c-str">"state"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">filepath</span>=<span class="c-str">"./moving_point.html"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">note</span>=<span class="c-str">"How Vietnamese people spend their time"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">cmap</span>=<span class="c-str">"hsv"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">center</span>=<span class="c-str">"Travelling"</span>,&nbsp;&nbsp;<span class="c-cm"># pivot activity</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">size</span>=<span class="c-num">2</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">figsize</span>=(<span class="c-num">780</span>, <span class="c-num">900</span>),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-param">dt_format</span>=<span class="c-str">"%Y-%m-%d %H:%M:%S"</span><br>
+)
+            </div>
+        </div>
+    </div>
+
+    <!-- ⑤ OUTPUT -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">5</div>
+            <h2>Output & Demo</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="output-box">
+            <div class="out-icon">🫧</div>
+            <h4>moving_point.html — Interactive Bubble Animation</h4>
+            <p>A self-contained HTML file with embedded D3.js. Each bubble = one respondent. Bubbles drift between activity clusters as time advances, revealing patterns in daily Vietnamese life.</p>
+            <div class="output-tags">
+                <span class="out-tag">780 × 900 px canvas</span>
+                <span class="out-tag">HSV color map</span>
+                <span class="out-tag">Center: Travelling</span>
+                <span class="out-tag">Self-contained .html</span>
+                <span class="out-tag">Exported via Colab</span>
+            </div>
+        </div>
+
+        <div class="card teal">
+            <p>▶ <strong>Watch the demo</strong> on YouTube to see the animation in action — bubbles transition fluidly between Sleeping, Working, Eating, Travelling and more across the full survey day.</p>
+        </div>
+    </div>
+
+    <!-- ⑥ INSIGHTS -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">6</div>
+            <h2>Design Decisions & Insights</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="insight-grid">
+            <div class="insight-card">
+                <div class="ins-icon">🎯</div>
+                <div class="ins-title">Center = Travelling</div>
+                <div class="ins-desc">Travelling is used as the pivot/center state — it acts as a natural transition hub between most other daily activities, making transitions visually smooth and legible.</div>
+            </div>
+            <div class="insight-card">
+                <div class="ins-icon">⚡</div>
+                <div class="ins-title">Performance Trade-off</div>
+                <div class="ins-desc">Data is reduced to 25% of its original size (<code style="font-size:0.78em">iloc[:len/4]</code>) to ensure the browser can render the animation without lag in Google Colab.</div>
+            </div>
+            <div class="insight-card">
+                <div class="ins-icon">🕐</div>
+                <div class="ins-title">Time Conversion</div>
+                <div class="ins-desc">Raw survey timestamps are stored as minutes since epoch. A custom converter transforms them into ISO datetime strings at read time — no post-processing needed.</div>
+            </div>
+            <div class="insight-card">
+                <div class="ins-icon">🏷️</div>
+                <div class="ins-title">Converter at Read Time</div>
+                <div class="ins-desc">Both <code style="font-size:0.78em">get_activity()</code> and <code style="font-size:0.78em">convert_time()</code> are passed as Pandas converters, keeping the transformation pipeline clean and inline.</div>
+            </div>
+            <div class="insight-card">
+                <div class="ins-icon">🎨</div>
+                <div class="ins-title">HSV Color Map</div>
+                <div class="ins-desc">The HSV colormap assigns visually distinct, saturated colors to each of the 16 activity categories, making state transitions immediately recognizable at a glance.</div>
+            </div>
+            <div class="insight-card">
+                <div class="ins-icon">📤</div>
+                <div class="ins-title">Portable Output</div>
+                <div class="ins-desc">The output is a single self-contained <code style="font-size:0.78em">.html</code> file with D3.js embedded — shareable anywhere without a server, database, or Python runtime.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ⑦ CONCLUSION -->
+    <div class="section-gap">
+        <div class="section-label">
+            <div class="num">7</div>
+            <h2>Conclusion</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="conclusion">
+            <div class="conclusion-icon">🇻🇳</div>
+            <div>
+                <h3>Bringing survey data to life</h3>
+                <p>By combining Pandas' converter pipeline with d3blocks' moving bubble chart, this project transforms a flat time-use survey CSV into a living, breathing animation. Viewers can observe collective rhythms — when people sleep, eat, work, and travel — in a single, shareable interactive file. A demonstration that data visualization can be both technically rigorous and genuinely engaging.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    Built by <span>Jade Bourdens (Ngoc)</span> · Life in Motion · Python · d3blocks · Vietnamese Time-Use Survey
+</footer>
+
+</body>
+</html>
