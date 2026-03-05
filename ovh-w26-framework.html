@@ -321,10 +321,9 @@
   /* ── DATA FLOW DIAGRAM ── */
   .flow-diagram {
     background: #2d2d3f;
-    padding: 2.5rem;
+    padding: 2rem;
     margin: 2.5rem 0;
     position: relative;
-    overflow: hidden;
     border-radius: 12px;
   }
   .flow-diagram::before {
@@ -334,56 +333,69 @@
     letter-spacing: 0.2em; color: rgba(255,255,255,0.15);
     font-weight: 600;
   }
-  .flow-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  /* 3 equal columns side by side */
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
-  .flow-row:last-child { margin-bottom: 0; }
+  /* Each column stacks boxes + arrows vertically */
+  .flow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
   .flow-box {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
-    padding: 0.65rem 1rem;
-    min-width: 200px;
-    flex-shrink: 0;
+    padding: 0.75rem 1rem;
     border-radius: 8px;
   }
-  .flow-box-icon { font-size: 1.1rem; }
+  .flow-box-icon { font-size: 1.1rem; flex-shrink: 0; }
   .flow-box-text {
     font-family: var(--sans);
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     color: rgba(255,255,255,0.75);
-    line-height: 1.5;
+    line-height: 1.45;
   }
   .flow-box-text strong {
     display: block;
     color: #fff;
-    font-size: 0.8rem;
-    margin-bottom: 0.1rem;
+    font-size: 0.78rem;
+    margin-bottom: 0.15rem;
   }
-  .flow-connector {
+  /* Down arrow connector between boxes */
+  .flow-down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.35rem 0;
+  }
+  .flow-down span {
+    color: rgba(255,255,255,0.45);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .flow-down-label {
     font-family: var(--sans);
-    color: rgba(255,255,255,0.5);
-    font-size: 0.72rem;
-    flex: 1;
+    font-size: 0.62rem !important;
+    color: rgba(255,255,255,0.35) !important;
+    letter-spacing: 0.04em;
     text-align: center;
-    position: relative;
   }
-  .flow-connector::before, .flow-connector::after {
-    content: '';
-    display: block;
-    height: 1px;
-    background: rgba(255,255,255,0.15);
-    margin: 0.25rem 0;
-  }
-  .flow-box.accent { border-color: #667eea; background: rgba(102,126,234,0.12); }
+  .flow-box.accent { border-color: #667eea; background: rgba(102,126,234,0.15); }
   .flow-box.accent .flow-box-text strong { color: #a5b4fc; }
   .flow-box.green  { border-color: #22C55E; background: rgba(34,197,94,0.08); }
   .flow-box.green  .flow-box-text strong { color: #4ADE80; }
+
+  @media (max-width: 700px) {
+    .flow-grid { grid-template-columns: 1fr; }
+  }
 
   /* ── ALERT PREVIEW ── */
   .alert-preview {
@@ -545,7 +557,7 @@
     .step-wide-inner { grid-template-columns: 1fr; }
     .outcome-strip { grid-template-columns: 1fr 1fr; }
     .sap-box { grid-template-columns: 1fr; }
-    .flow-row { flex-direction: column; }
+    
     .header-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -746,80 +758,62 @@
   <div class="section-label">Live Data Flow</div>
 
   <div class="flow-diagram">
-    <div class="flow-row">
-      <div class="flow-box">
-        <div class="flow-box-icon">🌐</div>
-        <div class="flow-box-text">
-          <strong>Market APIs</strong>
-          LME · Eurofer · Béton FR · Vendor feeds
+    <div class="flow-grid">
+
+      <!-- Column 1 -->
+      <div class="flow-col">
+        <div class="flow-box">
+          <div class="flow-box-icon">🌐</div>
+          <div class="flow-box-text"><strong>Market APIs</strong>LME · Eurofer · Béton FR · Vendor feeds</div>
+        </div>
+        <div class="flow-down"><span>↓</span><span class="flow-down-label">Daily pull · Cloud Scheduler</span></div>
+        <div class="flow-box">
+          <div class="flow-box-icon">☁️</div>
+          <div class="flow-box-text"><strong>BigQuery Raw Layer</strong>ovh_w26.market_prices_raw</div>
+        </div>
+        <div class="flow-down"><span>↓</span><span class="flow-down-label">dbt transform</span></div>
+        <div class="flow-box accent">
+          <div class="flow-box-icon">⚡</div>
+          <div class="flow-box-text"><strong>ARIMA_PLUS Forecast</strong>ovh_w26.price_forecast_90d</div>
         </div>
       </div>
-      <div class="flow-connector">Daily pull<br>Cloud Scheduler ──▶</div>
-      <div class="flow-box">
-        <div class="flow-box-icon">☁️</div>
-        <div class="flow-box-text">
-          <strong>BigQuery Raw Layer</strong>
-          ovh_w26.market_prices_raw
+
+      <!-- Column 2 -->
+      <div class="flow-col">
+        <div class="flow-box">
+          <div class="flow-box-icon">📊</div>
+          <div class="flow-box-text"><strong>SAP WBS Export</strong>Standard_Price · Planned Qty</div>
+        </div>
+        <div class="flow-down"><span>↓</span><span class="flow-down-label">BTP nightly extract</span></div>
+        <div class="flow-box">
+          <div class="flow-box-icon">🔗</div>
+          <div class="flow-box-text"><strong>WBS × Market Join</strong>ovh_w26.wbs_vs_market</div>
+        </div>
+        <div class="flow-down"><span>↓</span><span class="flow-down-label">overrun score</span></div>
+        <div class="flow-box accent">
+          <div class="flow-box-icon">🔔</div>
+          <div class="flow-box-text"><strong>Alert Engine</strong>ovh_w26.overrun_alerts → PM</div>
         </div>
       </div>
-      <div class="flow-connector">dbt transform ──▶</div>
-      <div class="flow-box accent">
-        <div class="flow-box-icon">⚡</div>
-        <div class="flow-box-text">
-          <strong>ARIMA_PLUS Forecast</strong>
-          ovh_w26.price_forecast_90d
+
+      <!-- Column 3 -->
+      <div class="flow-col">
+        <div class="flow-box green">
+          <div class="flow-box-icon">✅</div>
+          <div class="flow-box-text"><strong>SAP MM — Forward Buy PR</strong>BAPI_PR_CREATE · Release Strategy</div>
+        </div>
+        <div class="flow-down"><span>↓</span><span class="flow-down-label">actuals feedback</span></div>
+        <div class="flow-box green">
+          <div class="flow-box-icon">🔄</div>
+          <div class="flow-box-text"><strong>Model Retraining Loop</strong>MIRO actuals → BigQuery → ARIMA retrain</div>
+        </div>
+        <div class="flow-down"><span>↓</span><span class="flow-down-label">MAPE monitoring</span></div>
+        <div class="flow-box green">
+          <div class="flow-box-icon">📈</div>
+          <div class="flow-box-text"><strong>Accuracy KPI Dashboard</strong>Looker Studio · Monthly steering report</div>
         </div>
       </div>
-    </div>
-    <div class="flow-row">
-      <div class="flow-box">
-        <div class="flow-box-icon">📊</div>
-        <div class="flow-box-text">
-          <strong>SAP WBS Export</strong>
-          Standard_Price · Planned Qty
-        </div>
-      </div>
-      <div class="flow-connector">BTP nightly extract ──▶</div>
-      <div class="flow-box">
-        <div class="flow-box-icon">🔗</div>
-        <div class="flow-box-text">
-          <strong>WBS × Market Join</strong>
-          ovh_w26.wbs_vs_market
-        </div>
-      </div>
-      <div class="flow-connector">overrun score ──▶</div>
-      <div class="flow-box accent">
-        <div class="flow-box-icon">🔔</div>
-        <div class="flow-box-text">
-          <strong>Alert Engine</strong>
-          ovh_w26.overrun_alerts → PM
-        </div>
-      </div>
-    </div>
-    <div class="flow-row">
-      <div class="flow-box green">
-        <div class="flow-box-icon">✅</div>
-        <div class="flow-box-text">
-          <strong>SAP MM — Forward Buy PR</strong>
-          BAPI_PR_CREATE · Release Strategy
-        </div>
-      </div>
-      <div class="flow-connector">actuals feedback ──▶</div>
-      <div class="flow-box green">
-        <div class="flow-box-icon">🔄</div>
-        <div class="flow-box-text">
-          <strong>Model Retraining Loop</strong>
-          MIRO actuals → BigQuery → ARIMA retrain
-        </div>
-      </div>
-      <div class="flow-connector">MAPE monitoring ──▶</div>
-      <div class="flow-box green">
-        <div class="flow-box-icon">📈</div>
-        <div class="flow-box-text">
-          <strong>Accuracy KPI Dashboard</strong>
-          Looker Studio · Monthly steering report
-        </div>
-      </div>
+
     </div>
   </div>
 
