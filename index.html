@@ -203,7 +203,7 @@
             color: white;
         }
 
-        /* OVH card gets its own distinct header gradient */
+        /* OVH card header gradient */
         .project-header.ovh-header {
             background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 60%, #0E7490 100%);
         }
@@ -248,7 +248,6 @@
             font-size: 0.8rem;
         }
 
-        /* SAP/enterprise tags get a navy tint on the OVH card */
         .tech-tag.ovh-tag {
             background: #e8eef7;
             color: #0D2B55;
@@ -285,7 +284,6 @@
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
-        /* Presentation link — gradient pill, stands out */
         .presentation-link {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -304,10 +302,8 @@
         .presentation-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.45);
-            opacity: 0.92;
         }
 
-        /* OVH primary button uses navy */
         .primary-link.ovh-link {
             background: #0D2B55;
         }
@@ -357,76 +353,23 @@
             color: #667eea;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .nav-right {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .download-cv {
-                font-size: 0.8rem;
-                padding: 8px 16px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .project-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-right {
-                gap: 0.5rem;
-            }
-            
-            .download-cv {
-                padding: 6px 12px;
-                font-size: 0.7rem;
-            }
-
-            .project-links {
-                flex-direction: column;
-                align-items: center;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+            .nav-right { flex-direction: column; gap: 1rem; }
+            .nav-links { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: center; }
+            .project-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo">Jade Bourdens (Ngoc)</div>
@@ -436,181 +379,47 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit?utm_content=DAGgPOcgud0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="download-cv" target="_blank" rel="noopener noreferrer">Download CV</a>
+                <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit" class="download-cv" target="_blank" rel="noopener noreferrer">Download CV</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>Data Analyst</h1>
-            <p>Data Analysis 🦄 Insight Visualization 🦄 Automated Reporting</p>
+            <p>Cloud Data Architecture 🦄 Insight Visualization 🦄 Predictive Procurement</p>
             <a href="#projects" class="cta-button">View My Work</a>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
                 <div>
                     <h2>About Me</h2>
-                    <p>Analytical professional with a proven track record in Sales, Marketing, and AdTech statistical studies. Expert in transforming raw data into actionable insights for campaign effectiveness. Currently expanding my expertise into SAP S/4HANA and Cloud-native data workflows to bridge the gap between technical data engineering and high-level business strategy.</p>
+                    <p>I am a Data Analyst specializing in the intersection of <strong>Cloud Data Infrastructure and Enterprise Resource Planning (ERP)</strong>. My background in AdTech and Sales analytics has evolved into architecting advanced solutions using <strong>SQL, Python, and BigQuery ML</strong>. I focus on bridging the gap between technical data engineering and high-level business strategy, specifically for industrial operational efficiency.</p>
                 </div>
                 <div>
                     <h3>Technical Skills</h3>
                     <div class="skills">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Python (XGBoost)</span>
+                        <span class="skill-tag">SQL & BigQuery ML</span>
+                        <span class="skill-tag">Tableau / Looker Studio</span>
+                        <span class="skill-tag">SAP MM / PS Logic</span>
+                        <span class="skill-tag">Predictive Analytics</span>
                         <span class="skill-tag">Scikit-learn</span>
                         <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">Machine Learning</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 
-                <!-- Python Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🐍</div>
-                        <h3 class="project-title">Power Forecasting Consumption ML</h3>
-                        <p class="project-subtitle">Predictive Analytics with Python</p>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            Built machine learning models to forecast power consumption.
-                            Implemented time series analysis, feature engineering.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">seaborn</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Matplotlib</span>
-                            <span class="tech-tag">XGBoost Model Training</span>
-                            <span class="tech-tag">Time Series Cross Validation</span>
-                            <span class="tech-tag">Score RMSE</span>
-                            <span class="tech-tag">Lag Features</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link primary-link">Google Colab Code</a>
-                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SQL Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🛢️</div>
-                        <h3 class="project-title">Sales Performance/Customer Satisfaction Analysis</h3>
-                        <p class="project-subtitle">PostgreSQL, pgAdmin 4</p>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            This project dives deep into business performance across four key dimensions: Baseline Metrics - Product Trends - Outlet Performance - Customer Sentiment.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Aggregation</span>
-                            <span class="tech-tag">Window Functions</span>
-                            <span class="tech-tag">FILTER Clauses</span>
-                            <span class="tech-tag">COALESCE Handling</span>
-                            <span class="tech-tag">Conditional Logic</span>
-                            <span class="tech-tag">Rating vs Sales/Outlier detection</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="sales-performance.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fast Food Marketing -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">📊</div>
-                        <h3 class="project-title">Fast Food Marketing Campaigns Statistical Test</h3>
-                        <p class="project-subtitle">Statistical Analysis with Python</p>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            Testing what promotions perform better for business outcome. Analyzed campaign effectiveness through statistical testing methodologies to determine optimal promotional strategies.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Anova Test</span>
-                            <span class="tech-tag">Bonferroni</span>
-                            <span class="tech-tag">A/B Testing</span>
-                            <span class="tech-tag">Pairwise T-tests</span>
-                            <span class="tech-tag">Post-hoc Analysis</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/1IXKqria34MqJaSiT_H32gNBa6AY5G6f4?usp=sharing" target="_blank" class="project-link primary-link">Google Colab Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tableau Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">📈</div>
-                        <h3 class="project-title">Marketing Dashboard</h3>
-                        <p class="project-subtitle">Interactive Tableau Visualization</p>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            Created executive-level marketing dashboard tracking campaign performance, 
-                            customer acquisition costs, and ROI across multiple channels. 
-                            Enabled data-driven decision making that improved campaign efficiency by 28%.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Tableau</span>
-                            <span class="tech-tag">Data Visualization</span>
-                            <span class="tech-tag">KPI Design</span>
-                            <span class="tech-tag">Interactive Filters</span>
-                            <span class="tech-tag">Mobile Responsive</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://public.tableau.com/views/YourDashboardName/Dashboard1" target="_blank" class="project-link primary-link">Live Dashboard</a>
-                            <a href="https://github.com/yourusername/marketing-dashboard-case-study" target="_blank" class="project-link secondary-link">Case Study</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vietnamese Activities -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">👥</div>
-                        <h3 class="project-title">Life in Motion: Tracking Vietnamese Activities with Moving Bubbles</h3>
-                        <p class="project-subtitle">Data Viz with Python</p>
-                    </div>
-                    <div class="project-content">
-                        <p class="project-description">
-                            How Vietnamese people spend their time.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">d3blocks</span>
-                            <span class="tech-tag">pandas</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://colab.research.google.com/drive/13cdTPS9tgNeZp-E637Y1Wk28En5tEvH6?usp=sharing" target="_blank" class="project-link primary-link">Google Colab Code</a>
-                            <a href="https://youtu.be/5BrO8q89qHw" target="_blank" class="project-link secondary-link">Watch Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Cloud Construction Budget Control Framework -->
                 <div class="project-card">
                     <div class="project-header ovh-header">
                         <div class="project-icon">🏗️</div>
@@ -619,17 +428,14 @@
                     </div>
                     <div class="project-content">
                         <p class="project-description">
-                            Built a Construction Budget Control Framework bridging a Cloud Data Stack (BigQuery) with SAP Procurement Strategy. By joining real-time commodity market data with a fixed WBS budget, developed a predictive model that alerts Project Managers to potential overruns 3 months in advance — enabling strategic forward-buying in SAP MM.
+                            Architected a predictive framework for Data Center construction CAPEX. By joining real-time commodity market trends with SAP WBS structures, this model alerts managers to budget overruns 3 months in advance, enabling strategic "Forward-Buying."
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag ovh-tag">BigQuery ML</span>
                             <span class="tech-tag ovh-tag">SAP MM / PS</span>
                             <span class="tech-tag ovh-tag">ARIMA Forecast</span>
-                            <span class="tech-tag ovh-tag">WBS Cost Control</span>
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Cloud Scheduler</span>
                             <span class="tech-tag">Looker Studio</span>
-                            <span class="tech-tag">Forward Buying</span>
                         </div>
                         <div class="project-links">
                             <a href="ovh-w26-framework.html" target="_blank" class="project-link primary-link ovh-link">View Framework</a>
@@ -637,34 +443,69 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🐍</div>
+                        <h3 class="project-title">Power Forecasting Consumption ML</h3>
+                        <p class="project-subtitle">Predictive Analytics with XGBoost</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Built time-series machine learning models to forecast hourly power consumption. Implemented feature engineering (lag features) and cross-validation to optimize RMSE scores for grid operations.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">XGBoost</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Time Series CV</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds" target="_blank" class="project-link primary-link">Google Colab Code</a>
+                            <a href="power-forecasting.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🛢️</div>
+                        <h3 class="project-title">Sales Performance Analysis</h3>
+                        <p class="project-subtitle">PostgreSQL & Window Functions</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Deep dive into business performance across Product Trends, Outlet Performance, and Customer Sentiment using advanced SQL techniques.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Window Functions</span>
+                            <span class="tech-tag">COALESCE</span>
+                            <span class="tech-tag">Conditional Logic</span>
+                            <span class="tech-tag">Outlier Detection</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="sales-performance.html" target="_blank" class="project-link presentation-link">Project Presentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <footer id="contact" class="contact">
         <div class="container">
             <h2>Let's Connect</h2>
-            <p>Open to • Remote work • Freelance projects • Long-term roles</p>
-            <p>Paris-based</p>
+            <p>Paris-based | Open to Alternance & Long-term roles</p>
             <div class="contact-links">
-                <a href="/cdn-cgi/l/email-protection#0a606b6e6f68657f786e6f64794a6d676b636624696567" class="contact-link">
-                    📧 <span class="__cf_email__" data-cfemail="8fe5eeebeaede0fafdebeae1fccfe8e2eee6e3a1ece0e2">[email&#160;protected]</span>
-                </a>
-                <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="contact-link">
-                    💼 LinkedIn
-                </a>
-                <a href="https://github.com/jadebourdens" target="_blank" class="contact-link">
-                    🐙 GitHub
-                </a>
-                <a href="tel:+33753859752" class="contact-link">
-                    📞 +33 753 859 752
-                </a>
+                <a href="mailto:ngoc.phung@example.com" class="contact-link">📧 Email Me</a>
+                <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="contact-link">💼 LinkedIn</a>
+                <a href="https://github.com/jadebourdens" target="_blank" class="contact-link">🐙 GitHub</a>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -673,6 +514,6 @@
                 });
             });
         });
-
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
+    </script>
+</body>
+</html>
