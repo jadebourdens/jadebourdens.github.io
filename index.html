@@ -203,6 +203,11 @@
             color: white;
         }
 
+        /* OVH card gets its own distinct header gradient */
+        .project-header.ovh-header {
+            background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 60%, #0E7490 100%);
+        }
+
         .project-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -243,13 +248,19 @@
             font-size: 0.8rem;
         }
 
+        /* SAP/enterprise tags get a navy tint on the OVH card */
+        .tech-tag.ovh-tag {
+            background: #e8eef7;
+            color: #0D2B55;
+            font-weight: 600;
+        }
+
         .project-links {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
 
-        /* IMPORTANT: This is the main button styling that was getting lost */
         .project-link {
             display: inline-block;
             padding: 10px 20px;
@@ -272,6 +283,16 @@
             background: #5a6fd8;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* OVH primary button uses navy */
+        .primary-link.ovh-link {
+            background: #0D2B55;
+        }
+
+        .primary-link.ovh-link:hover {
+            background: #1A4A8A;
+            box-shadow: 0 4px 12px rgba(13, 43, 85, 0.35);
         }
 
         .secondary-link {
@@ -464,7 +485,6 @@
                         </div>
                         <div class="project-links">
                             <a href="https://colab.research.google.com/drive/172m9eBmlqO7w5Lj5rxg1_PWERZI7SAds#scrollTo=BiLwQ1rmP8Xs" target="_blank" class="project-link primary-link">Google Colab Code</a>
-                            
                         </div>
                     </div>
                 </div>
@@ -495,7 +515,7 @@
                     </div>
                 </div>
 
-                <!-- NEW: Fast Food Marketing Campaigns Statistical Test -->
+                <!-- Fast Food Marketing -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">📊</div>
@@ -546,7 +566,7 @@
                     </div>
                 </div>
 
-                <!-- Tracking Vietnamese Activities -->
+                <!-- Vietnamese Activities -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">👥</div>
@@ -568,6 +588,34 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- ✦ NEW: OVH W26 Construction Budget Control Framework ✦ -->
+                <div class="project-card">
+                    <div class="project-header ovh-header">
+                        <div class="project-icon">🏗️</div>
+                        <h3 class="project-title">OVH W26 — Construction Budget Control Framework</h3>
+                        <p class="project-subtitle">BigQuery ML · SAP MM · Predictive Procurement</p>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Built a Construction Budget Control Framework bridging a Cloud Data Stack (BigQuery) with SAP Procurement Strategy. By joining real-time commodity market data with a fixed WBS budget, developed a predictive model that alerts Project Managers to potential overruns 3 months in advance — enabling strategic forward-buying in SAP MM.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag ovh-tag">BigQuery ML</span>
+                            <span class="tech-tag ovh-tag">SAP MM / PS</span>
+                            <span class="tech-tag ovh-tag">ARIMA Forecast</span>
+                            <span class="tech-tag ovh-tag">WBS Cost Control</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Cloud Scheduler</span>
+                            <span class="tech-tag">Looker Studio</span>
+                            <span class="tech-tag">Forward Buying</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="ovh-w26-framework.html" target="_blank" class="project-link primary-link ovh-link">View Framework</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ✦ END OVH CARD ✦ -->
 
             </div>
         </div>
@@ -592,7 +640,6 @@
                 <a href="tel:+33753859752" class="contact-link">
                     📞 +33 753 859 752
                 </a>
-                
             </div>
         </div>
     </section>
