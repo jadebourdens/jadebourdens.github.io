@@ -6,151 +6,274 @@
     <title>Jade Bourdens - Data Analyst Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #0d0d1a;
+        }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); }
+        /* ── NAV ── */
+        header {
+            background: rgba(13, 13, 26, 0.85);
+            backdrop-filter: blur(18px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.15);
+        }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #667eea; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #a78bfa; letter-spacing: 0.01em; }
         .nav-right { display: flex; align-items: center; gap: 2rem; }
         .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s ease; }
-        .nav-links a:hover { color: #667eea; }
-        .download-cv { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 25px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .nav-links a { text-decoration: none; color: rgba(255,255,255,0.7); font-weight: 500; transition: color 0.3s ease; font-size: 0.92rem; }
+        .nav-links a:hover { color: #a78bfa; }
+        .download-cv {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 10px 20px; text-decoration: none; border-radius: 25px;
+            font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .download-cv:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.55); }
 
-        .hero { padding: 120px 0 80px; text-align: center; color: white; }
-        .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.6rem; }
-        .hero p { font-size: 1rem; margin-bottom: 1.8rem; opacity: 0.88; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.18); color: white; padding: 10px 26px; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 0.88rem; border: 1.5px solid rgba(255,255,255,0.35); transition: all 0.25s ease; }
-        .cta-button:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: #0d0d1a;
+        }
 
-        .about { background: white; padding: 80px 0; }
+        /* animated gradient orbs */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102,126,234,0.35) 0%, transparent 70%);
+            top: -150px; left: -150px;
+            animation: drift1 8s ease-in-out infinite alternate;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(118,75,162,0.3) 0%, transparent 70%);
+            bottom: -100px; right: -100px;
+            animation: drift2 10s ease-in-out infinite alternate;
+        }
+        @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(80px, 60px) scale(1.15); } }
+        @keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-60px, -80px) scale(1.2); } }
+
+        .hero-grid { display: none; }
+
+        /* floating dots canvas */
+        #particles { position: absolute; inset: 0; z-index: 0; }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(102,126,234,0.2);
+            border: 1px solid rgba(102,126,234,0.4);
+            color: #a78bfa;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+            animation: fadeUp 0.7s 0.2s both;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeUp 0.7s 0.35s both;
+        }
+        .hero p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 2.2rem;
+            letter-spacing: 0.04em;
+            animation: fadeUp 0.7s 0.5s both;
+        }
+        .hero p span { color: #a78bfa; margin: 0 6px; }
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 13px 32px; text-decoration: none;
+            border-radius: 50px; font-weight: 600; font-size: 0.92rem;
+            box-shadow: 0 8px 30px rgba(102,126,234,0.45);
+            transition: all 0.3s ease;
+            animation: fadeUp 0.7s 0.65s both;
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(102,126,234,0.6); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── ABOUT ── */
+        .about {
+            background: #f8f9ff;
+            padding: 90px 0;
+            position: relative;
+        }
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
         .about-content { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; }
-        .skills { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-        .skill-tag { background: #667eea; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+        .about h2 { font-size: 2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1rem; }
+        .about p { color: #555; }
+        .about h3 { font-size: 1.1rem; font-weight: 700; color: #1a1a2e; margin-bottom: 1rem; }
+        .skills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 7px 16px; border-radius: 20px;
+            font-size: 0.88rem; font-weight: 500;
+            box-shadow: 0 3px 10px rgba(102,126,234,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .skill-tag:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(102,126,234,0.4); }
 
-        .projects { background: #f8f9fa; padding: 80px 0; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        .project-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; display: flex; flex-direction: column; }
-        .project-card:hover { transform: translateY(-10px); }
+        /* ── PROJECTS ── */
+        .projects {
+            background: #0d0d1a;
+            padding: 90px 0;
+            position: relative;
+        }
+        .projects::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(102,126,234,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102,126,234,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .section-title {
+            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem;
+            color: white; font-weight: 800; position: relative;
+        }
+        .section-subtitle {
+            text-align: center; color: rgba(255,255,255,0.4);
+            font-size: 0.92rem; margin-bottom: 3rem; position: relative;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+        }
+        .project-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(102,126,234,0.15);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+            display: flex; flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(102,126,234,0.25);
+            border-color: rgba(102,126,234,0.4);
+        }
         .project-header { padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .project-header.ovh-header { background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 60%, #0E7490 100%); }
         .project-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .project-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .project-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .project-description { margin-bottom: 1.5rem; color: #666; line-height: 1.6; }
-        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .tech-tag { background: #e9ecef; color: #495057; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; }
-        .tech-tag.ovh-tag { background: #e8eef7; color: #0D2B55; font-weight: 600; }
-
-        /* ── REDESIGNED BUTTONS ── */
-        .project-links {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: auto;
-            flex-wrap: wrap;
+        .project-title { font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 700; }
+        .project-subtitle { font-size: 0.85rem; opacity: 0.8; }
+        .project-content { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-description { margin-bottom: 1.4rem; color: rgba(255,255,255,0.6); line-height: 1.65; font-size: 0.92rem; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+        .tech-tag {
+            background: rgba(102,126,234,0.12);
+            color: #a78bfa;
+            border: 1px solid rgba(102,126,234,0.25);
+            padding: 4px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 500;
         }
+        .tech-tag.ovh-tag { background: rgba(14,116,144,0.15); color: #67e8f9; border-color: rgba(14,116,144,0.3); }
 
+        /* ── BUTTONS ── */
+        .project-links { display: flex; gap: 0.75rem; margin-top: auto; flex-wrap: wrap; }
         .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 22px; border-radius: 50px; text-decoration: none;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em;
             border: 2px solid transparent;
             transition: all 0.25s cubic-bezier(.4,0,.2,1);
             white-space: nowrap;
         }
-        .project-link .arrow {
-            font-style: normal;
-            transition: transform 0.2s ease;
-            font-size: 0.9em;
-        }
+        .project-link .arrow { font-style: normal; transition: transform 0.2s ease; font-size: 0.9em; }
         .project-link:hover .arrow { transform: translateX(3px); }
-
-        /* solid purple — primary action */
-        .primary-link {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
-        }
-        .primary-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.55);
-        }
-
-        /* dark navy — OVH card */
-        .primary-link.ovh-link {
-            background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 100%);
-            box-shadow: 0 4px 14px rgba(13, 43, 85, 0.4);
-        }
-        .primary-link.ovh-link:hover {
-            box-shadow: 0 8px 24px rgba(13, 43, 85, 0.55);
-        }
-
-        /* outline ghost — secondary action */
-        .secondary-link {
-            background: transparent;
-            color: #667eea;
-            border-color: #667eea;
-        }
-        .secondary-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.35);
-        }
-
-        /* shimmer — presentation */
-        .presentation-link {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 14px rgba(118, 75, 162, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        .presentation-link::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -80%;
-            width: 55%; height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
-            transition: left 0.5s ease;
-        }
+        .primary-link { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; box-shadow: 0 4px 14px rgba(102,126,234,0.4); }
+        .primary-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(102,126,234,0.55); }
+        .primary-link.ovh-link { background: linear-gradient(135deg, #0D2B55 0%, #1A4A8A 100%); box-shadow: 0 4px 14px rgba(13,43,85,0.4); }
+        .primary-link.ovh-link:hover { box-shadow: 0 8px 24px rgba(13,43,85,0.55); }
+        .secondary-link { background: transparent; color: #a78bfa; border-color: rgba(167,139,250,0.5); }
+        .secondary-link:hover { background: rgba(167,139,250,0.15); transform: translateY(-2px); border-color: #a78bfa; }
+        .presentation-link { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; box-shadow: 0 4px 14px rgba(118,75,162,0.4); position: relative; overflow: hidden; }
+        .presentation-link::before { content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent); transition: left 0.5s ease; }
         .presentation-link:hover::before { left: 130%; }
-        .presentation-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(118, 75, 162, 0.55);
-        }
+        .presentation-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(118,75,162,0.55); }
+        .live-link { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; box-shadow: 0 4px 14px rgba(14,165,233,0.4); }
+        .live-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,0.55); }
 
-        /* teal — live dashboard */
-        .live-link {
-            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        /* ── CONTACT ── */
+        .contact {
+            background: #080810;
             color: white;
-            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(102,126,234,0.15);
         }
-        .live-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.55);
+        .contact h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .contact-sub { color: rgba(255,255,255,0.4); margin-bottom: 2rem; font-size: 0.92rem; }
+        .contact-links { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .contact-link {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            padding: 10px 22px; border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50px; font-size: 0.88rem; transition: all 0.25s;
         }
-        /* ── END BUTTONS ── */
-
-        .contact { background: #333; color: white; padding: 80px 0; text-align: center; }
-        .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
-        .contact-link { color: white; text-decoration: none; }
+        .contact-link:hover { background: linear-gradient(135deg,#667eea,#764ba2); border-color: transparent; transform: translateY(-2px); color: white; }
 
         @media (max-width: 768px) {
             .about-content { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- NAV -->
     <header>
         <nav class="container">
             <div class="logo">Jade Bourdens (Ngoc)</div>
@@ -165,14 +288,19 @@
         </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
-        <div class="container">
+        <div class="hero-grid"></div>
+        <canvas id="particles"></canvas>
+        <div class="hero-content">
+            <div class="hero-eyebrow">✦ Open to opportunities</div>
             <h1>Data Analyst</h1>
-            <p>Data Analysis 🦄 Insight Visualization 🦄 Automated Reporting</p>
-            <a href="#projects" class="cta-button">View My Work &rarr;</a>
+            <p>Data Analysis <span>✦</span> Insight Visualization <span>✦</span> Automated Reporting</p>
+            <a href="#projects" class="cta-button">View My Work →</a>
         </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
@@ -196,9 +324,11 @@
         </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">A selection of data work I'm proud of</p>
             <div class="projects-grid">
 
                 <div class="project-card">
@@ -342,11 +472,73 @@
         </div>
     </section>
 
+    <!-- CONTACT -->
     <footer id="contact" class="contact">
         <div class="container">
             <h2>Let's Connect</h2>
+            <p class="contact-sub">Open to new opportunities and collaborations</p>
             <div class="contact-links">
-                <a href="/cdn-cgi/l/email-protection#7a141d1519540a120f141d3a1f021b170a161f54191517" class="contact-link">📧 Email</a>
+                <a href="mailto:ngoc.phung@example.com" class="contact-link">📧 Email</a>
                 <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="contact-link">💼 LinkedIn</a>
                 <a href="https://github.com/jadebourdens" target="_blank" class="contact-link">🐙 GitHub</a>
             </div>
+        </div>
+    </footer>
+
+    <!-- PARTICLES -->
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+
+        function resize() {
+            canvas.width  = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for (let i = 0; i < 55; i++) {
+            dots.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 1.5 + 0.5,
+                dx: (Math.random() - 0.5) * 0.35,
+                dy: (Math.random() - 0.5) * 0.35,
+                o: Math.random() * 0.4 + 0.1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.forEach(d => {
+                ctx.beginPath();
+                ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(167,139,250,${d.o})`;
+                ctx.fill();
+                d.x += d.dx; d.y += d.dy;
+                if (d.x < 0 || d.x > canvas.width)  d.dx *= -1;
+                if (d.y < 0 || d.y > canvas.height) d.dy *= -1;
+            });
+
+            // draw faint connecting lines
+            for (let i = 0; i < dots.length; i++) {
+                for (let j = i + 1; j < dots.length; j++) {
+                    const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(dots[i].x, dots[i].y);
+                        ctx.lineTo(dots[j].x, dots[j].y);
+                        ctx.strokeStyle = `rgba(102,126,234,${0.12 * (1 - dist/120)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+
+</body>
+</html>
