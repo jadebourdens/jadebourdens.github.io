@@ -31,7 +31,6 @@
     overflow-x: hidden;
   }
 
-  /* ── HEADER ── */
   header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
@@ -114,7 +113,6 @@
     border: 1px solid rgba(255,255,255,0.3);
   }
 
-  /* ── LAYOUT ── */
   main {
     max-width: 1200px;
     margin: 0 auto;
@@ -122,7 +120,6 @@
     position: relative; z-index: 1;
   }
 
-  /* ── ARCHITECTURE STRIP ── */
   .arch-strip {
     display: flex;
     align-items: center;
@@ -177,7 +174,6 @@
   }
   .arch-node.highlight .arch-name { color: #fff; font-weight: 800; }
 
-  /* ── SECTION DIVIDER ── */
   .section-label {
     font-family: var(--sans);
     font-size: 0.75rem;
@@ -194,7 +190,6 @@
     content: ''; flex: 1; height: 1px; background: var(--rule);
   }
 
-  /* ── STEPS GRID ── */
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -295,7 +290,6 @@
     font-weight: 500;
   }
 
-  /* ── FULL-WIDTH STEP (spans all 3 cols) ── */
   .step-wide {
     grid-column: 1 / -1;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -318,7 +312,6 @@
     gap: 2rem;
   }
 
-  /* ── DATA FLOW DIAGRAM ── */
   .flow-diagram {
     background: #2d2d3f;
     padding: 2rem;
@@ -333,13 +326,11 @@
     letter-spacing: 0.2em; color: rgba(255,255,255,0.15);
     font-weight: 600;
   }
-  /* 3 equal columns side by side */
   .flow-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
-  /* Each column stacks boxes + arrows vertically */
   .flow-col {
     display: flex;
     flex-direction: column;
@@ -368,7 +359,6 @@
     font-size: 0.78rem;
     margin-bottom: 0.15rem;
   }
-  /* Down arrow connector between boxes */
   .flow-down {
     display: flex;
     flex-direction: column;
@@ -397,7 +387,6 @@
     .flow-grid { grid-template-columns: 1fr; }
   }
 
-  /* ── ALERT PREVIEW ── */
   .alert-preview {
     background: #fffbeb;
     border-left: 4px solid #f59e0b;
@@ -411,7 +400,6 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
   }
   .alert-icon { font-size: 2rem; }
-  .alert-text { }
   .alert-text strong {
     display: block;
     font-size: 0.9rem;
@@ -438,7 +426,6 @@
     white-space: nowrap;
   }
 
-  /* ── SAP ACTION BOX ── */
   .sap-box {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 2rem 2.5rem;
@@ -480,7 +467,6 @@
   }
   .sap-item-text strong { color: #fff; }
 
-  /* ── OUTCOME STRIP ── */
   .outcome-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -514,7 +500,6 @@
     line-height: 1.5;
   }
 
-  /* ── FOOTER ── */
   footer {
     background: #333;
     color: rgba(255,255,255,0.6);
@@ -530,7 +515,6 @@
     letter-spacing: 0.03em;
   }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -557,7 +541,6 @@
     .step-wide-inner { grid-template-columns: 1fr; }
     .outcome-strip { grid-template-columns: 1fr 1fr; }
     .sap-box { grid-template-columns: 1fr; }
-    
     .header-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -576,14 +559,13 @@
       Framework Version 1.0<br>
       BigQuery → SAP MM<br>
       March 2026<br>
-      OVH-W26-INF / IT / COOL
+      W26-INF / IT / COOL
     </div>
   </div>
 </header>
 
 <main>
 
-  <!-- ARCHITECTURE STRIP -->
   <div class="arch-strip">
     <div class="arch-node">
       <div class="arch-icon">🌍</div>
@@ -622,12 +604,10 @@
     </div>
   </div>
 
-  <!-- STEPS -->
   <div class="section-label">Framework Steps</div>
 
   <div class="steps-grid">
 
-    <!-- STEP 1 -->
     <div class="step">
       <div class="step-tool">BigQuery</div>
       <div class="step-number"><span>01</span> / 07 — Data Ingestion</div>
@@ -636,14 +616,13 @@
       <p>Pull live and historical pricing for all 5 WBS commodities from external market data providers. Land raw data into a dedicated BigQuery dataset on a daily schedule.</p>
       <ul class="step-details">
         <li>Sources: LME (copper), Eurofer (steel), INSEE / Béton FR (concrete), vendor APIs (racks, pipes)</li>
-        <li>Table: <code>ovh_w26.market_prices_raw</code> — partitioned by ingestion date</li>
+        <li>Table: <code>w26.market_prices_raw</code> — partitioned by ingestion date</li>
         <li>Frequency: Daily pull via Cloud Scheduler + Cloud Functions</li>
         <li>Schema: commodity_id, price_eur, unit, source, valid_date, scenario_flag</li>
         <li>Historical backfill: Jan-2024 → present (matches WBS baseline period)</li>
       </ul>
     </div>
 
-    <!-- STEP 2 -->
     <div class="step">
       <div class="step-tool">BigQuery SQL</div>
       <div class="step-number"><span>02</span> / 07 — WBS Join</div>
@@ -651,15 +630,14 @@
       <h3>Join Market Data with WBS Standard Price File</h3>
       <p>Load the SAP WBS export (our <em>Standard_Price</em> file) into BigQuery. Join planned quantities and base prices against live market prices by commodity key.</p>
       <ul class="step-details">
-        <li>Table: <code>ovh_w26.wbs_standard_price</code> — static upload from SAP PS export</li>
+        <li>Table: <code>w26.wbs_standard_price</code> — static upload from SAP PS export</li>
         <li>Join key: <code>commodity_id</code> maps WBS_Element_ID → market ticker</li>
-        <li>Output: <code>ovh_w26.wbs_vs_market</code> — planned price vs current market price per element</li>
+        <li>Output: <code>w26.wbs_vs_market</code> — planned price vs current market price per element</li>
         <li>Delta column: <code>price_variance_pct = (market_price - standard_price) / standard_price</code></li>
         <li>Budget impact: <code>exposure_eur = price_variance_pct × planned_qty × standard_price</code></li>
       </ul>
     </div>
 
-    <!-- STEP 3 -->
     <div class="step">
       <div class="step-tool">BigQuery ML</div>
       <div class="step-number"><span>03</span> / 07 — Forecast</div>
@@ -671,11 +649,10 @@
         <li>Training window: rolling 24-month lookback, retrained monthly</li>
         <li>Output: predicted_price_p50, predicted_price_p10, predicted_price_p90 (bear/base/bull)</li>
         <li>Horizon: T+30, T+60, T+90 days per commodity</li>
-        <li>Stored in: <code>ovh_w26.price_forecast_90d</code></li>
+        <li>Stored in: <code>w26.price_forecast_90d</code></li>
       </ul>
     </div>
 
-    <!-- STEP 4 — full width -->
     <div class="step step-wide">
       <div class="step-tool" style="color:rgba(255,255,255,0.25)">BigQuery SQL + Python</div>
       <div class="step-number" style="color:rgba(255,255,255,0.3)"><span>04</span> / 07 — Overrun Detection</div>
@@ -697,14 +674,13 @@
           <ul class="step-details">
             <li>Time buffer: alert fires when overrun is predicted &gt;3 months before procurement date</li>
             <li>Materiality filter: suppress alerts below €5,000 exposure</li>
-            <li>Output table: <code>ovh_w26.overrun_alerts</code> — updated daily</li>
-            <li>Alert log stored for audit in <code>ovh_w26.alert_history</code></li>
+            <li>Output table: <code>w26.overrun_alerts</code> — updated daily</li>
+            <li>Alert log stored for audit in <code>w26.alert_history</code></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- STEP 5 -->
     <div class="step">
       <div class="step-tool">Looker / Email</div>
       <div class="step-number"><span>05</span> / 07 — Notification</div>
@@ -712,7 +688,7 @@
       <h3>Deliver 3-Month Early Warning to Project Managers</h3>
       <p>Surface the overrun alert through a Looker Studio dashboard and automated email digest. PMs receive a ranked list of at-risk WBS elements with forecast charts and recommended actions.</p>
       <ul class="step-details">
-        <li>Dashboard: Looker Studio report connected live to <code>ovh_w26.overrun_alerts</code></li>
+        <li>Dashboard: Looker Studio report connected live to <code>w26.overrun_alerts</code></li>
         <li>Email digest: daily at 07:00 CET via Cloud Run + SendGrid</li>
         <li>Alert card: WBS ID · commodity · current price · forecast price · Δ€ · severity</li>
         <li>PM action buttons: "Approve Forward Buy" / "Accept Risk" / "Defer"</li>
@@ -720,7 +696,6 @@
       </ul>
     </div>
 
-    <!-- STEP 6 -->
     <div class="step">
       <div class="step-tool">SAP MM / PS</div>
       <div class="step-number"><span>06</span> / 07 — ERP Action</div>
@@ -736,7 +711,6 @@
       </ul>
     </div>
 
-    <!-- STEP 7 -->
     <div class="step">
       <div class="step-tool">BigQuery + SAP</div>
       <div class="step-number"><span>07</span> / 07 — Feedback Loop</div>
@@ -754,13 +728,10 @@
 
   </div>
 
-  <!-- DATA FLOW DIAGRAM -->
   <div class="section-label">Live Data Flow</div>
 
   <div class="flow-diagram">
     <div class="flow-grid">
-
-      <!-- Column 1 -->
       <div class="flow-col">
         <div class="flow-box">
           <div class="flow-box-icon">🌐</div>
@@ -769,16 +740,14 @@
         <div class="flow-down"><span>↓</span><span class="flow-down-label">Daily pull · Cloud Scheduler</span></div>
         <div class="flow-box">
           <div class="flow-box-icon">☁️</div>
-          <div class="flow-box-text"><strong>BigQuery Raw Layer</strong>ovh_w26.market_prices_raw</div>
+          <div class="flow-box-text"><strong>BigQuery Raw Layer</strong>w26.market_prices_raw</div>
         </div>
         <div class="flow-down"><span>↓</span><span class="flow-down-label">dbt transform</span></div>
         <div class="flow-box accent">
           <div class="flow-box-icon">⚡</div>
-          <div class="flow-box-text"><strong>ARIMA_PLUS Forecast</strong>ovh_w26.price_forecast_90d</div>
+          <div class="flow-box-text"><strong>ARIMA_PLUS Forecast</strong>w26.price_forecast_90d</div>
         </div>
       </div>
-
-      <!-- Column 2 -->
       <div class="flow-col">
         <div class="flow-box">
           <div class="flow-box-icon">📊</div>
@@ -787,16 +756,14 @@
         <div class="flow-down"><span>↓</span><span class="flow-down-label">BTP nightly extract</span></div>
         <div class="flow-box">
           <div class="flow-box-icon">🔗</div>
-          <div class="flow-box-text"><strong>WBS × Market Join</strong>ovh_w26.wbs_vs_market</div>
+          <div class="flow-box-text"><strong>WBS × Market Join</strong>w26.wbs_vs_market</div>
         </div>
         <div class="flow-down"><span>↓</span><span class="flow-down-label">overrun score</span></div>
         <div class="flow-box accent">
           <div class="flow-box-icon">🔔</div>
-          <div class="flow-box-text"><strong>Alert Engine</strong>ovh_w26.overrun_alerts → PM</div>
+          <div class="flow-box-text"><strong>Alert Engine</strong>w26.overrun_alerts → PM</div>
         </div>
       </div>
-
-      <!-- Column 3 -->
       <div class="flow-col">
         <div class="flow-box green">
           <div class="flow-box-icon">✅</div>
@@ -813,17 +780,15 @@
           <div class="flow-box-text"><strong>Accuracy KPI Dashboard</strong>Looker Studio · Monthly steering report</div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ALERT PREVIEW -->
   <div class="section-label">Sample Alert Output</div>
 
   <div class="alert-preview">
     <div class="alert-icon">⚠️</div>
     <div class="alert-text">
-      <strong>BUDGET OVERRUN ALERT — OVH-W26-CAB · Copper Cabling · HIGH SEVERITY</strong>
+      <strong>BUDGET OVERRUN ALERT — W26-CAB · Copper Cabling · HIGH SEVERITY</strong>
       <p>
         WBS Standard Price: €9.20/m · Forecast P50 at T+90: €10.48/m · Variance: +13.9%<br>
         Planned Qty: 5,000 m · Predicted Budget Overrun: <strong>+€64,000</strong><br>
@@ -834,7 +799,6 @@
     <div class="alert-badge">🔴 High Risk<br>+€64,000</div>
   </div>
 
-  <!-- SAP ACTION -->
   <div class="section-label">SAP MM — Forward-Buying Actions</div>
 
   <div class="sap-box">
@@ -878,7 +842,6 @@
     </div>
   </div>
 
-  <!-- OUTCOMES -->
   <div class="section-label">Expected Business Outcomes</div>
 
   <div class="outcome-strip">
@@ -903,7 +866,7 @@
 </main>
 
 <footer>
-  <p>OVH Datacenter W26 · Construction Budget Control Framework · v1.0 · March 2026</p>
+  <p>Datacenter W26 · Construction Budget Control Framework · v1.0 · March 2026</p>
   <p>BigQuery ML + SAP MM + SAP PS · Confidential — Internal Use Only</p>
 </footer>
 
