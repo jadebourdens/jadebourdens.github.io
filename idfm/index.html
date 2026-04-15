@@ -344,125 +344,297 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
           <div class="tl-desc">Pipelines end-to-end, SQL + Python, 20+ comptes mondiaux, dashboards exécutifs </div>
 
           <!-- ADTECH ARCHITECTURE MAP -->
-          <div style="margin-top:1rem;background:#fff;border:1px solid rgba(102,126,234,0.18);border-radius:14px;padding:1rem;overflow:hidden">
-            <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">Architecture AdTech · Mon périmètre chez TEADS</div>
+        <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture AdTech TEADS — Jade Bourdens</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fff;--bg2:#f7f7fc;
+  --text:#1a1a2e;--text2:#4a4a6a;--text3:#9090b0;
+  --accent:#7c3aed;--accent2:#667eea;
+  --border:rgba(102,126,234,0.14);
+}
+body{background:var(--bg);font-family:'Outfit',sans-serif;color:var(--text);padding:2rem;min-height:100vh}
 
-            <!-- SVG MAP -->
-            <svg width="100%" viewBox="0 0 620 380" style="display:block">
-              <defs>
-                <marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                  <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </marker>
-                <style>
-                  .tf{stroke-dasharray:4 5;animation:tdash 1.4s linear infinite;fill:none}
-                  .tfs{stroke-dasharray:3 7;animation:tdash 2.2s linear infinite;fill:none}
-                  @keyframes tdash{to{stroke-dashoffset:-18}}
-                  .jade-glow rect{filter:none}
-                  @keyframes tpulse{0%,100%{opacity:1}50%{opacity:.5}}
-                  .jblink{animation:tpulse .9s ease-in-out infinite}
-                </style>
-              </defs>
+@keyframes tdash{to{stroke-dashoffset:-20}}
+@keyframes tpulse{0%,100%{opacity:1}50%{opacity:.18}}
+.tf{stroke-dasharray:4 5;animation:tdash 1.3s linear infinite;fill:none}
+.tfs{stroke-dasharray:3 7;animation:tdash 2.2s linear infinite;fill:none}
+.blink{animation:tpulse .75s ease-in-out infinite}
 
-              <!-- ZONE: Publisher (gray, left) -->
-              <rect x="8" y="30" width="108" height="200" rx="8" fill="none" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 3"/>
-              <text x="62" y="24" text-anchor="middle" font-size="9" fill="#888780" font-family="var(--font-mono)" letter-spacing=".08em">ÉDITEUR</text>
+.map-wrap{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.5rem;
+  box-shadow:0 2px 20px rgba(102,126,234,0.08);
+}
+.map-title{
+  font-family:'DM Mono',monospace;
+  font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:1rem;
+}
+svg{display:block;width:100%}
 
-              <!-- Publisher -->
-              <rect x="16" y="40" width="92" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
-              <text x="62" y="55" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Éditeur</text>
-              <text x="62" y="68" text-anchor="middle" font-size="9" fill="#888780">Site / App</text>
+.tip-wrap{margin-top:1rem}
+.tip{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1rem 1.2rem;
+  font-size:.85rem;
+  color:var(--text2);
+  line-height:1.7;
+  min-height:72px;
+  transition:all .15s;
+}
+.tip strong{color:var(--text);font-weight:600;display:block;margin-bottom:.2rem;font-size:.9rem}
 
-              <!-- Ad Server pub -->
-              <rect x="16" y="90" width="92" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
-              <text x="62" y="105" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Ad Server</text>
-              <text x="62" y="118" text-anchor="middle" font-size="9" fill="#888780">GAM</text>
+.leg{
+  display:flex;gap:1.2rem;flex-wrap:wrap;
+  margin-top:.85rem;padding-top:.85rem;
+  border-top:1px solid var(--border);
+  font-size:.72rem;color:var(--text3);
+}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:9px;height:9px;border-radius:2px;flex-shrink:0}
 
-              <!-- SSP -->
-              <rect x="16" y="142" width="92" height="36" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
-              <text x="62" y="157" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">SSP Teads</text>
-              <text x="62" y="170" text-anchor="middle" font-size="9" fill="#0F6E56">Supply side</text>
+.node-click{cursor:pointer;transition:opacity .15s}
+.node-click:hover{opacity:.8}
+</style>
+</head>
+<body>
 
-              <!-- Pixel -->
-              <rect x="16" y="194" width="92" height="30" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
-              <text x="62" y="212" text-anchor="middle" font-size="10" font-weight="500" fill="#085041">Pixels JS</text>
+<div class="map-wrap">
+  <div class="map-title">Architecture AdTech · Écosystème TEADS · Périmètre Jade Bourdens</div>
 
-              <!-- ZONE: Exchange (center) -->
-              <rect x="230" y="100" width="160" height="60" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 3"/>
-              <text x="310" y="120" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A">Ad Exchange</text>
-              <text x="310" y="134" text-anchor="middle" font-size="9" fill="#888780">OpenRTB · &lt;100ms</text>
-              <text x="310" y="148" text-anchor="middle" font-size="8" fill="#B4B2A9" font-family="var(--font-mono)">enchère temps réel</text>
+  <svg viewBox="0 0 700 490" id="map">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-              <!-- RTB blink dots -->
-              <circle cx="220" cy="130" r="3" fill="#BA7517" class="jblink" style="animation-delay:0s"/>
-              <circle cx="400" cy="130" r="3" fill="#7F77DD" class="jblink" style="animation-delay:.15s"/>
+  <!-- ══ ZONE CONTAINERS ══ -->
+  <!-- Supply -->
+  <rect x="8" y="34" width="124" height="242" rx="9" fill="none" stroke="#5DCAA5" stroke-width="0.6" stroke-dasharray="5 3"/>
+  <text x="70" y="27" text-anchor="middle" font-size="9" fill="#0F6E56" font-family="'DM Mono',monospace" letter-spacing=".09em">SUPPLY</text>
 
-              <!-- ZONE: Demand (right) -->
-              <rect x="504" y="30" width="108" height="170" rx="8" fill="none" stroke="#AFA9EC" stroke-width="0.5" stroke-dasharray="4 3"/>
-              <text x="558" y="24" text-anchor="middle" font-size="9" fill="#7F77DD" font-family="var(--font-mono)" letter-spacing=".08em">ANNONCEUR</text>
+  <!-- Exchange -->
+  <rect x="244" y="108" width="212" height="66" rx="9" fill="none" stroke="#888780" stroke-width="0.6" stroke-dasharray="5 3"/>
+  <text x="350" y="101" text-anchor="middle" font-size="9" fill="#5F5E5A" font-family="'DM Mono',monospace" letter-spacing=".09em">AD EXCHANGE · RTB</text>
 
-              <!-- DSP -->
-              <rect x="512" y="40" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-              <text x="558" y="55" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">DSP Teads</text>
-              <text x="558" y="68" text-anchor="middle" font-size="9" fill="#534AB7">Demand side</text>
+  <!-- Demand -->
+  <rect x="568" y="34" width="124" height="242" rx="9" fill="none" stroke="#AFA9EC" stroke-width="0.6" stroke-dasharray="5 3"/>
+  <text x="630" y="27" text-anchor="middle" font-size="9" fill="#534AB7" font-family="'DM Mono',monospace" letter-spacing=".09em">DEMAND</text>
 
-              <!-- CRM -->
-              <rect x="512" y="90" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-              <text x="558" y="105" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CRM</text>
-              <text x="558" y="118" text-anchor="middle" font-size="9" fill="#534AB7">Salesforce</text>
+  <!-- Jade's zone -->
+  <rect x="8" y="294" width="684" height="186" rx="11" fill="rgba(102,126,234,0.04)" stroke="#667eea" stroke-width="1.3"/>
+  <text x="350" y="287" text-anchor="middle" font-size="9" fill="#667eea" font-family="'DM Mono',monospace" letter-spacing=".11em">PÉRIMÈTRE JADE — INSIGHT ANALYST · TEADS</text>
 
-              <!-- CDP -->
-              <rect x="512" y="140" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
-              <text x="558" y="155" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CDP</text>
-              <text x="558" y="168" text-anchor="middle" font-size="9" fill="#534AB7">Audiences</text>
+  <!-- ══ SUPPLY NODES ══ -->
+  <g class="node-click" onclick="show('pub')">
+    <rect x="16" y="44" width="108" height="36" rx="7" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.6"/>
+    <text x="70" y="58" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Éditeur Web</text>
+    <text x="70" y="72" text-anchor="middle" font-size="9" fill="#888780">Site / App</text>
+  </g>
+  <g class="node-click" onclick="show('adserver')">
+    <rect x="16" y="94" width="108" height="36" rx="7" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.6"/>
+    <text x="70" y="108" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Ad Server</text>
+    <text x="70" y="122" text-anchor="middle" font-size="9" fill="#888780">GAM</text>
+  </g>
+  <g class="node-click" onclick="show('ssp')">
+    <rect x="16" y="144" width="108" height="36" rx="7" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.6"/>
+    <text x="70" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">SSP Teads</text>
+    <text x="70" y="172" text-anchor="middle" font-size="9" fill="#0F6E56">Supply web</text>
+  </g>
+  <g class="node-click" onclick="show('ctv')">
+    <rect x="16" y="194" width="108" height="46" rx="7" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.3"/>
+    <text x="70" y="211" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Teads TV / CTV</text>
+    <text x="70" y="228" text-anchor="middle" font-size="9" fill="#0F6E56">Vidéo · Télévision</text>
+    <rect x="100" y="194" width="22" height="15" rx="7" fill="#1D9E75"/>
+    <text x="111" y="204" text-anchor="middle" font-size="7" fill="#fff" font-weight="600">TV</text>
+  </g>
+  <g class="node-click" onclick="show('pixel')">
+    <rect x="16" y="254" width="108" height="18" rx="6" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.5"/>
+    <text x="70" y="266" text-anchor="middle" font-size="9" font-weight="500" fill="#085041">Pixels JS / Tags</text>
+  </g>
 
-              <!-- ZONE: Data (bottom) — Jade's main area -->
-              <rect x="130" y="260" width="360" height="108" rx="10" fill="rgba(102,126,234,0.05)" stroke="#667eea" stroke-width="1" stroke-dasharray="5 3"/>
-              <text x="310" y="254" text-anchor="middle" font-size="9" fill="#667eea" font-family="var(--font-mono)" letter-spacing=".1em">MON PÉRIMÈTRE PRINCIPAL</text>
+  <!-- ══ EXCHANGE ══ -->
+  <g class="node-click" onclick="show('exchange')">
+    <rect x="252" y="116" width="196" height="50" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.6"/>
+    <text x="350" y="136" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A">Ad Exchange</text>
+    <text x="350" y="153" text-anchor="middle" font-size="9" fill="#5F5E5A">OpenRTB · &lt;100ms · enchère temps réel</text>
+  </g>
+  <circle cx="236" cy="141" r="4" fill="#BA7517" class="blink" style="animation-delay:0s"/>
+  <circle cx="450" cy="141" r="4" fill="#7F77DD" class="blink" style="animation-delay:.15s"/>
 
-              <!-- BigQuery -->
-              <rect x="145" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
-              <text x="195" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">BigQuery</text>
-              <text x="195" y="303" text-anchor="middle" font-size="9" fill="#667eea">Data Warehouse</text>
+  <!-- ══ DEMAND NODES ══ -->
+  <g class="node-click" onclick="show('dsp')">
+    <rect x="576" y="44" width="108" height="36" rx="7" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.6"/>
+    <text x="630" y="58" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">DSP Teads</text>
+    <text x="630" y="72" text-anchor="middle" font-size="9" fill="#534AB7">Demand side</text>
+  </g>
+  <g class="node-click" onclick="show('crm')">
+    <rect x="576" y="94" width="108" height="36" rx="7" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.6"/>
+    <text x="630" y="108" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CRM</text>
+    <text x="630" y="122" text-anchor="middle" font-size="9" fill="#534AB7">Salesforce</text>
+  </g>
+  <g class="node-click" onclick="show('cdp')">
+    <rect x="576" y="144" width="108" height="36" rx="7" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.6"/>
+    <text x="630" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CDP</text>
+    <text x="630" y="172" text-anchor="middle" font-size="9" fill="#534AB7">Audiences</text>
+  </g>
+  <g class="node-click" onclick="show('adv')">
+    <rect x="576" y="194" width="108" height="36" rx="7" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.6"/>
+    <text x="630" y="208" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">Annonceur</text>
+    <text x="630" y="222" text-anchor="middle" font-size="9" fill="#534AB7">Brand · Agence · Multi-secteur</text>
+  </g>
+  <g class="node-click" onclick="show('bidder')">
+    <rect x="576" y="244" width="108" height="24" rx="7" fill="#CECBF6" stroke="#7F77DD" stroke-width="0.5"/>
+    <text x="630" y="259" text-anchor="middle" font-size="10" font-weight="500" fill="#26215C">Bid engine</text>
+  </g>
 
-              <!-- Snowflake -->
-              <rect x="260" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
-              <text x="310" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Snowflake</text>
-              <text x="310" y="303" text-anchor="middle" font-size="9" fill="#667eea">Modèle unifié</text>
+  <!-- ══ JADE'S ZONE — ROW 1 ══ -->
 
-              <!-- Tableau -->
-              <rect x="375" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
-              <text x="425" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Tableau</text>
-              <text x="425" y="303" text-anchor="middle" font-size="9" fill="#667eea">Dashboard exécutif</text>
+  <!-- Infra Teads (black box) -->
+  <g class="node-click" onclick="show('blackbox')">
+    <rect x="18" y="306" width="186" height="48" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.6"/>
+    <text x="78" y="325" text-anchor="middle" font-size="11" font-weight="500" fill="#5F5E5A">Infra Teads</text>
+    <text x="88" y="341" text-anchor="middle" font-size="9" fill="#888780">BigQuery · Snowflake · pipelines</text>
+    <text x="26" y="330" font-size="14" fill="#B4B2A9">🔒</text>
+  </g>
 
-              <!-- Jade badge in data zone -->
-              <rect x="183" y="320" width="254" height="38" rx="6" fill="rgba(102,126,234,0.1)" stroke="rgba(102,126,234,0.35)" stroke-width="0.5"/>
-              <text x="310" y="335" text-anchor="middle" font-size="10" font-weight="500" fill="#7c3aed">Jade · Insight Analyst</text>
-              <text x="310" y="350" text-anchor="middle" font-size="9" fill="#667eea">SQL · Python · Transformation · Livrables exécutifs · 20+ comptes</text>
+  <!-- Teads Platform -->
+  <g class="node-click" onclick="show('platform')">
+    <rect x="218" y="302" width="174" height="56" rx="9" fill="rgba(124,58,237,0.08)" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="305" y="322" text-anchor="middle" font-size="12" font-weight="500" fill="#7c3aed">Plateforme Teads</text>
+    <text x="305" y="338" text-anchor="middle" font-size="9" fill="#7c3aed">Portail interne · extraction résultats</text>
+    <rect x="356" y="302" width="34" height="16" rx="8" fill="#7c3aed"/>
+    <text x="373" y="313" text-anchor="middle" font-size="7" fill="#fff" font-weight="600">interne</text>
+  </g>
 
-              <!-- FLOWS -->
-              <!-- Pub → AdServer -->
-              <line class="tfs" x1="62" y1="76" x2="62" y2="90" stroke="#888780" stroke-width="1" marker-end="url(#ta)"/>
-              <!-- AdServer → SSP -->
-              <line class="tfs" x1="62" y1="126" x2="62" y2="142" stroke="#5DCAA5" stroke-width="1" marker-end="url(#ta)"/>
-              <!-- SSP → Exchange -->
-              <path class="tf" d="M108 160 L230 130" stroke="#BA7517" stroke-width="1.5" marker-end="url(#ta)"/>
-              <!-- Exchange → DSP -->
-              <path class="tf" d="M390 130 L512 58" stroke="#7F77DD" stroke-width="1.5" marker-end="url(#ta)"/>
-              <!-- CRM → CDP -->
-              <line class="tfs" x1="558" y1="126" x2="558" y2="140" stroke="#AFA9EC" stroke-width="1" marker-end="url(#ta)"/>
-              <!-- CDP → DSP (feedback) -->
-              <path class="tfs" d="M512 158 L480 80 L604 58" stroke="#AFA9EC" stroke-width="1" fill="none" stroke-dasharray="3 5" marker-end="url(#ta)"/>
-              <!-- Pixel → BigQuery -->
-              <path class="tf" d="M108 210 L145 290" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
-              <!-- Exchange → BigQuery -->
-              <path class="tf" d="M280 160 L220 272" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
-              <!-- CRM → Snowflake -->
-              <path class="tfs" d="M512 108 L360 290" stroke="#667eea" stroke-width="1" stroke-dasharray="3 5" marker-end="url(#ta)"/>
-              <!-- BigQuery → Snowflake -->
-              <line class="tf" x1="245" y1="292" x2="260" y2="292" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
-              <!-- Snowflake → Tableau -->
-              <line class="tf" x1="360" y1="292" x2="375" y2="292" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
-            </svg>
+  <!-- Ad Studies -->
+  <g class="node-click" onclick="show('studies')">
+    <rect x="406" y="302" width="196" height="56" rx="8" fill="rgba(93,202,165,0.1)" stroke="#1D9E75" stroke-width="1.3"/>
+    <text x="504" y="322" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Études pub</text>
+    <text x="504" y="338" text-anchor="middle" font-size="9" fill="#0F6E56">Brand lift · Attention · Kantar · Lumen</text>
+    <text x="504" y="350" text-anchor="middle" font-size="9" fill="#0F6E56">A/B Testing · Reach &amp; Frequency</text>
+  </g>
+
+  <!-- ══ JADE'S ZONE — ROW 2 ══ -->
+
+  <!-- Jade badge -->
+  <g class="node-click" onclick="show('jade')">
+    <rect x="18" y="372" width="186" height="48" rx="8" fill="rgba(102,126,234,0.09)" stroke="rgba(102,126,234,0.4)" stroke-width="0.6"/>
+    <text x="111" y="391" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Jade · Insight Analyst</text>
+    <text x="111" y="408" text-anchor="middle" font-size="9" fill="#667eea">Centaines de clients · multi-secteur</text>
+  </g>
+
+  <!-- PowerPoint report -->
+  <g class="node-click" onclick="show('ppt')">
+    <rect x="218" y="372" width="174" height="48" rx="8" fill="rgba(186,117,23,0.08)" stroke="#BA7517" stroke-width="1.5"/>
+    <text x="305" y="391" text-anchor="middle" font-size="12" font-weight="500" fill="#633806">Rapport PowerPoint</text>
+    <text x="305" y="408" text-anchor="middle" font-size="9" fill="#854F0B">Captures · analyse · storytelling</text>
+  </g>
+
+  <!-- Client -->
+  <g class="node-click" onclick="show('client')">
+    <rect x="406" y="372" width="196" height="48" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.6"/>
+    <text x="504" y="391" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Client / C-Level</text>
+    <text x="504" y="408" text-anchor="middle" font-size="9" fill="#888780">Décision investissement media</text>
+  </g>
+
+  <!-- ══ FLOWS ══ -->
+  <!-- Supply internal -->
+  <line class="tfs" x1="70" y1="80" x2="70" y2="94" stroke="#888780" stroke-width="1" marker-end="url(#a)"/>
+  <line class="tfs" x1="70" y1="130" x2="70" y2="144" stroke="#5DCAA5" stroke-width="1" marker-end="url(#a)"/>
+
+  <!-- SSP + CTV → Exchange -->
+  <path class="tf" d="M124 162 L252 141" stroke="#BA7517" stroke-width="1.6" marker-end="url(#a)"/>
+  <path class="tf" d="M124 208 L252 151" stroke="#1D9E75" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- Exchange → DSP -->
+  <path class="tf" d="M448 141 L576 62" stroke="#7F77DD" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- CRM → CDP → DSP feedback -->
+  <line class="tfs" x1="630" y1="130" x2="630" y2="144" stroke="#AFA9EC" stroke-width="1" marker-end="url(#a)"/>
+  <path class="tfs" fill="none" d="M576 158 L546 78 L686 60" stroke="#AFA9EC" stroke-width="0.8" stroke-dasharray="3 5" marker-end="url(#a)"/>
+
+  <!-- Pixel + Exchange → Infra (black box) -->
+  <path class="tfs" fill="none" d="M70 272 L90 306" stroke="#888780" stroke-width="1" stroke-dasharray="3 4" marker-end="url(#a)"/>
+  <path class="tfs" fill="none" d="M330 166 L150 306" stroke="#888780" stroke-width="1" stroke-dasharray="3 4" marker-end="url(#a)"/>
+
+  <!-- Infra → Platform -->
+  <line class="tf" x1="204" y1="330" x2="218" y2="330" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- Platform → Studies -->
+  <line class="tf" x1="392" y1="330" x2="406" y2="330" stroke="#1D9E75" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- Platform → PPT -->
+  <line class="tf" x1="305" y1="358" x2="305" y2="372" stroke="#BA7517" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- Studies → PPT -->
+  <path class="tf" d="M450 358 L390 390" stroke="#BA7517" stroke-width="1.4" marker-end="url(#a)"/>
+
+  <!-- Studies → Client -->
+  <line class="tf" x1="504" y1="358" x2="504" y2="372" stroke="#888780" stroke-width="1.4" marker-end="url(#a)"/>
+
+  <!-- PPT → Client -->
+  <line class="tf" x1="392" y1="396" x2="406" y2="396" stroke="#888780" stroke-width="1.4" marker-end="url(#a)"/>
+  </svg>
+
+  <div class="tip-wrap">
+    <div class="tip" id="tip">
+      <strong>Cliquez un composant</strong>
+      Chaque nœud représente un acteur ou système de l'écosystème TEADS. Les flux animés montrent la direction des données.
+    </div>
+  </div>
+
+  <div class="leg">
+    <div class="li"><div class="ld" style="background:#5DCAA5"></div>Supply web</div>
+    <div class="li"><div class="ld" style="background:#1D9E75"></div>Teads TV / CTV</div>
+    <div class="li"><div class="ld" style="background:#888780"></div>Exchange RTB</div>
+    <div class="li"><div class="ld" style="background:#7F77DD"></div>Demand</div>
+    <div class="li"><div class="ld" style="background:#7c3aed"></div>Plateforme interne</div>
+    <div class="li"><div class="ld" style="background:#BA7517"></div>Livrable Jade</div>
+    <div class="li"><div class="ld" style="background:#667eea"></div>Périmètre Jade</div>
+  </div>
+</div>
+
+<script>
+const d={
+  pub:{t:"Éditeur Web",b:"Propriétaire du contenu. Chaque chargement de page déclenche une opportunité publicitaire via l'Ad Server, puis le SSP Teads."},
+  adserver:{t:"Ad Server (GAM)",b:"Cerveau côté éditeur. Décide quel format publicitaire afficher selon les règles de priorité, et orchestre le waterfall vers le SSP."},
+  ssp:{t:"SSP Teads — supply web",b:"Agrège l'inventaire web des éditeurs et le propose à l'Ad Exchange. Teads est à la fois SSP (vente d'inventaire) et DSP (achat) — un modèle intégré unique sur le marché."},
+  ctv:{t:"Teads TV / CTV ★",b:"Service vidéo et télévision connectée de Teads. Diffuse des publicités sur les écrans TV via des partenaires broadcasters et plateformes streaming. Apporte de l'inventaire vidéo premium à l'Exchange, distinct du display web."},
+  pixel:{t:"Pixels JS / Tags de tracking",b:"Scripts JavaScript capturant chaque impression, clic et conversion en temps réel. Millions d'événements par jour. Ces données alimentent l'infrastructure Teads pour la mesure et l'attribution."},
+  exchange:{t:"Ad Exchange — enchère RTB",b:"Place de marché centrale où supply et demand se rencontrent. Chaque enchère dure moins de 100ms. SSP envoie une bid request, les DSP répondent avec un prix, le gagnant sert la publicité. Protocole : OpenRTB."},
+  dsp:{t:"DSP Teads",b:"Plateforme d'achat côté annonceur. Reçoit les bid requests de l'Exchange, calcule le prix optimal via le bid engine selon les segments audience CDP, enchérit et remporte l'inventaire ciblé."},
+  crm:{t:"CRM Salesforce",b:"Base de données clients de l'annonceur. Source des données commerciales et historique d'achat. Alimente le CDP pour construire les segments d'audience activés dans le DSP."},
+  cdp:{t:"CDP — Audiences",b:"Unifie les données first-party pour créer des segments d'audience précis. Alimenté par le CRM, activé dans le DSP pour le ciblage campagne. Fondamental dans la stratégie post-cookie."},
+  adv:{t:"Annonceur — multi-secteur, multi-industrie",b:"Clients de Teads couvrant des centaines d'entreprises dans tous les secteurs : luxe, FMCG, automobile, finance, technologie, retail, santé... Chacun avec ses objectifs (brand lift, attention, reach) et ses propres audiences cibles."},
+  bidder:{t:"Bid engine",b:"Composant interne du DSP calculant en temps réel le prix d'enchère optimal selon les segments audience, les objectifs campagne et le budget restant. Doit répondre en moins de 80ms pour rester dans la fenêtre RTB."},
+  blackbox:{t:"Infrastructure Teads (boîte noire pour Jade) 🔒",b:"BigQuery, Snowflake, pipelines ETL — la couche data interne gérée par les data engineers Teads. Jade ne touchait pas directement à ces systèmes, mais en exploitait les sorties via la Plateforme Teads. C'est précisément la compétence qu'elle développe en autonomie depuis 2023."},
+  platform:{t:"Plateforme Teads (portail interne) ★",b:"Interface web propriétaire Teads. Jade l'utilisait quotidiennement pour extraire les résultats de campagne : métriques de diffusion, performance par format, données d'attention et de brand lift. Interface centrale entre l'infra data et les équipes Insight."},
+  studies:{t:"Études publicitaires ★",b:"Résultats des études brand lift (Kantar), attention réelle (Lumen), reach & frequency, recall, A/B testing. Jade interprétait ces métriques avancées pour évaluer l'impact réel des campagnes — au-delà des simples impressions servies."},
+  jade:{t:"Jade · Insight Analyst TEADS ★",b:"Périmètre réel : exploitation de la Plateforme Teads pour des centaines de clients dans toutes les industries. Extraction des données campagne, interprétation des études pub (Kantar, Lumen), production de rapports PowerPoint à forte valeur analytique pour les équipes commerciales et les C-levels clients."},
+  ppt:{t:"Rapport PowerPoint — livrable réel ★",b:"La réalité du terrain Teads : captures de la Plateforme + résultats études + analyses + recommandations stratégiques, assemblés en présentations soignées. Jade transformait des données complexes en storytelling décisionnel clair — pour des centaines de clients mondiaux dans tous les secteurs."},
+  client:{t:"Client / C-Level — multi-secteur",b:"Destinataires finaux des insights Jade : directeurs marketing, CMO, media planners de grandes marques mondiales. Les rapports guidaient les décisions d'investissement media — continuer, scaler, arbitrer entre web et TV."}
+};
+function show(k){
+  const x=d[k];
+  if(!x)return;
+  document.getElementById('tip').innerHTML=`<strong>${x.t}</strong>${x.b}`;
+}
+</script>
+</body>
+</html>
 
             <!-- Legend -->
             <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(102,126,234,0.1)">
