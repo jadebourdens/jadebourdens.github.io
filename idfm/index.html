@@ -340,6 +340,136 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
           <div class="tl-role">Insight Analyst</div>
           <div class="tl-layer">Couche intégration</div>
           <div class="tl-desc">Pipelines end-to-end, SQL + Python, 20+ comptes mondiaux, dashboards exécutifs Tableau.</div>
+
+          <!-- ADTECH ARCHITECTURE MAP -->
+          <div style="margin-top:1rem;background:#fff;border:1px solid rgba(102,126,234,0.18);border-radius:14px;padding:1rem;overflow:hidden">
+            <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">Architecture AdTech · Mon périmètre chez TEADS</div>
+
+            <!-- SVG MAP -->
+            <svg width="100%" viewBox="0 0 620 380" style="display:block">
+              <defs>
+                <marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+                <style>
+                  .tf{stroke-dasharray:4 5;animation:tdash 1.4s linear infinite;fill:none}
+                  .tfs{stroke-dasharray:3 7;animation:tdash 2.2s linear infinite;fill:none}
+                  @keyframes tdash{to{stroke-dashoffset:-18}}
+                  .jade-glow rect{filter:none}
+                  @keyframes tpulse{0%,100%{opacity:1}50%{opacity:.5}}
+                  .jblink{animation:tpulse .9s ease-in-out infinite}
+                </style>
+              </defs>
+
+              <!-- ZONE: Publisher (gray, left) -->
+              <rect x="8" y="30" width="108" height="200" rx="8" fill="none" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 3"/>
+              <text x="62" y="24" text-anchor="middle" font-size="9" fill="#888780" font-family="var(--font-mono)" letter-spacing=".08em">ÉDITEUR</text>
+
+              <!-- Publisher -->
+              <rect x="16" y="40" width="92" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+              <text x="62" y="55" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Éditeur</text>
+              <text x="62" y="68" text-anchor="middle" font-size="9" fill="#888780">Site / App</text>
+
+              <!-- Ad Server pub -->
+              <rect x="16" y="90" width="92" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+              <text x="62" y="105" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Ad Server</text>
+              <text x="62" y="118" text-anchor="middle" font-size="9" fill="#888780">GAM</text>
+
+              <!-- SSP -->
+              <rect x="16" y="142" width="92" height="36" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+              <text x="62" y="157" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">SSP Teads</text>
+              <text x="62" y="170" text-anchor="middle" font-size="9" fill="#0F6E56">Supply side</text>
+
+              <!-- Pixel -->
+              <rect x="16" y="194" width="92" height="30" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+              <text x="62" y="212" text-anchor="middle" font-size="10" font-weight="500" fill="#085041">Pixels JS</text>
+
+              <!-- ZONE: Exchange (center) -->
+              <rect x="230" y="100" width="160" height="60" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 3"/>
+              <text x="310" y="120" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A">Ad Exchange</text>
+              <text x="310" y="134" text-anchor="middle" font-size="9" fill="#888780">OpenRTB · &lt;100ms</text>
+              <text x="310" y="148" text-anchor="middle" font-size="8" fill="#B4B2A9" font-family="var(--font-mono)">enchère temps réel</text>
+
+              <!-- RTB blink dots -->
+              <circle cx="220" cy="130" r="3" fill="#BA7517" class="jblink" style="animation-delay:0s"/>
+              <circle cx="400" cy="130" r="3" fill="#7F77DD" class="jblink" style="animation-delay:.15s"/>
+
+              <!-- ZONE: Demand (right) -->
+              <rect x="504" y="30" width="108" height="170" rx="8" fill="none" stroke="#AFA9EC" stroke-width="0.5" stroke-dasharray="4 3"/>
+              <text x="558" y="24" text-anchor="middle" font-size="9" fill="#7F77DD" font-family="var(--font-mono)" letter-spacing=".08em">ANNONCEUR</text>
+
+              <!-- DSP -->
+              <rect x="512" y="40" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+              <text x="558" y="55" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">DSP Teads</text>
+              <text x="558" y="68" text-anchor="middle" font-size="9" fill="#534AB7">Demand side</text>
+
+              <!-- CRM -->
+              <rect x="512" y="90" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+              <text x="558" y="105" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CRM</text>
+              <text x="558" y="118" text-anchor="middle" font-size="9" fill="#534AB7">Salesforce</text>
+
+              <!-- CDP -->
+              <rect x="512" y="140" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+              <text x="558" y="155" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CDP</text>
+              <text x="558" y="168" text-anchor="middle" font-size="9" fill="#534AB7">Audiences</text>
+
+              <!-- ZONE: Data (bottom) — Jade's main area -->
+              <rect x="130" y="260" width="360" height="108" rx="10" fill="rgba(102,126,234,0.05)" stroke="#667eea" stroke-width="1" stroke-dasharray="5 3"/>
+              <text x="310" y="254" text-anchor="middle" font-size="9" fill="#667eea" font-family="var(--font-mono)" letter-spacing=".1em">MON PÉRIMÈTRE PRINCIPAL</text>
+
+              <!-- BigQuery -->
+              <rect x="145" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
+              <text x="195" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">BigQuery</text>
+              <text x="195" y="303" text-anchor="middle" font-size="9" fill="#667eea">Data Warehouse</text>
+
+              <!-- Snowflake -->
+              <rect x="260" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
+              <text x="310" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Snowflake</text>
+              <text x="310" y="303" text-anchor="middle" font-size="9" fill="#667eea">Modèle unifié</text>
+
+              <!-- Tableau -->
+              <rect x="375" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
+              <text x="425" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Tableau</text>
+              <text x="425" y="303" text-anchor="middle" font-size="9" fill="#667eea">Dashboard exécutif</text>
+
+              <!-- Jade badge in data zone -->
+              <rect x="183" y="320" width="254" height="38" rx="6" fill="rgba(102,126,234,0.1)" stroke="rgba(102,126,234,0.35)" stroke-width="0.5"/>
+              <text x="310" y="335" text-anchor="middle" font-size="10" font-weight="500" fill="#7c3aed">Jade · Insight Analyst</text>
+              <text x="310" y="350" text-anchor="middle" font-size="9" fill="#667eea">SQL · Python · Transformation · Livrables exécutifs · 20+ comptes</text>
+
+              <!-- FLOWS -->
+              <!-- Pub → AdServer -->
+              <line class="tfs" x1="62" y1="76" x2="62" y2="90" stroke="#888780" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- AdServer → SSP -->
+              <line class="tfs" x1="62" y1="126" x2="62" y2="142" stroke="#5DCAA5" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- SSP → Exchange -->
+              <path class="tf" d="M108 160 L230 130" stroke="#BA7517" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- Exchange → DSP -->
+              <path class="tf" d="M390 130 L512 58" stroke="#7F77DD" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- CRM → CDP -->
+              <line class="tfs" x1="558" y1="126" x2="558" y2="140" stroke="#AFA9EC" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- CDP → DSP (feedback) -->
+              <path class="tfs" d="M512 158 L480 80 L604 58" stroke="#AFA9EC" stroke-width="1" fill="none" stroke-dasharray="3 5" marker-end="url(#ta)"/>
+              <!-- Pixel → BigQuery -->
+              <path class="tf" d="M108 210 L145 290" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- Exchange → BigQuery -->
+              <path class="tf" d="M280 160 L220 272" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- CRM → Snowflake -->
+              <path class="tfs" d="M512 108 L360 290" stroke="#667eea" stroke-width="1" stroke-dasharray="3 5" marker-end="url(#ta)"/>
+              <!-- BigQuery → Snowflake -->
+              <line class="tf" x1="245" y1="292" x2="260" y2="292" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- Snowflake → Tableau -->
+              <line class="tf" x1="360" y1="292" x2="375" y2="292" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+            </svg>
+
+            <!-- Legend -->
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(102,126,234,0.1)">
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3)"><div style="width:8px;height:8px;border-radius:2px;background:#5DCAA5"></div>Supply / éditeur</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3)"><div style="width:8px;height:8px;border-radius:2px;background:#888780"></div>Exchange RTB</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3)"><div style="width:8px;height:8px;border-radius:2px;background:#7F77DD"></div>Demand / annonceur</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)"><div style="width:8px;height:8px;border-radius:2px;background:#667eea;border:1px solid #667eea"></div><strong>Mon périmètre</strong></div>
+            </div>
+          </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot d3"></div>
