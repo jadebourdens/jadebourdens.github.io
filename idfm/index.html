@@ -268,50 +268,38 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
 <!-- ══════════════════════════════════════
      01 · ACCUEIL
 ══════════════════════════════════════ -->
-<section id="s01" class="slide">
-  <div class="container" style="text-align:center;max-width:820px;margin:0 auto">
-    <div class="slide-num">01 / 06</div>
+<section id="s01" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;background:#fff;overflow:hidden">
 
-    <!-- icon row -->
-    <div class="hero-icons">
-      <!-- database -->
-      <div class="hicon" title="Data Pipelines">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-      </div>
-      <!-- flow/network -->
-      <div class="hicon" title="Flux SI">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      </div>
-      <!-- layers/architecture -->
-      <div class="hicon" title="Architecture SI">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-      </div>
-      <!-- chart -->
-      <div class="hicon" title="Data Visualisation">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </div>
-      <!-- map/urbanisme -->
-      <div class="hicon" title="Urbanisme SI">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-      </div>
-      <!-- cloud -->
-      <div class="hicon" title="BigQuery · Cloud">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-      </div>
-      <!-- settings/gear ERP -->
-      <div class="hicon" title="SAP S/4HANA ERP">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 1 20.9 9H22a2 2 0 0 1 0 4h-1.1a10 10 0 0 1-1.83 4.07l.78.78a2 2 0 0 1-2.83 2.83l-.78-.78A10 10 0 0 1 13 21.9V23a2 2 0 0 1-4 0v-1.1a10 10 0 0 1-4.07-1.83l-.78.78a2 2 0 0 1-2.83-2.83l.78-.78A10 10 0 0 1 1.1 13H0a2 2 0 0 1 0-4h1.1A10 10 0 0 1 2.93 4.93l-.78-.78A2 2 0 0 1 5 1.32l.78.78A10 10 0 0 1 9 .1V0a2 2 0 0 1 4 0v1.1a10 10 0 0 1 4.07 1.83l.78-.78a2 2 0 0 1 2.83 2.83z"/></svg>
-      </div>
+  <!-- soft decorative blobs -->
+  <div style="position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.1) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(102,126,234,0.08) 0%,transparent 70%);pointer-events:none"></div>
+
+  <div style="max-width:780px;width:100%;padding:0 48px;text-align:left">
+
+    <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.18em;margin-bottom:2rem;animation:fadeUp .5s .05s both">01 / 06</div>
+
+    <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(102,126,234,0.07);border:1px solid rgba(102,126,234,0.2);color:var(--accent2);padding:6px 16px;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2.2rem;animation:fadeUp .5s .12s both">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;display:inline-block"></span>
+      Candidate · Alternance 12 mois · IDFM
     </div>
 
-    <div class="hero-eyebrow">Candidate · Alternance 12 mois · IDFM</div>
-    <h1 class="hero-title">Je cartographie les données<br>depuis 5 ans —<br><em>maintenant, je cartographie<br>les systèmes.</em></h1>
-    <p class="hero-role">Assistant Urbaniste des Systèmes d'Information · Île-de-France Mobilités</p>
-    <p class="hero-sub">Data Pipelines <span>✦</span> Architecture SI <span>✦</span> Modélisation de flux <span>✦</span> Mega Hopex</p>
+    <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(2.6rem,5vw,5rem);font-weight:400;line-height:1.08;margin-bottom:1.6rem;animation:fadeUp .6s .2s both;color:var(--text)">
+      Je cartographie<br>les données depuis 5 ans —<br><em style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">maintenant, je cartographie<br>les systèmes.</em>
+    </h1>
 
-    <a href="#s02" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:13px 34px;border-radius:50px;font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 8px 28px rgba(102,126,234,0.38);transition:all .25s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 38px rgba(102,126,234,0.52)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 28px rgba(102,126,234,0.38)'">
+    <p style="font-size:.98rem;color:var(--text2);line-height:1.8;margin-bottom:1.4rem;max-width:560px;animation:fadeUp .6s .32s both">
+      Assistant Urbaniste des Systèmes d'Information ·
+      <span style="color:var(--accent);font-weight:500">Île-de-France Mobilités</span>
+    </p>
+
+    <p style="font-size:.82rem;color:var(--text3);letter-spacing:.04em;margin-bottom:3rem;animation:fadeUp .6s .38s both">
+      Data Pipelines · Architecture SI · Modélisation de flux · Mega Hopex
+    </p>
+
+    <a href="#s02" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:14px 32px;border-radius:6px;font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 6px 22px rgba(102,126,234,0.35);transition:all .22s;animation:fadeUp .6s .46s both" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(102,126,234,0.5)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 6px 22px rgba(102,126,234,0.35)'">
       Découvrir ma candidature →
     </a>
+
   </div>
 </section>
 <div class="divider"></div>
@@ -611,15 +599,6 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
   </div>
 </section>
 
-<!-- CONTACT STRIP (compact, not a full slide) -->
-<div class="contact-strip">
-  <div class="contact-strip-left">"Impatiente de contribuer à l'urbanisation du SI d'Île-de-France Mobilités."</div>
-  <div class="contact-strip-right">
-    <a href="mailto:jadebourdens@gmail.com" class="clink"><span class="clink-icon">EMAIL</span>jadebourdens@gmail.com</a>
-    <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="clink"><span class="clink-icon">LI</span>LinkedIn</a>
-    <a href="https://jadebourdens.github.io" target="_blank" class="clink"><span class="clink-icon">GH</span>GitHub</a>
-  </div>
-</div>
 
 <footer>
   <div class="footer-text">© 2025 Jade Bourdens — Candidate Urbaniste SI · IDFM</div>
