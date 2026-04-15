@@ -1,131 +1,794 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Bourdens — Candidate Urbaniste SI · IDFM</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        /* CSS RESET & VARIABLES */
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --bg:#ffffff;
-            --bg2:#f7f7fc;
-            --text:#1a1a2e;
-            --text2:#4a4a6a;
-            --text3:#9090b0;
-            --accent:#7c3aed;
-            --accent2:#667eea;
-            --border:rgba(102,126,234,0.13);
-            --grad:linear-gradient(135deg,#667eea 0%,#7c3aed 60%,#a78bfa 100%);
-            --surface:#f4f3ff;
-        }
-        body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.6;overflow-x:hidden}
-        
-        /* NAVIGATION */
-        nav{
-            position:fixed;top:0;left:0;right:0;z-index:100;
-            padding:16px 48px;display:flex;justify-content:space-between;align-items:center;
-            background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);
-            border-bottom:1px solid var(--border);
-        }
-        .logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent)}
-        .nav-links{display:flex;gap:1.8rem;list-style:none}
-        .nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;font-weight:500;text-transform:uppercase}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade Bourdens — Candidate Urbaniste SI · IDFM</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;
+  --bg2:#f7f7fc;
+  --bg3:#f0f0f8;
+  --surface:#f4f3ff;
+  --surface2:#ede9fe;
+  --border:rgba(102,126,234,0.13);
+  --border2:rgba(102,126,234,0.28);
+  --text:#1a1a2e;
+  --text2:#4a4a6a;
+  --text3:#9090b0;
+  --accent:#7c3aed;
+  --accent2:#667eea;
+  --accent3:#764ba2;
+  --soft:#a78bfa;
+  --grad:linear-gradient(135deg,#667eea 0%,#7c3aed 60%,#a78bfa 100%);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+#bgCanvas{position:fixed;inset:0;z-index:0;opacity:.3;pointer-events:none}
 
-        /* SECTIONS */
-        .slide{min-height:100vh;padding:120px 0 80px;display:flex;align-items:center}
-        .container{max-width:900px;margin:0 auto;padding:0 30px;width:100%}
-        .slide.alt{background:var(--bg2)}
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:16px 48px;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(102,126,234,0.1);
+}
+.logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent);letter-spacing:.01em}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
 
-        /* TITLES */
-        .section-label{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--accent2);text-transform:uppercase;margin-bottom:10px}
-        .section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:2rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+/* SLIDES */
+.slide{min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;padding:110px 0 70px}
+.slide.alt{background:var(--bg2)}
+.container{max-width:1100px;margin:0 auto;padding:0 48px;width:100%}
 
-        /* TIMELINE (Single Column Fix) */
-        .timeline{position:relative;padding-left:2rem;margin-top:2rem}
-        .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border)}
-        .tl-item{position:relative;margin-bottom:3rem}
-        .tl-dot{position:absolute;left:-2.45rem;top:5px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid #fff}
-        .tl-period{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text3);margin-bottom:5px}
-        .tl-content{background:#fff;padding:25px;border-radius:16px;border:1px solid var(--border);box-shadow:0 4px 15px rgba(0,0,0,0.03)}
-        .tl-company{font-size:1.1rem;font-weight:600;margin-bottom:5px}
-        .tl-role{color:var(--accent);font-weight:500;margin-bottom:10px;display:block}
-        .tl-layer-wrap{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
-        .tl-layer{font-size:.7rem;padding:4px 12px;background:var(--surface);border-radius:20px;color:var(--accent);font-weight:600;border:1px solid rgba(124,58,237,0.1)}
-        .tl-desc{font-size:.9rem;color:var(--text2)}
+/* HERO */
+#s01{justify-content:center;text-align:center;background:var(--bg);overflow:hidden}
+.slide-num{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.15em;margin-bottom:1.5rem}
 
-        /* HERO STYLES */
-        .hero-tag{display:inline-block;padding:6px 15px;background:rgba(124,58,237,0.05);color:var(--accent);border-radius:50px;font-size:.75rem;font-weight:600;margin-bottom:20px}
-        
-        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        .animate{animation:fadeUp 0.6s ease forwards}
-    </style>
+/* hero icons row */
+.hero-icons{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;animation:fadeUp .5s .05s both}
+.hicon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  border:1px solid rgba(102,126,234,0.18);
+  background:#fff;
+  box-shadow:0 2px 12px rgba(102,126,234,0.1);
+  transition:transform .2s,box-shadow .2s;
+}
+.hicon:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(102,126,234,0.2)}
+.hicon svg{width:24px;height:24px}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(102,126,234,0.07);border:1px solid rgba(102,126,234,0.2);
+  color:var(--accent2);padding:7px 20px;border-radius:50px;font-size:.76rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:2rem;
+  animation:fadeUp .6s .1s both;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.55)}}
+
+.hero-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.4rem,5vw,4.6rem);font-weight:400;line-height:1.1;
+  margin-bottom:1.2rem;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fadeUp .6s .22s both;
+}
+.hero-title em{font-style:italic}
+.hero-role{font-size:.95rem;color:var(--text2);letter-spacing:.03em;margin-bottom:.7rem;animation:fadeUp .6s .35s both}
+.hero-sub{font-size:.82rem;color:var(--text3);letter-spacing:.04em;margin-bottom:2.8rem;animation:fadeUp .6s .46s both}
+.hero-sub span{color:var(--accent2);margin:0 7px}
+
+/* stat chips on hero */
+.hero-chips{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem;animation:fadeUp .6s .55s both}
+.chip{
+  display:flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid var(--border);border-radius:50px;
+  padding:8px 16px;font-size:.8rem;color:var(--text2);
+  box-shadow:0 2px 8px rgba(102,126,234,0.07);font-weight:500;
+}
+.chip-dot{width:7px;height:7px;border-radius:50%}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADERS */
+.section-label{font-family:'DM Mono',monospace;font-size:.66rem;color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.65rem;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;max-width:36px;height:1px;background:var(--accent2);opacity:.5}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;margin-bottom:.9rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-title em{font-style:italic}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 2px 10px rgba(102,126,234,0.06);transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{border-color:var(--border2);box-shadow:0 8px 28px rgba(102,126,234,0.13);transform:translateY(-2px)}
+.card-label{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.55rem}
+.card-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.45rem}
+.card-body{font-size:.85rem;color:var(--text2);line-height:1.75}
+.card-body strong{color:var(--text);font-weight:600}
+
+/* PILLS */
+.pills-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{font-size:.73rem;padding:4px 13px;border-radius:20px;background:var(--surface);border:1px solid rgba(102,126,234,0.18);color:var(--text2);font-weight:500;transition:all .15s}
+.pill:hover{background:var(--surface2);color:var(--accent);border-color:rgba(124,58,237,0.28)}
+.pill-accent{background:rgba(124,58,237,0.07);border-color:rgba(124,58,237,0.2);color:var(--accent)}
+
+/* ── SLIDE 02 PARCOURS ── */
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.5rem}
+.timeline{position:relative;padding-left:1.75rem}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,rgba(102,126,234,0.4),rgba(102,126,234,0.08))}
+.tl-item{position:relative;margin-bottom:2.2rem;padding-left:1.2rem}
+.tl-dot{position:absolute;left:-2.15rem;top:5px;width:9px;height:9px;border-radius:50%;border:2px solid}
+.d1{border-color:var(--accent);background:rgba(124,58,237,0.12)}
+.d2{border-color:var(--accent2);background:rgba(102,126,234,0.12)}
+.d3{border-color:var(--soft);background:rgba(167,139,250,0.12)}
+.tl-period{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.1em;margin-bottom:.25rem}
+.tl-company{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.12rem}
+.tl-role{font-size:.78rem;color:var(--accent);margin-bottom:.28rem;font-weight:500}
+.tl-layer{display:inline-block;font-size:.68rem;padding:2px 10px;border-radius:20px;background:var(--surface);border:1px solid rgba(102,126,234,0.18);color:var(--accent2);margin-bottom:.4rem;font-weight:500}
+.tl-desc{font-size:.8rem;color:var(--text2);line-height:1.65}
+
+/* ── SLIDE 03 COMPÉTENCES ── */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.skill-bar-row{margin-bottom:1rem}
+.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:.35rem}
+.skill-bar-name{font-size:.8rem;color:var(--text2)}
+.skill-bar-pct{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text3)}
+.skill-track{height:4px;background:rgba(102,126,234,0.09);border-radius:2px;overflow:hidden}
+.skill-fill{height:4px;border-radius:2px;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.fa{background:linear-gradient(90deg,#667eea,#a78bfa)}
+.fb{background:linear-gradient(90deg,#764ba2,#a78bfa)}
+.fc{background:rgba(167,139,250,0.38)}
+
+/* ── SLIDE 04 FLUX SI ── (full redo) ── */
+.flux-section{margin-top:2.5rem}
+.flux-intro{font-size:.88rem;color:var(--text2);line-height:1.85;max-width:680px;margin-bottom:2rem}
+
+/* two-column: left = Jade pipeline, right = IDFM equivalent */
+.flux-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:start;margin-bottom:2rem}
+.flux-col-head{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem;text-align:center}
+.flux-col{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem;box-shadow:0 2px 10px rgba(102,126,234,0.06)}
+.flux-col.accent-col{border-color:rgba(124,58,237,0.22);background:#faf9ff}
+
+.fnode{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);border:1px solid rgba(102,126,234,0.14);
+  border-radius:10px;padding:9px 13px;
+  font-size:.78rem;color:var(--text);margin-bottom:6px;
+  transition:all .18s;
+}
+.fnode:hover{background:var(--surface2);border-color:rgba(124,58,237,0.28);transform:translateX(3px)}
+.fnode-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.fnode-label{flex:1;line-height:1.4}
+.fnode-sub{font-size:.66rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:2px}
+
+.farrow{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);
+  padding:3px 0;margin-bottom:3px;
+}
+.farrow::before,.farrow::after{content:'';flex:1;height:1px;background:rgba(102,126,234,0.13)}
+
+/* middle equals column */
+.flux-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding-top:2.8rem}
+.flux-mid-arrow{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#667eea,#7c3aed);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(102,126,234,0.3);
+}
+.flux-mid-arrow svg{width:16px;height:16px;fill:white}
+.flux-mid-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);letter-spacing:.1em;text-align:center;line-height:1.5}
+
+/* bottom takeaway bar */
+.flux-takeaway{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+}
+.ftake{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;box-shadow:0 2px 8px rgba(102,126,234,0.05)}
+.ftake-icon{font-size:18px;margin-bottom:.4rem}
+.ftake-title{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.ftake-body{font-size:.75rem;color:var(--text2);line-height:1.6}
+
+/* left accent bar */
+.flux-col.accent-col .fnode{background:rgba(124,58,237,0.05);border-color:rgba(124,58,237,0.15)}
+.flux-col.accent-col .fnode:hover{background:rgba(124,58,237,0.1)}
+
+/* ── SLIDE 05 WHY IDFM ── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.5rem}
+.why-big{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem;grid-column:1/-1;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(102,126,234,0.06)}
+.why-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#667eea,#7c3aed,#a78bfa)}
+.why-stat{font-family:'DM Serif Display',serif;font-size:3rem;font-weight:400;line-height:1;margin-bottom:.25rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.why-stat-label{font-size:.72rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+
+/* ── SLIDE 06 MINI-PROJET ── */
+.project-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.si-map{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.6rem;box-shadow:0 2px 10px rgba(102,126,234,0.06)}
+.si-map-title{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;text-align:center}
+.si-zone{margin-bottom:1.1rem}
+.si-zone-label{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:20px;margin-bottom:.45rem;display:inline-block;font-weight:600}
+.z1{background:rgba(124,58,237,0.08);color:var(--accent);border:1px solid rgba(124,58,237,0.18)}
+.z2{background:rgba(102,126,234,0.08);color:var(--accent2);border:1px solid rgba(102,126,234,0.18)}
+.z3{background:rgba(167,139,250,0.1);color:#6d28d9;border:1px solid rgba(167,139,250,0.22)}
+.z4{background:var(--surface);color:var(--text2);border:1px solid var(--border)}
+.si-apps{display:flex;flex-wrap:wrap;gap:5px}
+.si-app{font-size:.7rem;padding:4px 11px;border-radius:20px;background:var(--surface);border:1px solid rgba(102,126,234,0.16);color:var(--text2);cursor:pointer;transition:all .15s;font-weight:500}
+.si-app:hover{color:var(--accent);border-color:rgba(124,58,237,0.32);background:var(--surface2)}
+.si-flux-line{border-top:1px dashed rgba(102,126,234,0.16);margin:7px 0;display:flex;justify-content:center;position:relative}
+.si-flux-label{position:relative;top:-.62rem;background:#fff;padding:0 7px;font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text3);white-space:nowrap}
+.project-notes{display:flex;flex-direction:column;gap:.9rem}
+
+/* ── CONTACT (slide 6b hidden bottom) ── */
+.contact-strip{
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:2.5rem 48px;display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;
+}
+.contact-strip-left{font-family:'DM Serif Display',serif;font-size:1.3rem;font-style:italic;color:var(--text);max-width:480px;line-height:1.4;border-left:2px solid var(--accent2);padding-left:1.2rem}
+.contact-strip-right{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end}
+.clink{display:flex;align-items:center;gap:8px;padding:10px 18px;background:#fff;border:1px solid var(--border);border-radius:50px;text-decoration:none;color:var(--text2);font-size:.8rem;box-shadow:0 2px 6px rgba(102,126,234,0.06);transition:all .18s;font-weight:500}
+.clink:hover{color:var(--accent);border-color:var(--border2);transform:translateY(-2px);box-shadow:0 6px 18px rgba(102,126,234,0.15)}
+.clink-icon{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);min-width:34px}
+
+footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;background:#fff}
+.footer-text{font-size:.7rem;color:var(--text3);letter-spacing:.06em}
+
+#progress{position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;width:40px;height:40px;filter:drop-shadow(0 2px 8px rgba(102,126,234,0.25))}
+.divider{height:1px;background:var(--border);position:relative;z-index:1;max-width:1100px;margin:0 auto}
+
+@media(max-width:800px){
+  nav{padding:13px 18px}.nav-links{display:none}.container{padding:0 18px}
+  .tl-grid,.skills-layout,.flux-compare,.flux-takeaway,.why-grid,.project-layout,.contact-strip{grid-template-columns:1fr;flex-direction:column}
+  .flux-mid{flex-direction:row;padding-top:0}
+  .why-grid .why-big{grid-column:auto}
+  footer,.contact-strip{padding:1.2rem 18px;flex-direction:column;gap:.7rem;text-align:center}
+  .hero-icons{gap:.8rem}.hicon{width:44px;height:44px;font-size:18px}
+}
+</style>
 </head>
 <body>
+<canvas id="bgCanvas"></canvas>
 
 <nav>
-    <div class="logo">Jade Bourdens</div>
-    <ul class="nav-links">
-        <li><a href="#s01">Accueil</a></li>
-        <li><a href="#s02">Parcours</a></li>
-    </ul>
+  <div class="logo">Jade Bourdens</div>
+  <ul class="nav-links">
+    <li><a href="#s01">Accueil</a></li>
+    <li><a href="#s02">Parcours</a></li>
+    <li><a href="#s03">Compétences</a></li>
+    <li><a href="#s04">Flux SI</a></li>
+    <li><a href="#s05">Pourquoi IDFM</a></li>
+    <li><a href="#s06">Mini-projet</a></li>
+  </ul>
+
 </nav>
 
-<section id="s01" class="slide">
-    <div class="container" style="text-align:center">
-        <div class="hero-tag animate">CANDIDATE · ALTERNANCE 12 MOIS · IDFM</div>
-        <h1 class="section-title animate" style="font-size: 3.5rem;">Je cartographie les données.<br><em>Maintenant, je cartographie les systèmes.</em></h1>
-        <p class="animate" style="color:var(--text2); max-width:600px; margin:0 auto 30px">Assistant Urbaniste des Systèmes d'Information au sein d'Île-de-France Mobilités.</p>
-        <div class="tl-layer-wrap animate" style="justify-content:center">
-            <span class="tl-layer">Urbanisation SI</span>
-            <span class="tl-layer">Mega Hopex</span>
-            <span class="tl-layer">Flux API</span>
-            <span class="tl-layer">Gouvernance Data</span>
-        </div>
-    </div>
-</section>
+<!-- ══════════════════════════════════════
+     01 · ACCUEIL
+══════════════════════════════════════ -->
+<section id="s01" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;background:#fff;overflow:hidden">
 
+  <!-- soft decorative blobs -->
+  <div style="position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.1) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(102,126,234,0.08) 0%,transparent 70%);pointer-events:none"></div>
+
+  <div style="max-width:780px;width:100%;padding:0 48px;text-align:left">
+
+    <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.18em;margin-bottom:2rem;animation:fadeUp .5s .05s both">01 / 06</div>
+
+    <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(102,126,234,0.07);border:1px solid rgba(102,126,234,0.2);color:var(--accent2);padding:6px 16px;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2.2rem;animation:fadeUp .5s .12s both">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;display:inline-block"></span>
+      Candidate · Alternance 12 mois · IDFM
+    </div>
+
+    <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(2.6rem,5vw,5rem);font-weight:400;line-height:1.08;margin-bottom:1.6rem;animation:fadeUp .6s .2s both;color:var(--text)">
+      Je cartographie<br>les données depuis 5 ans —<br><em style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">maintenant, je cartographie<br>les systèmes.</em>
+    </h1>
+
+    <p style="font-size:.98rem;color:var(--text2);line-height:1.8;margin-bottom:1.4rem;max-width:560px;animation:fadeUp .6s .32s both">
+      Assistant Urbaniste des Systèmes d'Information ·
+      <span style="color:var(--accent);font-weight:500">Île-de-France Mobilités</span>
+    </p>
+
+    <!-- keyword tags -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:3rem;animation:fadeUp .6s .38s both;max-width:680px">
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(102,126,234,0.09);border:1px solid rgba(102,126,234,0.22);color:var(--accent2);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(102,126,234,0.18)';this.style.color='#4f46e5'" onmouseout="this.style.background='rgba(102,126,234,0.09)';this.style.color='var(--accent2)'">Urbanisation des SI</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);color:var(--accent);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(124,58,237,0.16)'" onmouseout="this.style.background='rgba(124,58,237,0.08)'">Cartographie Applicative</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:#6d28d9;transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(167,139,250,0.1)'">Mega Hopex</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(102,126,234,0.09);border:1px solid rgba(102,126,234,0.22);color:var(--accent2);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(102,126,234,0.18)'" onmouseout="this.style.background='rgba(102,126,234,0.09)'">Gouvernance de la Donnée</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);color:var(--accent);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(124,58,237,0.16)'" onmouseout="this.style.background='rgba(124,58,237,0.08)'">Modélisation de flux</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:#6d28d9;transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(167,139,250,0.1)'">Vision Transversale</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(102,126,234,0.09);border:1px solid rgba(102,126,234,0.22);color:var(--accent2);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(102,126,234,0.18)'" onmouseout="this.style.background='rgba(102,126,234,0.09)'">Data Pipelines</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);color:var(--accent);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(124,58,237,0.16)'" onmouseout="this.style.background='rgba(124,58,237,0.08)'">Efficacité Opérationnelle</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:#6d28d9;transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(167,139,250,0.1)'">Architecture SI</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(102,126,234,0.09);border:1px solid rgba(102,126,234,0.22);color:var(--accent2);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(102,126,234,0.18)'" onmouseout="this.style.background='rgba(102,126,234,0.09)'">Cybersécurité &amp; Risques</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);color:var(--accent);transition:all .18s;cursor:default" onmouseover="this.style.background='rgba(124,58,237,0.16)'" onmouseout="this.style.background='rgba(124,58,237,0.08)'">Référentiel Applicatif</span>
+    </div>
+
+    <a href="#s02" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:14px 32px;border-radius:6px;font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 6px 22px rgba(102,126,234,0.35);transition:all .22s;animation:fadeUp .6s .46s both" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(102,126,234,0.5)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 6px 22px rgba(102,126,234,0.35)'">
+      Découvrir ma candidature →
+    </a>
+
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     02 · PARCOURS
+══════════════════════════════════════ -->
 <section id="s02" class="slide alt">
-    <div class="container">
-        <div class="section-label">02 / 06 · Parcours</div>
-        <h2 class="section-title">Expériences <em>Architecturales</em></h2>
-        
-        <div class="timeline">
-            <div class="tl-item animate">
-                <div class="tl-dot"></div>
-                <div class="tl-period">2023 — PRÉSENT</div>
-                <div class="tl-content">
-                    <span class="tl-company">Montée en compétences · Paris</span>
-                    <span class="tl-role">Transition Cloud Data & ERP</span>
-                    <div class="tl-layer-wrap">
-                        <span class="tl-layer">Couche Transformation</span>
-                        <span class="tl-layer">SAP S/4HANA (MM/SD)</span>
-                    </div>
-                    <p class="tl-desc">BigQuery cloud-native et modélisation fonctionnelle. Pivot intentionnel vers l'urbanisme SI pour piloter la cohérence des écosystèmes complexes.</p>
-                </div>
-            </div>
-
-            <div class="tl-item animate">
-                <div class="tl-dot"></div>
-                <div class="tl-period">2022 — 2023</div>
-                <div class="tl-content">
-                    <span class="tl-company">TEADS · Global AdTech</span>
-                    <span class="tl-role">Insight Analyst</span>
-                    <div class="tl-layer-wrap">
-                        <span class="tl-layer">Flux API & Gouvernance</span>
-                        <span class="tl-layer">Analyses Décisionnelles</span>
-                        <span class="tl-layer">Couche Intégration</span>
-                    </div>
-                    <p class="tl-desc">
-                        Orchestration de pipelines Python/SQL pour 20+ comptes mondiaux. 
-                        Traduction de flux techniques en dashboards stratégiques (Tableau) pour l'aide à la décision Executive.
-                    </p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="slide-num">02 / 06</div>
+    <div class="section-label">Parcours professionnel</div>
+    <h2 class="section-title">Mon parcours, <em>vu comme des couches SI</em></h2>
+    <div class="tl-grid">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot d1"></div>
+          <div class="tl-period">2023 — présent</div>
+          <div class="tl-company">Montée en compétences · Paris</div>
+          <div class="tl-role">Transition Cloud Data &amp; ERP</div>
+          <div class="tl-layer">Couche transformation</div>
+          <div class="tl-desc">BigQuery cloud-native, SAP S/4HANA (MM/SD), pivot intentionnel vers l'architecture SI.</div>
         </div>
+        <div class="tl-item">
+          <div class="tl-dot d2"></div>
+          <div class="tl-period">Oct 2022 — Oct 2023</div>
+          <div class="tl-company">TEADS · Global AdTech</div>
+          <div class="tl-role">Insight Analyst</div>
+          <div class="tl-layer">Couche intégration</div>
+          <div class="tl-desc">Pipelines end-to-end, SQL + Python, 20+ comptes mondiaux, dashboards exécutifs Tableau.</div>
+
+          <!-- ADTECH ARCHITECTURE MAP -->
+          <div style="margin-top:1rem;background:#fff;border:1px solid rgba(102,126,234,0.18);border-radius:14px;padding:1rem;overflow:hidden">
+            <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">Architecture AdTech · Mon périmètre chez TEADS</div>
+
+            <!-- SVG MAP -->
+            <svg width="100%" viewBox="0 0 620 380" style="display:block">
+              <defs>
+                <marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+                <style>
+                  .tf{stroke-dasharray:4 5;animation:tdash 1.4s linear infinite;fill:none}
+                  .tfs{stroke-dasharray:3 7;animation:tdash 2.2s linear infinite;fill:none}
+                  @keyframes tdash{to{stroke-dashoffset:-18}}
+                  .jade-glow rect{filter:none}
+                  @keyframes tpulse{0%,100%{opacity:1}50%{opacity:.5}}
+                  .jblink{animation:tpulse .9s ease-in-out infinite}
+                </style>
+              </defs>
+
+              <!-- ZONE: Publisher (gray, left) -->
+              <rect x="8" y="30" width="108" height="200" rx="8" fill="none" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 3"/>
+              <text x="62" y="24" text-anchor="middle" font-size="9" fill="#888780" font-family="var(--font-mono)" letter-spacing=".08em">ÉDITEUR</text>
+
+              <!-- Publisher -->
+              <rect x="16" y="40" width="92" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+              <text x="62" y="55" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Éditeur</text>
+              <text x="62" y="68" text-anchor="middle" font-size="9" fill="#888780">Site / App</text>
+
+              <!-- Ad Server pub -->
+              <rect x="16" y="90" width="92" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+              <text x="62" y="105" text-anchor="middle" font-size="11" font-weight="500" fill="#444441">Ad Server</text>
+              <text x="62" y="118" text-anchor="middle" font-size="9" fill="#888780">GAM</text>
+
+              <!-- SSP -->
+              <rect x="16" y="142" width="92" height="36" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+              <text x="62" y="157" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">SSP Teads</text>
+              <text x="62" y="170" text-anchor="middle" font-size="9" fill="#0F6E56">Supply side</text>
+
+              <!-- Pixel -->
+              <rect x="16" y="194" width="92" height="30" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+              <text x="62" y="212" text-anchor="middle" font-size="10" font-weight="500" fill="#085041">Pixels JS</text>
+
+              <!-- ZONE: Exchange (center) -->
+              <rect x="230" y="100" width="160" height="60" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 3"/>
+              <text x="310" y="120" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A">Ad Exchange</text>
+              <text x="310" y="134" text-anchor="middle" font-size="9" fill="#888780">OpenRTB · &lt;100ms</text>
+              <text x="310" y="148" text-anchor="middle" font-size="8" fill="#B4B2A9" font-family="var(--font-mono)">enchère temps réel</text>
+
+              <!-- RTB blink dots -->
+              <circle cx="220" cy="130" r="3" fill="#BA7517" class="jblink" style="animation-delay:0s"/>
+              <circle cx="400" cy="130" r="3" fill="#7F77DD" class="jblink" style="animation-delay:.15s"/>
+
+              <!-- ZONE: Demand (right) -->
+              <rect x="504" y="30" width="108" height="170" rx="8" fill="none" stroke="#AFA9EC" stroke-width="0.5" stroke-dasharray="4 3"/>
+              <text x="558" y="24" text-anchor="middle" font-size="9" fill="#7F77DD" font-family="var(--font-mono)" letter-spacing=".08em">ANNONCEUR</text>
+
+              <!-- DSP -->
+              <rect x="512" y="40" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+              <text x="558" y="55" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">DSP Teads</text>
+              <text x="558" y="68" text-anchor="middle" font-size="9" fill="#534AB7">Demand side</text>
+
+              <!-- CRM -->
+              <rect x="512" y="90" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+              <text x="558" y="105" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CRM</text>
+              <text x="558" y="118" text-anchor="middle" font-size="9" fill="#534AB7">Salesforce</text>
+
+              <!-- CDP -->
+              <rect x="512" y="140" width="92" height="36" rx="6" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+              <text x="558" y="155" text-anchor="middle" font-size="11" font-weight="500" fill="#26215C">CDP</text>
+              <text x="558" y="168" text-anchor="middle" font-size="9" fill="#534AB7">Audiences</text>
+
+              <!-- ZONE: Data (bottom) — Jade's main area -->
+              <rect x="130" y="260" width="360" height="108" rx="10" fill="rgba(102,126,234,0.05)" stroke="#667eea" stroke-width="1" stroke-dasharray="5 3"/>
+              <text x="310" y="254" text-anchor="middle" font-size="9" fill="#667eea" font-family="var(--font-mono)" letter-spacing=".1em">MON PÉRIMÈTRE PRINCIPAL</text>
+
+              <!-- BigQuery -->
+              <rect x="145" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
+              <text x="195" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">BigQuery</text>
+              <text x="195" y="303" text-anchor="middle" font-size="9" fill="#667eea">Data Warehouse</text>
+
+              <!-- Snowflake -->
+              <rect x="260" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
+              <text x="310" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Snowflake</text>
+              <text x="310" y="303" text-anchor="middle" font-size="9" fill="#667eea">Modèle unifié</text>
+
+              <!-- Tableau -->
+              <rect x="375" y="272" width="100" height="40" rx="6" fill="#fff" stroke="#667eea" stroke-width="1.5"/>
+              <text x="425" y="289" text-anchor="middle" font-size="11" font-weight="500" fill="#7c3aed">Tableau</text>
+              <text x="425" y="303" text-anchor="middle" font-size="9" fill="#667eea">Dashboard exécutif</text>
+
+              <!-- Jade badge in data zone -->
+              <rect x="183" y="320" width="254" height="38" rx="6" fill="rgba(102,126,234,0.1)" stroke="rgba(102,126,234,0.35)" stroke-width="0.5"/>
+              <text x="310" y="335" text-anchor="middle" font-size="10" font-weight="500" fill="#7c3aed">Jade · Insight Analyst</text>
+              <text x="310" y="350" text-anchor="middle" font-size="9" fill="#667eea">SQL · Python · Transformation · Livrables exécutifs · 20+ comptes</text>
+
+              <!-- FLOWS -->
+              <!-- Pub → AdServer -->
+              <line class="tfs" x1="62" y1="76" x2="62" y2="90" stroke="#888780" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- AdServer → SSP -->
+              <line class="tfs" x1="62" y1="126" x2="62" y2="142" stroke="#5DCAA5" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- SSP → Exchange -->
+              <path class="tf" d="M108 160 L230 130" stroke="#BA7517" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- Exchange → DSP -->
+              <path class="tf" d="M390 130 L512 58" stroke="#7F77DD" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- CRM → CDP -->
+              <line class="tfs" x1="558" y1="126" x2="558" y2="140" stroke="#AFA9EC" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- CDP → DSP (feedback) -->
+              <path class="tfs" d="M512 158 L480 80 L604 58" stroke="#AFA9EC" stroke-width="1" fill="none" stroke-dasharray="3 5" marker-end="url(#ta)"/>
+              <!-- Pixel → BigQuery -->
+              <path class="tf" d="M108 210 L145 290" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- Exchange → BigQuery -->
+              <path class="tf" d="M280 160 L220 272" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- CRM → Snowflake -->
+              <path class="tfs" d="M512 108 L360 290" stroke="#667eea" stroke-width="1" stroke-dasharray="3 5" marker-end="url(#ta)"/>
+              <!-- BigQuery → Snowflake -->
+              <line class="tf" x1="245" y1="292" x2="260" y2="292" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+              <!-- Snowflake → Tableau -->
+              <line class="tf" x1="360" y1="292" x2="375" y2="292" stroke="#667eea" stroke-width="1.5" marker-end="url(#ta)"/>
+            </svg>
+
+            <!-- Legend -->
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(102,126,234,0.1)">
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3)"><div style="width:8px;height:8px;border-radius:2px;background:#5DCAA5"></div>Supply / éditeur</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3)"><div style="width:8px;height:8px;border-radius:2px;background:#888780"></div>Exchange RTB</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text3)"><div style="width:8px;height:8px;border-radius:2px;background:#7F77DD"></div>Demand / annonceur</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)"><div style="width:8px;height:8px;border-radius:2px;background:#667eea;border:1px solid #667eea"></div><strong>Mon périmètre</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot d3"></div>
+          <div class="tl-period">Sep 2021 — Sep 2022</div>
+          <div class="tl-company">T&amp;T Foods · Grande distribution</div>
+          <div class="tl-role">Marketing Insight Analyst</div>
+          <div class="tl-layer">Couche stratégique</div>
+          <div class="tl-desc">ROI multi-canal, pricing compétitif, recommandations pour lancement produit Paris.</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot d3"></div>
+          <div class="tl-period">Jan 2020 — Août 2021</div>
+          <div class="tl-company">Cookâme FoodTech</div>
+          <div class="tl-role">Sales Reporting Analyst</div>
+          <div class="tl-layer">Couche analytique</div>
+          <div class="tl-desc">Segmentation clients, comportements d'achat, comparaisons multi-sites pour 5 restaurants.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot d2"></div>
+          <div class="tl-period">Jan 2018 — Nov 2019</div>
+          <div class="tl-company">JL Retail Fashion · Vietnam</div>
+          <div class="tl-role">Supply Chain &amp; Retail Analyst</div>
+          <div class="tl-layer">Couche opérationnelle</div>
+          <div class="tl-desc">Gestion stocks, optimisation supply chain, collaboration fournisseurs.</div>
+        </div>
+        <div class="card" style="margin-top:1.2rem;border-color:rgba(124,58,237,0.18)">
+          <div class="card-label">La progression logique</div>
+          <div class="card-body" style="font-size:.82rem">Chaque poste a ajouté une <strong>couche de maturité</strong> dans ma compréhension des systèmes : des flux physiques aux flux stratégiques, jusqu'à l'architecture globale.</div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     03 · COMPÉTENCES
+══════════════════════════════════════ -->
+<section id="s03" class="slide">
+  <div class="container">
+    <div class="slide-num">03 / 06</div>
+    <div class="section-label">Compétences</div>
+    <h2 class="section-title">Mes compétences <em>mappées sur le poste</em></h2>
+    <div class="skills-layout">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--text3);letter-spacing:.1em;margin-bottom:1.1rem">ALIGNEMENT AVEC LA FICHE DE POSTE</div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Modélisation &amp; documentation de flux</span><span class="skill-bar-pct">88%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="88"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Travail transversal multi-équipes</span><span class="skill-bar-pct">90%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="90"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Gestion de projet &amp; suivi planning</span><span class="skill-bar-pct">75%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="75"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Rédaction expressions de besoin</span><span class="skill-bar-pct">72%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="72"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Sensibilisation cybersécurité SI</span><span class="skill-bar-pct">45%</span></div><div class="skill-track"><div class="skill-fill fc" style="width:0" data-w="45"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Outils EA / Mega Hopex</span><span class="skill-bar-pct">En apprentissage</span></div><div class="skill-track"><div class="skill-fill fc" style="width:0" data-w="25"></div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.9rem">
+        <div class="card">
+          <div class="card-label">Stack technique</div>
+          <div class="pills-wrap">
+            <span class="pill">SQL avancé</span><span class="pill">Python</span><span class="pill">BigQuery</span>
+            <span class="pill">Snowflake</span><span class="pill">Tableau</span><span class="pill">Power BI</span>
+            <span class="pill">Google Looker</span><span class="pill">Excel VBA</span><span class="pill">SAP S/4HANA</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Savoir-être</div>
+          <div class="pills-wrap">
+            <span class="pill pill-accent">Contributive</span><span class="pill pill-accent">Rigoureuse</span>
+            <span class="pill pill-accent">Autonome</span><span class="pill pill-accent">Diplomate</span>
+            <span class="pill pill-accent">Curieuse</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Formation</div>
+          <div class="card-body" style="font-size:.82rem">MSc Data Analytics &amp; Marketing Management — <strong>INSEEC Paris</strong><br>Master Digital Media — <strong>Aix-Marseille Université</strong><br>Bachelor Business Admin — <strong>Hanoi Open University</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     04 · FLUX SI  (full redo)
+══════════════════════════════════════ -->
+<section id="s04" class="slide alt">
+  <div class="container">
+    <div class="slide-num">04 / 06</div>
+    <div class="section-label">Pont vers l'urbanisme SI</div>
+    <h2 class="section-title">De la data analyst <em>à la cartographie de flux SI</em></h2>
+    <p class="flux-intro">Chez TEADS, j'ai documenté en détail les flux entre systèmes hétérogènes pour 20+ comptes mondiaux. C'est exactement la démarche de cartographie de flux qu'un urbaniste SI mène dans Mega Hopex — le contexte change, la méthode reste la même.</p>
+
+    <div class="flux-compare">
+      <!-- LEFT: Jade @ TEADS -->
+      <div>
+        <div class="flux-col-head">Ce que je faisais chez TEADS</div>
+        <div class="flux-col">
+          <div class="fnode"><div class="fnode-dot" style="background:#7c3aed"></div><div class="fnode-label">CRM Salesforce<div class="fnode-sub">source · données client</div></div></div>
+          <div class="farrow">flux quotidien · JSON</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#667eea"></div><div class="fnode-label">Ad Platform Teads<div class="fnode-sub">impressions · clics · reach</div></div></div>
+          <div class="farrow">transformation SQL · BigQuery</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#a78bfa"></div><div class="fnode-label">Modèle unifié Snowflake<div class="fnode-sub">nettoyage · agrégation</div></div></div>
+          <div class="farrow">couche présentation</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#764ba2"></div><div class="fnode-label">Dashboard Tableau<div class="fnode-sub">décision exécutive · KPIs</div></div></div>
+        </div>
+      </div>
+
+      <!-- MIDDLE arrows -->
+      <div class="flux-mid">
+        <div class="flux-mid-arrow">
+          <svg viewBox="0 0 16 16"><path d="M8 3l5 5-5 5M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+        </div>
+        <div class="flux-mid-label">même<br>démarche</div>
+        <div class="flux-mid-arrow">
+          <svg viewBox="0 0 16 16"><path d="M8 3l5 5-5 5M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+        </div>
+      </div>
+
+      <!-- RIGHT: IDFM SI urbanisme -->
+      <div>
+        <div class="flux-col-head">Ce que fait l'urbaniste SI · IDFM</div>
+        <div class="flux-col accent-col">
+          <div class="fnode"><div class="fnode-dot" style="background:#7c3aed"></div><div class="fnode-label">Applications opérateurs<div class="fnode-sub">RATP · SNCF · bus · référentiel</div></div></div>
+          <div class="farrow">échanges de flux · API / batch</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#667eea"></div><div class="fnode-label">SI Métier IDFM<div class="fnode-sub">billettique · voyageurs · accès</div></div></div>
+          <div class="farrow">cartographie dans Mega Hopex</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#a78bfa"></div><div class="fnode-label">Référentiel d'applications<div class="fnode-sub">schémas · flux · descriptions</div></div></div>
+          <div class="farrow">production documentaire</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#764ba2"></div><div class="fnode-label">Comités de gouvernance<div class="fnode-sub">indicateurs · rapports · standards</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- takeaway strip -->
+    <div class="flux-takeaway">
+      <div class="ftake">
+        <div class="ftake-icon">🗺️</div>
+        <div class="ftake-title">Identifier les systèmes</div>
+        <div class="ftake-body">J'inventorie sources et cibles, leurs formats, leurs propriétaires — exactement comme le référentiel d'applications Mega Hopex.</div>
+      </div>
+      <div class="ftake">
+        <div class="ftake-icon">🔗</div>
+        <div class="ftake-title">Décrire les échanges</div>
+        <div class="ftake-body">Fréquence, format, criticité, protocole — j'ai documenté ces attributs pour chaque flux data chez TEADS et T&amp;T Foods.</div>
+      </div>
+      <div class="ftake">
+        <div class="ftake-icon">📐</div>
+        <div class="ftake-title">Produire les schémas</div>
+        <div class="ftake-body">Dashboards, diagrammes de flux, pipelines visuels — je traduis la complexité en représentations claires pour les décideurs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     05 · POURQUOI IDFM
+══════════════════════════════════════ -->
+<section id="s05" class="slide">
+  <div class="container">
+    <div class="slide-num">05 / 06</div>
+    <div class="section-label">Motivation</div>
+    <h2 class="section-title">Pourquoi Île-de-France <em>Mobilités</em> ?</h2>
+    <div class="why-grid">
+      <div class="why-big">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-items:start">
+          <div>
+            <div class="why-stat">9,4M</div>
+            <div class="why-stat-label">déplacements / jour</div>
+            <div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Un SI critique, multi-opérateurs, à urbaniser pour garantir cohérence et interopérabilité.</div>
+          </div>
+          <div>
+            <div class="why-stat">DID</div>
+            <div class="why-stat-label">Ingénierie Digitale</div>
+            <div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Département où l'alternance est rattachée. Mission : cohérence et sécurité des SI.</div>
+          </div>
+          <div>
+            <div class="why-stat">Hopex</div>
+            <div class="why-stat-label">Mega Hopex · outil EA</div>
+            <div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">L'outil de cartographie du SI que je suis impatiente d'apprendre et déployer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Ce qui m'attire</div>
+        <div class="card-title">La complexité SI comme terrain d'apprentissage</div>
+        <div class="card-body">RATP, SNCF, bus, RER — autant d'opérateurs dont il faut maîtriser les <strong>flux d'échanges</strong>, cartographier les applications et définir des <strong>standards cohérents</strong>. C'est exactement ce que je fais depuis 5 ans avec les données, à l'échelle du SI entier.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Mon apport concret</div>
+        <div class="card-title">Vision data-first des flux d'information</div>
+        <div class="card-body">20+ pipelines documentés chez TEADS, expérience SAP S/4HANA, capacité à <strong>former des utilisateurs</strong> et à produire des livrables documentaires pour des comités de pilotage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     06 · MINI-PROJET
+══════════════════════════════════════ -->
+<section id="s06" class="slide alt">
+  <div class="container">
+    <div class="slide-num">06 / 06</div>
+    <div class="section-label">Démonstration pratique</div>
+    <h2 class="section-title">Mini-cartographie SI : <em>système billettique simplifié</em></h2>
+    <p style="font-size:.87rem;color:var(--text2);line-height:1.8;margin-bottom:0;max-width:600px">Modélisation d'un SI de transport fictif pour illustrer ma compréhension des couches d'architecture et des flux d'échange.</p>
+    <div class="project-layout">
+      <div class="si-map">
+        <div class="si-map-title">SI Autorité de Transport · Modèle simplifié</div>
+        <div class="si-zone">
+          <div class="si-zone-label z1">Couche présentation</div>
+          <div class="si-apps">
+            <div class="si-app">App Navigo Mobile</div>
+            <div class="si-app">Portail voyageurs</div>
+            <div class="si-app">Dashboard ops</div>
+          </div>
+        </div>
+        <div class="si-flux-line"><span class="si-flux-label">API REST · JSON</span></div>
+        <div class="si-zone">
+          <div class="si-zone-label z2">Couche métier</div>
+          <div class="si-apps">
+            <div class="si-app">SI Billettique</div>
+            <div class="si-app">Gestion titres</div>
+            <div class="si-app">Contrôle accès</div>
+            <div class="si-app">SI Voyageurs</div>
+          </div>
+        </div>
+        <div class="si-flux-line"><span class="si-flux-label">Flux batch · ETL</span></div>
+        <div class="si-zone">
+          <div class="si-zone-label z3">Couche données</div>
+          <div class="si-apps">
+            <div class="si-app">Data Warehouse</div>
+            <div class="si-app">Open Data IDFM</div>
+            <div class="si-app">Référentiel lignes</div>
+          </div>
+        </div>
+        <div class="si-flux-line"><span class="si-flux-label">Protocoles sécurisés</span></div>
+        <div class="si-zone">
+          <div class="si-zone-label z4">Couche infrastructure</div>
+          <div class="si-apps">
+            <div class="si-app">Cloud privé IDFM</div>
+            <div class="si-app">Réseau opérateurs</div>
+          </div>
+        </div>
+      </div>
+      <div class="project-notes">
+        <div class="card">
+          <div class="card-label">Démarche utilisée</div>
+          <div class="card-body" style="font-size:.82rem">Modélisation en 4 couches selon les principes d'urbanisation SI. Identification des flux et protocoles entre couches.</div>
+        </div>
+        <div class="card" style="border-color:rgba(124,58,237,0.22);background:#faf9ff">
+          <div class="card-label">Ce que je ferais dans Mega Hopex</div>
+          <div class="card-body" style="font-size:.82rem">Saisir ce modèle dans le référentiel, décrire chaque échange (format, fréquence, criticité), produire les schémas aux standards DNUM.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Voir mes projets data</div>
+          <div class="card-body" style="font-size:.82rem;margin-bottom:.7rem">Pipelines, modélisation SQL, dashboards exécutifs sur mon portfolio.</div>
+          <a href="https://jadebourdens.github.io" target="_blank"
+            style="display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:white;text-decoration:none;background:linear-gradient(135deg,#667eea,#764ba2);padding:9px 20px;border-radius:25px;font-weight:600;box-shadow:0 4px 14px rgba(102,126,234,0.32);transition:all .2s"
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(102,126,234,0.48)'"
+            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(102,126,234,0.32)'">
+            Portfolio principal →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+
+<footer>
+  <div class="footer-text">© 2025 Jade Bourdens — Candidate Urbaniste SI · IDFM</div>
+  <div class="footer-text" style="color:var(--accent2)">jadebourdens.github.io/idfm</div>
+</footer>
+
+<svg id="progress" viewBox="0 0 40 40">
+  <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#667eea"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs>
+  <circle cx="20" cy="20" r="18" fill="white" stroke="rgba(102,126,234,0.13)" stroke-width="1"/>
+  <circle id="pc" cx="20" cy="20" r="15" fill="none" stroke="url(#grad)" stroke-width="2.5" stroke-dasharray="94" stroke-dashoffset="94" style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .1s linear"/>
+</svg>
+
+<script>
+const cv=document.getElementById('bgCanvas'),cx=cv.getContext('2d');
+let W,H,dots=[];
+function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+rsz();addEventListener('resize',rsz);
+for(let i=0;i<50;i++)dots.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.35,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,o:Math.random()*.14+.04});
+(function draw(){
+  cx.clearRect(0,0,W,H);
+  dots.forEach(d=>{
+    cx.beginPath();cx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    cx.fillStyle=`rgba(102,126,234,${d.o})`;cx.fill();
+    d.x+=d.dx;d.y+=d.dy;
+    if(d.x<0||d.x>W)d.dx*=-1;if(d.y<0||d.y>H)d.dy*=-1;
+  });
+  for(let i=0;i<dots.length;i++)for(let j=i+1;j<dots.length;j++){
+    const dist=Math.hypot(dots[i].x-dots[j].x,dots[i].y-dots[j].y);
+    if(dist<110){cx.beginPath();cx.moveTo(dots[i].x,dots[i].y);cx.lineTo(dots[j].x,dots[j].y);cx.strokeStyle=`rgba(102,126,234,${.06*(1-dist/110)})`;cx.lineWidth=.7;cx.stroke()}
+  }
+  requestAnimationFrame(draw);
+})();
+
+window.addEventListener('scroll',()=>{
+  const pct=scrollY/(document.body.scrollHeight-innerHeight);
+  document.getElementById('pc').style.strokeDashoffset=94*(1-pct);
+});
+
+const sections=document.querySelectorAll('.slide[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+sections.forEach(sec=>new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){navAs.forEach(a=>a.classList.remove('active'));const m=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(m)m.classList.add('active')}});
+},{threshold:.3}).observe(sec));
+
+const fills=document.querySelectorAll('.skill-fill');
+const bo=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';bo.unobserve(e.target)}});
+},{threshold:.2});
+fills.forEach(f=>bo.observe(f));
+</script>
 </body>
 </html>
