@@ -9,11 +9,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#ffffff;
-  --bg2:#f8f8fc;
-  --bg3:#f2f2f8;
-  --surface:#f5f4ff;
+  --bg2:#f7f7fc;
+  --bg3:#f0f0f8;
+  --surface:#f4f3ff;
   --surface2:#ede9fe;
-  --border:rgba(102,126,234,0.14);
+  --border:rgba(102,126,234,0.13);
   --border2:rgba(102,126,234,0.28);
   --text:#1a1a2e;
   --text2:#4a4a6a;
@@ -22,414 +22,314 @@
   --accent2:#667eea;
   --accent3:#764ba2;
   --soft:#a78bfa;
-  --grad-text:linear-gradient(135deg,#667eea 0%,#7c3aed 60%,#a78bfa 100%);
+  --grad:linear-gradient(135deg,#667eea 0%,#7c3aed 60%,#a78bfa 100%);
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+#bgCanvas{position:fixed;inset:0;z-index:0;opacity:.3;pointer-events:none}
 
-#bgCanvas{position:fixed;inset:0;z-index:0;opacity:.35;pointer-events:none}
-
+/* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:18px 48px;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(102,126,234,0.12);
+  padding:16px 48px;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(102,126,234,0.1);
 }
-.logo{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--accent);letter-spacing:.01em}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--text2);text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent);letter-spacing:.01em}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.nav-tag{
-  background:linear-gradient(135deg,#667eea,#764ba2);
-  color:white;padding:8px 20px;border-radius:25px;font-size:.78rem;font-weight:600;
-  letter-spacing:.04em;text-decoration:none;transition:all .2s;
-  box-shadow:0 4px 15px rgba(102,126,234,0.35);
-}
-.nav-tag:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(102,126,234,0.5)}
 
-.slide{min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;padding:120px 0 80px}
+/* SLIDES */
+.slide{min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;padding:110px 0 70px}
 .slide.alt{background:var(--bg2)}
 .container{max-width:1100px;margin:0 auto;padding:0 48px;width:100%}
 
 /* HERO */
-#s01{justify-content:center;text-align:center;background:var(--bg)}
-.slide-num{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text3);letter-spacing:.15em;margin-bottom:2rem}
+#s01{justify-content:center;text-align:center;background:var(--bg);overflow:hidden}
+.slide-num{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.15em;margin-bottom:1.5rem}
+
+/* hero icons row */
+.hero-icons{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;animation:fadeUp .5s .05s both}
+.hicon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  border:1px solid rgba(102,126,234,0.18);
+  background:#fff;
+  box-shadow:0 2px 12px rgba(102,126,234,0.1);
+  transition:transform .2s,box-shadow .2s;
+}
+.hicon:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(102,126,234,0.2)}
+.hicon svg{width:24px;height:24px}
+
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(102,126,234,0.08);border:1px solid rgba(102,126,234,0.22);
-  color:var(--accent2);padding:7px 20px;border-radius:50px;font-size:.78rem;font-weight:600;
-  letter-spacing:.08em;text-transform:uppercase;margin-bottom:2.2rem;
+  background:rgba(102,126,234,0.07);border:1px solid rgba(102,126,234,0.2);
+  color:var(--accent2);padding:7px 20px;border-radius:50px;font-size:.76rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:2rem;
   animation:fadeUp .6s .1s both;
 }
 .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.55)}}
+
 .hero-title{
   font-family:'DM Serif Display',serif;
-  font-size:clamp(2.6rem,5.5vw,5rem);font-weight:400;line-height:1.1;
+  font-size:clamp(2.4rem,5vw,4.6rem);font-weight:400;line-height:1.1;
   margin-bottom:1.2rem;
-  background:var(--grad-text);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:fadeUp .6s .25s both;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fadeUp .6s .22s both;
 }
 .hero-title em{font-style:italic}
-.hero-role{font-size:1rem;color:var(--text2);letter-spacing:.04em;margin-bottom:.8rem;animation:fadeUp .6s .38s both}
-.hero-sub{font-size:.85rem;color:var(--text3);letter-spacing:.05em;margin-bottom:3rem;animation:fadeUp .6s .48s both}
-.hero-sub span{color:var(--accent2);margin:0 8px}
-.hero-cta{
-  display:inline-flex;align-items:center;gap:10px;
-  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-  color:white;padding:14px 36px;border-radius:50px;font-weight:600;font-size:.92rem;
-  text-decoration:none;letter-spacing:.03em;
-  box-shadow:0 8px 30px rgba(102,126,234,0.4);transition:all .25s;
-  animation:fadeUp .6s .58s both;
+.hero-role{font-size:.95rem;color:var(--text2);letter-spacing:.03em;margin-bottom:.7rem;animation:fadeUp .6s .35s both}
+.hero-sub{font-size:.82rem;color:var(--text3);letter-spacing:.04em;margin-bottom:2.8rem;animation:fadeUp .6s .46s both}
+.hero-sub span{color:var(--accent2);margin:0 7px}
+
+/* stat chips on hero */
+.hero-chips{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem;animation:fadeUp .6s .55s both}
+.chip{
+  display:flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid var(--border);border-radius:50px;
+  padding:8px 16px;font-size:.8rem;color:var(--text2);
+  box-shadow:0 2px 8px rgba(102,126,234,0.07);font-weight:500;
 }
-.hero-cta:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(102,126,234,0.55)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.chip-dot{width:7px;height:7px;border-radius:50%}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
 /* SECTION HEADERS */
-.section-label{
-  font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent2);
-  letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;
-  display:flex;align-items:center;gap:10px;
-}
-.section-label::after{content:'';flex:1;max-width:40px;height:1px;background:var(--accent2);opacity:.5}
-.section-title{
-  font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);
-  font-weight:400;line-height:1.15;margin-bottom:1rem;
-  background:var(--grad-text);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.section-label{font-family:'DM Mono',monospace;font-size:.66rem;color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.65rem;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;max-width:36px;height:1px;background:var(--accent2);opacity:.5}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;margin-bottom:.9rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .section-title em{font-style:italic}
-.section-desc{font-size:.95rem;color:var(--text2);max-width:520px;line-height:1.8}
 
 /* CARDS */
-.card{
-  background:#fff;border:1px solid var(--border);
-  border-radius:16px;padding:1.5rem 1.75rem;
-  box-shadow:0 2px 12px rgba(102,126,234,0.07);
-  transition:border-color .2s,box-shadow .2s,transform .2s;
-}
-.card:hover{border-color:var(--border2);box-shadow:0 8px 32px rgba(102,126,234,0.15);transform:translateY(-2px)}
-.card-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
-.card-title{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
-.card-body{font-size:.88rem;color:var(--text2);line-height:1.75}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 2px 10px rgba(102,126,234,0.06);transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{border-color:var(--border2);box-shadow:0 8px 28px rgba(102,126,234,0.13);transform:translateY(-2px)}
+.card-label{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.55rem}
+.card-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.45rem}
+.card-body{font-size:.85rem;color:var(--text2);line-height:1.75}
 .card-body strong{color:var(--text);font-weight:600}
 
-/* SLIDE 02 WHY */
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
-.why-big{
-  background:#fff;border:1px solid var(--border);
-  border-radius:16px;padding:2.5rem;grid-column:1/-1;position:relative;overflow:hidden;
-  box-shadow:0 2px 12px rgba(102,126,234,0.07);
-}
-.why-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#667eea,#764ba2,#a78bfa)}
-.why-stat{
-  font-family:'DM Serif Display',serif;font-size:3.5rem;font-weight:400;line-height:1;margin-bottom:.3rem;
-  background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.why-stat-label{font-size:.75rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
-
-/* SLIDE 03 SKILLS */
-.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3rem;align-items:start}
-.skill-bar-row{margin-bottom:1.1rem}
-.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:.4rem}
-.skill-bar-name{font-size:.83rem;color:var(--text2)}
-.skill-bar-pct{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text3)}
-.skill-track{height:4px;background:rgba(102,126,234,0.1);border-radius:2px;overflow:hidden}
-.skill-fill{height:4px;border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-.fill-a{background:linear-gradient(90deg,#667eea,#a78bfa)}
-.fill-b{background:linear-gradient(90deg,#764ba2,#a78bfa)}
-.fill-c{background:rgba(167,139,250,0.4)}
+/* PILLS */
 .pills-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.pill{
-  font-size:.75rem;padding:5px 14px;border-radius:20px;
-  background:#f5f4ff;border:1px solid rgba(102,126,234,0.2);color:var(--text2);
-  transition:all .15s;font-weight:500;
-}
-.pill:hover{background:rgba(102,126,234,0.1);color:var(--accent);border-color:rgba(124,58,237,0.3)}
+.pill{font-size:.73rem;padding:4px 13px;border-radius:20px;background:var(--surface);border:1px solid rgba(102,126,234,0.18);color:var(--text2);font-weight:500;transition:all .15s}
+.pill:hover{background:var(--surface2);color:var(--accent);border-color:rgba(124,58,237,0.28)}
+.pill-accent{background:rgba(124,58,237,0.07);border-color:rgba(124,58,237,0.2);color:var(--accent)}
 
-/* SLIDE 04 FLUX */
-.flux-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start;margin-top:3rem}
-.flux-diagram{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(102,126,234,0.07)}
-.flux-node{
-  background:var(--surface);border:1px solid rgba(102,126,234,0.15);
-  border-radius:10px;padding:10px 14px;font-size:.8rem;color:var(--text);
-  margin:6px 0;display:flex;align-items:center;gap:10px;transition:all .2s;
-}
-.flux-node:hover{background:var(--surface2);border-color:rgba(124,58,237,0.3);transform:translateX(3px)}
-.flux-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.flux-arrow{
-  text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;
-  color:var(--text3);padding:3px 0;display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.flux-arrow::before,.flux-arrow::after{content:'';flex:1;height:1px;background:rgba(102,126,234,0.15)}
-.flux-cards{display:flex;flex-direction:column;gap:1rem}
-.bridge-card{
-  background:#fff;border:1px solid var(--border);
-  border-radius:12px;padding:1.25rem 1.5rem;position:relative;overflow:hidden;
-  box-shadow:0 2px 8px rgba(102,126,234,0.06);
-}
-.bridge-card.highlighted{border-color:rgba(124,58,237,0.25);background:#faf9ff}
-.bridge-card.highlighted::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#667eea,#a78bfa)}
-.bridge-title{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.4rem}
-.bridge-body{font-size:.82rem;color:var(--text2);line-height:1.65}
-.bridge-tag{display:inline-block;margin-top:.5rem;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.06em}
+/* ── SLIDE 02 PARCOURS ── */
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.5rem}
+.timeline{position:relative;padding-left:1.75rem}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,rgba(102,126,234,0.4),rgba(102,126,234,0.08))}
+.tl-item{position:relative;margin-bottom:2.2rem;padding-left:1.2rem}
+.tl-dot{position:absolute;left:-2.15rem;top:5px;width:9px;height:9px;border-radius:50%;border:2px solid}
+.d1{border-color:var(--accent);background:rgba(124,58,237,0.12)}
+.d2{border-color:var(--accent2);background:rgba(102,126,234,0.12)}
+.d3{border-color:var(--soft);background:rgba(167,139,250,0.12)}
+.tl-period{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.1em;margin-bottom:.25rem}
+.tl-company{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.12rem}
+.tl-role{font-size:.78rem;color:var(--accent);margin-bottom:.28rem;font-weight:500}
+.tl-layer{display:inline-block;font-size:.68rem;padding:2px 10px;border-radius:20px;background:var(--surface);border:1px solid rgba(102,126,234,0.18);color:var(--accent2);margin-bottom:.4rem;font-weight:500}
+.tl-desc{font-size:.8rem;color:var(--text2);line-height:1.65}
 
-/* SLIDE 05 TIMELINE */
-.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:rgba(102,126,234,0.2)}
-.tl-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem}
-.tl-dot{position:absolute;left:-2.45rem;top:6px;width:10px;height:10px;border-radius:50%;border:2px solid}
-.tl-dot.d1{border-color:var(--accent);background:rgba(124,58,237,0.12)}
-.tl-dot.d2{border-color:var(--accent2);background:rgba(102,126,234,0.12)}
-.tl-dot.d3{border-color:var(--soft);background:rgba(167,139,250,0.12)}
-.tl-period{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.1em;margin-bottom:.3rem}
-.tl-company{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.15rem}
-.tl-role{font-size:.82rem;color:var(--accent);margin-bottom:.35rem;letter-spacing:.02em;font-weight:500}
-.tl-layer{
-  display:inline-block;font-size:.7rem;padding:3px 12px;border-radius:20px;
-  background:rgba(102,126,234,0.08);border:1px solid rgba(102,126,234,0.2);
-  color:var(--accent2);letter-spacing:.04em;margin-bottom:.5rem;font-weight:500;
+/* ── SLIDE 03 COMPÉTENCES ── */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.skill-bar-row{margin-bottom:1rem}
+.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:.35rem}
+.skill-bar-name{font-size:.8rem;color:var(--text2)}
+.skill-bar-pct{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text3)}
+.skill-track{height:4px;background:rgba(102,126,234,0.09);border-radius:2px;overflow:hidden}
+.skill-fill{height:4px;border-radius:2px;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.fa{background:linear-gradient(90deg,#667eea,#a78bfa)}
+.fb{background:linear-gradient(90deg,#764ba2,#a78bfa)}
+.fc{background:rgba(167,139,250,0.38)}
+
+/* ── SLIDE 04 FLUX SI ── (full redo) ── */
+.flux-section{margin-top:2.5rem}
+.flux-intro{font-size:.88rem;color:var(--text2);line-height:1.85;max-width:680px;margin-bottom:2rem}
+
+/* two-column: left = Jade pipeline, right = IDFM equivalent */
+.flux-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:start;margin-bottom:2rem}
+.flux-col-head{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem;text-align:center}
+.flux-col{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem;box-shadow:0 2px 10px rgba(102,126,234,0.06)}
+.flux-col.accent-col{border-color:rgba(124,58,237,0.22);background:#faf9ff}
+
+.fnode{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);border:1px solid rgba(102,126,234,0.14);
+  border-radius:10px;padding:9px 13px;
+  font-size:.78rem;color:var(--text);margin-bottom:6px;
+  transition:all .18s;
 }
-.tl-desc{font-size:.82rem;color:var(--text2);line-height:1.65}
+.fnode:hover{background:var(--surface2);border-color:rgba(124,58,237,0.28);transform:translateX(3px)}
+.fnode-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.fnode-label{flex:1;line-height:1.4}
+.fnode-sub{font-size:.66rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:2px}
 
-/* SLIDE 06 */
-.project-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;margin-top:3rem;align-items:start}
-.si-map{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.75rem;box-shadow:0 2px 12px rgba(102,126,234,0.07)}
-.si-map-title{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem;text-align:center}
-.si-zone{margin-bottom:1.25rem}
-.si-zone-label{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:.5rem;display:inline-block;font-weight:600}
-.z1{background:rgba(124,58,237,0.08);color:var(--accent);border:1px solid rgba(124,58,237,0.2)}
-.z2{background:rgba(102,126,234,0.08);color:var(--accent2);border:1px solid rgba(102,126,234,0.2)}
-.z3{background:rgba(167,139,250,0.1);color:#6d28d9;border:1px solid rgba(167,139,250,0.25)}
-.z4{background:#f5f4ff;color:var(--text2);border:1px solid var(--border)}
-.si-apps{display:flex;flex-wrap:wrap;gap:6px}
-.si-app{
-  font-size:.72rem;padding:5px 12px;border-radius:20px;
-  background:#f5f4ff;border:1px solid rgba(102,126,234,0.18);
-  color:var(--text2);cursor:pointer;transition:all .15s;font-weight:500;
+.farrow{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);
+  padding:3px 0;margin-bottom:3px;
 }
-.si-app:hover{color:var(--accent);border-color:rgba(124,58,237,0.35);background:var(--surface2)}
-.si-flux-line{border-top:1px dashed rgba(102,126,234,0.18);margin:8px 0;display:flex;justify-content:center;position:relative}
-.si-flux-label{position:relative;top:-.65rem;background:#fff;padding:0 8px;font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);white-space:nowrap}
-.project-notes{display:flex;flex-direction:column;gap:1rem}
+.farrow::before,.farrow::after{content:'';flex:1;height:1px;background:rgba(102,126,234,0.13)}
 
-/* SLIDE 07 */
-#s07{min-height:60vh;background:var(--bg2)}
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:center}
-.contact-quote{
-  font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;line-height:1.45;
-  font-style:italic;color:var(--text);
-  border-left:3px solid var(--accent2);padding-left:1.5rem;
+/* middle equals column */
+.flux-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding-top:2.8rem}
+.flux-mid-arrow{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#667eea,#7c3aed);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(102,126,234,0.3);
 }
-.contact-links{display:flex;flex-direction:column;gap:.75rem}
-.contact-link{
-  display:flex;align-items:center;gap:12px;padding:13px 20px;
-  background:#fff;border:1px solid var(--border);
-  border-radius:50px;text-decoration:none;color:var(--text2);font-size:.85rem;
-  box-shadow:0 2px 8px rgba(102,126,234,0.06);
-  transition:all .2s;font-weight:500;
+.flux-mid-arrow svg{width:16px;height:16px;fill:white}
+.flux-mid-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);letter-spacing:.1em;text-align:center;line-height:1.5}
+
+/* bottom takeaway bar */
+.flux-takeaway{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
 }
-.contact-link:hover{background:var(--surface);border-color:var(--border2);color:var(--accent);transform:translateX(6px);box-shadow:0 6px 20px rgba(102,126,234,0.18)}
-.contact-link-icon{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent2);letter-spacing:.1em;min-width:44px}
+.ftake{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;box-shadow:0 2px 8px rgba(102,126,234,0.05)}
+.ftake-icon{font-size:18px;margin-bottom:.4rem}
+.ftake-title{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.ftake-body{font-size:.75rem;color:var(--text2);line-height:1.6}
 
-footer{border-top:1px solid var(--border);padding:2rem 48px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;background:#fff}
-.footer-text{font-size:.72rem;color:var(--text3);letter-spacing:.06em}
+/* left accent bar */
+.flux-col.accent-col .fnode{background:rgba(124,58,237,0.05);border-color:rgba(124,58,237,0.15)}
+.flux-col.accent-col .fnode:hover{background:rgba(124,58,237,0.1)}
 
-#progress{position:fixed;bottom:2rem;right:2rem;z-index:200;width:40px;height:40px}
+/* ── SLIDE 05 WHY IDFM ── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.5rem}
+.why-big{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem;grid-column:1/-1;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(102,126,234,0.06)}
+.why-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#667eea,#7c3aed,#a78bfa)}
+.why-stat{font-family:'DM Serif Display',serif;font-size:3rem;font-weight:400;line-height:1;margin-bottom:.25rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.why-stat-label{font-size:.72rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
 
+/* ── SLIDE 06 MINI-PROJET ── */
+.project-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.si-map{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.6rem;box-shadow:0 2px 10px rgba(102,126,234,0.06)}
+.si-map-title{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;text-align:center}
+.si-zone{margin-bottom:1.1rem}
+.si-zone-label{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:20px;margin-bottom:.45rem;display:inline-block;font-weight:600}
+.z1{background:rgba(124,58,237,0.08);color:var(--accent);border:1px solid rgba(124,58,237,0.18)}
+.z2{background:rgba(102,126,234,0.08);color:var(--accent2);border:1px solid rgba(102,126,234,0.18)}
+.z3{background:rgba(167,139,250,0.1);color:#6d28d9;border:1px solid rgba(167,139,250,0.22)}
+.z4{background:var(--surface);color:var(--text2);border:1px solid var(--border)}
+.si-apps{display:flex;flex-wrap:wrap;gap:5px}
+.si-app{font-size:.7rem;padding:4px 11px;border-radius:20px;background:var(--surface);border:1px solid rgba(102,126,234,0.16);color:var(--text2);cursor:pointer;transition:all .15s;font-weight:500}
+.si-app:hover{color:var(--accent);border-color:rgba(124,58,237,0.32);background:var(--surface2)}
+.si-flux-line{border-top:1px dashed rgba(102,126,234,0.16);margin:7px 0;display:flex;justify-content:center;position:relative}
+.si-flux-label{position:relative;top:-.62rem;background:#fff;padding:0 7px;font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text3);white-space:nowrap}
+.project-notes{display:flex;flex-direction:column;gap:.9rem}
+
+/* ── CONTACT (slide 6b hidden bottom) ── */
+.contact-strip{
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:2.5rem 48px;display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;
+}
+.contact-strip-left{font-family:'DM Serif Display',serif;font-size:1.3rem;font-style:italic;color:var(--text);max-width:480px;line-height:1.4;border-left:2px solid var(--accent2);padding-left:1.2rem}
+.contact-strip-right{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:flex-end}
+.clink{display:flex;align-items:center;gap:8px;padding:10px 18px;background:#fff;border:1px solid var(--border);border-radius:50px;text-decoration:none;color:var(--text2);font-size:.8rem;box-shadow:0 2px 6px rgba(102,126,234,0.06);transition:all .18s;font-weight:500}
+.clink:hover{color:var(--accent);border-color:var(--border2);transform:translateY(-2px);box-shadow:0 6px 18px rgba(102,126,234,0.15)}
+.clink-icon{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);min-width:34px}
+
+footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;background:#fff}
+.footer-text{font-size:.7rem;color:var(--text3);letter-spacing:.06em}
+
+#progress{position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;width:40px;height:40px;filter:drop-shadow(0 2px 8px rgba(102,126,234,0.25))}
 .divider{height:1px;background:var(--border);position:relative;z-index:1;max-width:1100px;margin:0 auto}
 
 @media(max-width:800px){
-  nav{padding:14px 20px}.nav-links{display:none}.container{padding:0 20px}
-  .why-grid,.skills-layout,.flux-layout,.project-layout,.contact-layout,.tl-grid{grid-template-columns:1fr}
+  nav{padding:13px 18px}.nav-links{display:none}.container{padding:0 18px}
+  .tl-grid,.skills-layout,.flux-compare,.flux-takeaway,.why-grid,.project-layout,.contact-strip{grid-template-columns:1fr;flex-direction:column}
+  .flux-mid{flex-direction:row;padding-top:0}
   .why-grid .why-big{grid-column:auto}
-  footer{padding:1.5rem 20px;flex-direction:column;gap:.5rem;text-align:center}
+  footer,.contact-strip{padding:1.2rem 18px;flex-direction:column;gap:.7rem;text-align:center}
+  .hero-icons{gap:.8rem}.hicon{width:44px;height:44px;font-size:18px}
 }
 </style>
 </head>
 <body>
-
 <canvas id="bgCanvas"></canvas>
 
 <nav>
   <div class="logo">Jade Bourdens</div>
   <ul class="nav-links">
     <li><a href="#s01">Accueil</a></li>
-    <li><a href="#s02">Pourquoi IDFM</a></li>
+    <li><a href="#s02">Parcours</a></li>
     <li><a href="#s03">Compétences</a></li>
     <li><a href="#s04">Flux SI</a></li>
-    <li><a href="#s05">Parcours</a></li>
+    <li><a href="#s05">Pourquoi IDFM</a></li>
     <li><a href="#s06">Mini-projet</a></li>
-    <li><a href="#s07">Contact</a></li>
   </ul>
-  <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit" target="_blank" class="nav-tag">Télécharger CV</a>
+
 </nav>
 
-<!-- 01 HERO -->
+<!-- ══════════════════════════════════════
+     01 · ACCUEIL
+══════════════════════════════════════ -->
 <section id="s01" class="slide">
-  <div class="container" style="text-align:center;max-width:800px;margin:0 auto">
-    <div class="slide-num">01 / 07</div>
-    <div class="hero-eyebrow">Candidate · Alternance 12 mois</div>
+  <div class="container" style="text-align:center;max-width:820px;margin:0 auto">
+    <div class="slide-num">01 / 06</div>
+
+    <!-- icon row -->
+    <div class="hero-icons">
+      <!-- database -->
+      <div class="hicon" title="Data Pipelines">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <!-- flow/network -->
+      <div class="hicon" title="Flux SI">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </div>
+      <!-- layers/architecture -->
+      <div class="hicon" title="Architecture SI">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <!-- chart -->
+      <div class="hicon" title="Data Visualisation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <!-- map/urbanisme -->
+      <div class="hicon" title="Urbanisme SI">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+      </div>
+      <!-- cloud -->
+      <div class="hicon" title="BigQuery · Cloud">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+      </div>
+      <!-- settings/gear ERP -->
+      <div class="hicon" title="SAP S/4HANA ERP">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 0 1 20.9 9H22a2 2 0 0 1 0 4h-1.1a10 10 0 0 1-1.83 4.07l.78.78a2 2 0 0 1-2.83 2.83l-.78-.78A10 10 0 0 1 13 21.9V23a2 2 0 0 1-4 0v-1.1a10 10 0 0 1-4.07-1.83l-.78.78a2 2 0 0 1-2.83-2.83l.78-.78A10 10 0 0 1 1.1 13H0a2 2 0 0 1 0-4h1.1A10 10 0 0 1 2.93 4.93l-.78-.78A2 2 0 0 1 5 1.32l.78.78A10 10 0 0 1 9 .1V0a2 2 0 0 1 4 0v1.1a10 10 0 0 1 4.07 1.83l.78-.78a2 2 0 0 1 2.83 2.83z"/></svg>
+      </div>
+    </div>
+
+    <div class="hero-eyebrow">Candidate · Alternance 12 mois · IDFM</div>
     <h1 class="hero-title">Je cartographie les données<br>depuis 5 ans —<br><em>maintenant, je cartographie<br>les systèmes.</em></h1>
     <p class="hero-role">Assistant Urbaniste des Systèmes d'Information · Île-de-France Mobilités</p>
-    <p class="hero-sub"> Urbanisation ERP <span>✦</span> Architecture SI <span>✦</span> Modélisation de flux <span>✦</span> Data Pipelines <span>✦</span> Mega Hopex </p>
-    <a href="#s02" class="hero-cta">Découvrir ma candidature →</a>
+    <p class="hero-sub">Data Pipelines <span>✦</span> Architecture SI <span>✦</span> Modélisation de flux <span>✦</span> Mega Hopex</p>
+
+    <div class="hero-chips">
+      <div class="chip"><div class="chip-dot" style="background:#667eea"></div>5+ ans data analyst</div>
+      <div class="chip"><div class="chip-dot" style="background:#7c3aed"></div>SQL · Python · BigQuery</div>
+      <div class="chip"><div class="chip-dot" style="background:#a78bfa"></div>SAP S/4HANA</div>
+      <div class="chip"><div class="chip-dot" style="background:#667eea"></div>20+ comptes TEADS</div>
+      <div class="chip"><div class="chip-dot" style="background:#7c3aed"></div>Saint-Maur · Paris 94</div>
+    </div>
+
+    <a href="#s02" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:13px 34px;border-radius:50px;font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 8px 28px rgba(102,126,234,0.38);transition:all .25s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 38px rgba(102,126,234,0.52)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 28px rgba(102,126,234,0.38)'">
+      Découvrir ma candidature →
+    </a>
   </div>
 </section>
 <div class="divider"></div>
 
-<!-- 02 POURQUOI IDFM -->
+<!-- ══════════════════════════════════════
+     02 · PARCOURS
+══════════════════════════════════════ -->
 <section id="s02" class="slide alt">
   <div class="container">
-    <div class="slide-num">02 / 07</div>
-    <div class="section-label">Motivation</div>
-    <h2 class="section-title">Pourquoi Île-de-France <em>Mobilités</em> ?</h2>
-    <div class="why-grid">
-      <div class="why-big">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;align-items:start">
-          <div>
-            <div class="why-stat">9,4M</div>
-            <div class="why-stat-label">déplacements / jour</div>
-            <div style="font-size:.82rem;color:var(--text2);margin-top:.6rem;line-height:1.7">Un SI critique, multi-opérateurs, à urbaniser pour garantir cohérence et interopérabilité.</div>
-          </div>
-          <div>
-            <div class="why-stat">DID</div>
-            <div class="why-stat-label">Ingénierie Digitale</div>
-            <div style="font-size:.82rem;color:var(--text2);margin-top:.6rem;line-height:1.7">Département où l'alternance est rattachée. Mission : cohérence et sécurité des SI.</div>
-          </div>
-          <div>
-            <div class="why-stat">Hopex</div>
-            <div class="why-stat-label">Outil EA · Mega Hopex</div>
-            <div style="font-size:.82rem;color:var(--text2);margin-top:.6rem;line-height:1.7">L'outil central de cartographie que je suis impatiente d'apprendre et de déployer.</div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-label">Ce qui m'attire</div>
-        <div class="card-title">La complexité SI comme terrain d'apprentissage</div>
-        <div class="card-body">RATP, SNCF, bus, RER — autant d'opérateurs dont il faut maîtriser les <strong>flux d'échanges</strong>, cartographier les applications, définir des <strong>standards cohérents</strong>. C'est exactement ce que je fais depuis 5 ans avec les données, à l'échelle du SI entier.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Mon apport concret</div>
-        <div class="card-title">Une vision data-first des flux d'information</div>
-        <div class="card-body">J'ai orchestré des pipelines end-to-end pour 20+ comptes chez TEADS, documenté chaque source, transformation et échange. Je sais <strong>modéliser, formaliser et communiquer</strong> des architectures complexes — compétences directement transférables.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- 03 COMPÉTENCES -->
-<section id="s03" class="slide">
-  <div class="container">
-    <div class="slide-num">03 / 07</div>
-    <div class="section-label">Compétences</div>
-    <h2 class="section-title">Mes compétences <em>mappées sur le poste</em></h2>
-    <div class="skills-layout">
-      <div>
-        <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.1em;margin-bottom:1.25rem">ALIGNEMENT AVEC LA FICHE DE POSTE</div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-header"><span class="skill-bar-name">Modélisation &amp; documentation de flux</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-track"><div class="skill-fill fill-a" style="width:0" data-w="88"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-header"><span class="skill-bar-name">Travail transversal multi-équipes</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-track"><div class="skill-fill fill-a" style="width:0" data-w="90"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-header"><span class="skill-bar-name">Gestion de projet &amp; suivi planning</span><span class="skill-bar-pct">75%</span></div>
-          <div class="skill-track"><div class="skill-fill fill-b" style="width:0" data-w="75"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-header"><span class="skill-bar-name">Rédaction expressions de besoin</span><span class="skill-bar-pct">72%</span></div>
-          <div class="skill-track"><div class="skill-fill fill-b" style="width:0" data-w="72"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-header"><span class="skill-bar-name">Sensibilisation cybersécurité SI</span><span class="skill-bar-pct">45%</span></div>
-          <div class="skill-track"><div class="skill-fill fill-c" style="width:0" data-w="45"></div></div>
-        </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-header"><span class="skill-bar-name">Outils EA / Mega Hopex</span><span class="skill-bar-pct">En apprentissage</span></div>
-          <div class="skill-track"><div class="skill-fill fill-c" style="width:0" data-w="25"></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="card" style="margin-bottom:1rem">
-          <div class="card-label">Stack technique</div>
-          <div class="pills-wrap">
-            <span class="pill">SQL avancé</span><span class="pill">Python</span><span class="pill">BigQuery</span>
-            <span class="pill">Snowflake</span><span class="pill">Tableau</span><span class="pill">Power BI</span>
-            <span class="pill">Google Looker</span><span class="pill">Excel VBA</span><span class="pill">SAP S/4HANA</span>
-          </div>
-        </div>
-        <div class="card" style="margin-bottom:1rem">
-          <div class="card-label">Savoir-être</div>
-          <div class="pills-wrap">
-            <span class="pill" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.22);color:var(--accent)">Contributive</span>
-            <span class="pill" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.22);color:var(--accent)">Rigoureuse</span>
-            <span class="pill" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.22);color:var(--accent)">Autonome</span>
-            <span class="pill" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.22);color:var(--accent)">Diplomate</span>
-            <span class="pill" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.22);color:var(--accent)">Curieuse</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-label">Formation</div>
-          <div class="card-body">MSc Data Analytics &amp; Marketing Management — <strong>INSEEC Paris</strong><br>Master Digital Media — <strong>Aix-Marseille Université</strong><br>Bachelor Business Admin — <strong>Hanoi Open University</strong></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- 04 FLUX SI -->
-<section id="s04" class="slide alt">
-  <div class="container">
-    <div class="slide-num">04 / 07</div>
-    <div class="section-label">Pont vers l'urbanisme SI</div>
-    <h2 class="section-title">De la data analyst <em>à la cartographie de flux SI</em></h2>
-    <div class="flux-layout">
-      <div>
-        <div style="font-size:.87rem;color:var(--text2);line-height:1.85;margin-bottom:1.5rem">Mon expérience chez TEADS m'a amenée à documenter en détail les flux entre systèmes hétérogènes — exactement ce que fait un urbaniste SI, mais dans le contexte publicitaire. Le pont est naturel.</div>
-        <div class="flux-diagram">
-          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.12em;margin-bottom:1rem;text-align:center">Pipeline TEADS · documenté par Jade</div>
-          <div class="flux-node"><div class="flux-dot" style="background:#7c3aed"></div>CRM Salesforce · source client</div>
-          <div class="flux-arrow">flux quotidien · JSON</div>
-          <div class="flux-node"><div class="flux-dot" style="background:#667eea"></div>Ad Platform (Teads) · données impression</div>
-          <div class="flux-arrow">transformation SQL · BigQuery</div>
-          <div class="flux-node"><div class="flux-dot" style="background:#a78bfa"></div>Modèle de données unifié · Snowflake</div>
-          <div class="flux-arrow">couche présentation · Tableau</div>
-          <div class="flux-node"><div class="flux-dot" style="background:#764ba2"></div>Dashboard exécutif · décision client</div>
-        </div>
-      </div>
-      <div class="flux-cards">
-        <div class="bridge-card highlighted">
-          <div class="bridge-title">Ce que je faisais (TEADS)</div>
-          <div class="bridge-body">Identifier les systèmes sources, décrire les échanges, documenter formats et fréquences, formaliser les transformations, produire des schémas pour 20+ comptes.</div>
-          <div class="bridge-tag">↑ Cartographie de flux data</div>
-        </div>
-        <div style="text-align:center;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--accent2);letter-spacing:.12em;padding:.5rem 0">= MÊME DÉMARCHE =</div>
-        <div class="bridge-card highlighted">
-          <div class="bridge-title">Ce que fait l'urbaniste SI (IDFM)</div>
-          <div class="bridge-body">Maintenir le référentiel d'applications, décrire les échanges de flux d'information, produire des schémas d'architecture dans Mega Hopex pour les 4 couches du SI.</div>
-          <div class="bridge-tag">↑ Cartographie du SI IDFM</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Ce que j'apporterai en plus</div>
-          <div class="card-body" style="font-size:.82rem">Rigueur documentaire · habitude des comités de pilotage · capacité à former des utilisateurs · expérience SAP S/4HANA comme ancrage ERP.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- 05 PARCOURS -->
-<section id="s05" class="slide">
-  <div class="container">
-    <div class="slide-num">05 / 07</div>
+    <div class="slide-num">02 / 06</div>
     <div class="section-label">Parcours professionnel</div>
     <h2 class="section-title">Mon parcours, <em>vu comme des couches SI</em></h2>
     <div class="tl-grid">
@@ -474,11 +374,11 @@ footer{border-top:1px solid var(--border);padding:2rem 48px;display:flex;justify
           <div class="tl-company">JL Retail Fashion · Vietnam</div>
           <div class="tl-role">Supply Chain &amp; Retail Analyst</div>
           <div class="tl-layer">Couche opérationnelle</div>
-          <div class="tl-desc">Gestion stocks, optimisation supply chain, collaboration fournisseurs — flux physiques.</div>
+          <div class="tl-desc">Gestion stocks, optimisation supply chain, collaboration fournisseurs.</div>
         </div>
-        <div class="card" style="margin-top:1.5rem;border-color:rgba(124,58,237,0.2)">
+        <div class="card" style="margin-top:1.2rem;border-color:rgba(124,58,237,0.18)">
           <div class="card-label">La progression logique</div>
-          <div class="card-body" style="font-size:.82rem">Chaque poste a ajouté une <strong>couche de maturité</strong> dans ma compréhension des systèmes d'information : des flux physiques aux flux stratégiques, jusqu'à l'architecture globale.</div>
+          <div class="card-body" style="font-size:.82rem">Chaque poste a ajouté une <strong>couche de maturité</strong> dans ma compréhension des systèmes : des flux physiques aux flux stratégiques, jusqu'à l'architecture globale.</div>
         </div>
       </div>
     </div>
@@ -486,13 +386,176 @@ footer{border-top:1px solid var(--border);padding:2rem 48px;display:flex;justify
 </section>
 <div class="divider"></div>
 
-<!-- 06 MINI-PROJET -->
+<!-- ══════════════════════════════════════
+     03 · COMPÉTENCES
+══════════════════════════════════════ -->
+<section id="s03" class="slide">
+  <div class="container">
+    <div class="slide-num">03 / 06</div>
+    <div class="section-label">Compétences</div>
+    <h2 class="section-title">Mes compétences <em>mappées sur le poste</em></h2>
+    <div class="skills-layout">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--text3);letter-spacing:.1em;margin-bottom:1.1rem">ALIGNEMENT AVEC LA FICHE DE POSTE</div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Modélisation &amp; documentation de flux</span><span class="skill-bar-pct">88%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="88"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Travail transversal multi-équipes</span><span class="skill-bar-pct">90%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="90"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Gestion de projet &amp; suivi planning</span><span class="skill-bar-pct">75%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="75"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Rédaction expressions de besoin</span><span class="skill-bar-pct">72%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="72"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Sensibilisation cybersécurité SI</span><span class="skill-bar-pct">45%</span></div><div class="skill-track"><div class="skill-fill fc" style="width:0" data-w="45"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Outils EA / Mega Hopex</span><span class="skill-bar-pct">En apprentissage</span></div><div class="skill-track"><div class="skill-fill fc" style="width:0" data-w="25"></div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.9rem">
+        <div class="card">
+          <div class="card-label">Stack technique</div>
+          <div class="pills-wrap">
+            <span class="pill">SQL avancé</span><span class="pill">Python</span><span class="pill">BigQuery</span>
+            <span class="pill">Snowflake</span><span class="pill">Tableau</span><span class="pill">Power BI</span>
+            <span class="pill">Google Looker</span><span class="pill">Excel VBA</span><span class="pill">SAP S/4HANA</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Savoir-être</div>
+          <div class="pills-wrap">
+            <span class="pill pill-accent">Contributive</span><span class="pill pill-accent">Rigoureuse</span>
+            <span class="pill pill-accent">Autonome</span><span class="pill pill-accent">Diplomate</span>
+            <span class="pill pill-accent">Curieuse</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Formation</div>
+          <div class="card-body" style="font-size:.82rem">MSc Data Analytics &amp; Marketing Management — <strong>INSEEC Paris</strong><br>Master Digital Media — <strong>Aix-Marseille Université</strong><br>Bachelor Business Admin — <strong>Hanoi Open University</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     04 · FLUX SI  (full redo)
+══════════════════════════════════════ -->
+<section id="s04" class="slide alt">
+  <div class="container">
+    <div class="slide-num">04 / 06</div>
+    <div class="section-label">Pont vers l'urbanisme SI</div>
+    <h2 class="section-title">De la data analyst <em>à la cartographie de flux SI</em></h2>
+    <p class="flux-intro">Chez TEADS, j'ai documenté en détail les flux entre systèmes hétérogènes pour 20+ comptes mondiaux. C'est exactement la démarche de cartographie de flux qu'un urbaniste SI mène dans Mega Hopex — le contexte change, la méthode reste la même.</p>
+
+    <div class="flux-compare">
+      <!-- LEFT: Jade @ TEADS -->
+      <div>
+        <div class="flux-col-head">Ce que je faisais chez TEADS</div>
+        <div class="flux-col">
+          <div class="fnode"><div class="fnode-dot" style="background:#7c3aed"></div><div class="fnode-label">CRM Salesforce<div class="fnode-sub">source · données client</div></div></div>
+          <div class="farrow">flux quotidien · JSON</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#667eea"></div><div class="fnode-label">Ad Platform Teads<div class="fnode-sub">impressions · clics · reach</div></div></div>
+          <div class="farrow">transformation SQL · BigQuery</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#a78bfa"></div><div class="fnode-label">Modèle unifié Snowflake<div class="fnode-sub">nettoyage · agrégation</div></div></div>
+          <div class="farrow">couche présentation</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#764ba2"></div><div class="fnode-label">Dashboard Tableau<div class="fnode-sub">décision exécutive · KPIs</div></div></div>
+        </div>
+      </div>
+
+      <!-- MIDDLE arrows -->
+      <div class="flux-mid">
+        <div class="flux-mid-arrow">
+          <svg viewBox="0 0 16 16"><path d="M8 3l5 5-5 5M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+        </div>
+        <div class="flux-mid-label">même<br>démarche</div>
+        <div class="flux-mid-arrow">
+          <svg viewBox="0 0 16 16"><path d="M8 3l5 5-5 5M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+        </div>
+      </div>
+
+      <!-- RIGHT: IDFM SI urbanisme -->
+      <div>
+        <div class="flux-col-head">Ce que fait l'urbaniste SI · IDFM</div>
+        <div class="flux-col accent-col">
+          <div class="fnode"><div class="fnode-dot" style="background:#7c3aed"></div><div class="fnode-label">Applications opérateurs<div class="fnode-sub">RATP · SNCF · bus · référentiel</div></div></div>
+          <div class="farrow">échanges de flux · API / batch</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#667eea"></div><div class="fnode-label">SI Métier IDFM<div class="fnode-sub">billettique · voyageurs · accès</div></div></div>
+          <div class="farrow">cartographie dans Mega Hopex</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#a78bfa"></div><div class="fnode-label">Référentiel d'applications<div class="fnode-sub">schémas · flux · descriptions</div></div></div>
+          <div class="farrow">production documentaire</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#764ba2"></div><div class="fnode-label">Comités de gouvernance<div class="fnode-sub">indicateurs · rapports · standards</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- takeaway strip -->
+    <div class="flux-takeaway">
+      <div class="ftake">
+        <div class="ftake-icon">🗺️</div>
+        <div class="ftake-title">Identifier les systèmes</div>
+        <div class="ftake-body">J'inventorie sources et cibles, leurs formats, leurs propriétaires — exactement comme le référentiel d'applications Mega Hopex.</div>
+      </div>
+      <div class="ftake">
+        <div class="ftake-icon">🔗</div>
+        <div class="ftake-title">Décrire les échanges</div>
+        <div class="ftake-body">Fréquence, format, criticité, protocole — j'ai documenté ces attributs pour chaque flux data chez TEADS et T&amp;T Foods.</div>
+      </div>
+      <div class="ftake">
+        <div class="ftake-icon">📐</div>
+        <div class="ftake-title">Produire les schémas</div>
+        <div class="ftake-body">Dashboards, diagrammes de flux, pipelines visuels — je traduis la complexité en représentations claires pour les décideurs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     05 · POURQUOI IDFM
+══════════════════════════════════════ -->
+<section id="s05" class="slide">
+  <div class="container">
+    <div class="slide-num">05 / 06</div>
+    <div class="section-label">Motivation</div>
+    <h2 class="section-title">Pourquoi Île-de-France <em>Mobilités</em> ?</h2>
+    <div class="why-grid">
+      <div class="why-big">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-items:start">
+          <div>
+            <div class="why-stat">9,4M</div>
+            <div class="why-stat-label">déplacements / jour</div>
+            <div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Un SI critique, multi-opérateurs, à urbaniser pour garantir cohérence et interopérabilité.</div>
+          </div>
+          <div>
+            <div class="why-stat">DID</div>
+            <div class="why-stat-label">Ingénierie Digitale</div>
+            <div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Département où l'alternance est rattachée. Mission : cohérence et sécurité des SI.</div>
+          </div>
+          <div>
+            <div class="why-stat">Hopex</div>
+            <div class="why-stat-label">Mega Hopex · outil EA</div>
+            <div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">L'outil de cartographie du SI que je suis impatiente d'apprendre et déployer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Ce qui m'attire</div>
+        <div class="card-title">La complexité SI comme terrain d'apprentissage</div>
+        <div class="card-body">RATP, SNCF, bus, RER — autant d'opérateurs dont il faut maîtriser les <strong>flux d'échanges</strong>, cartographier les applications et définir des <strong>standards cohérents</strong>. C'est exactement ce que je fais depuis 5 ans avec les données, à l'échelle du SI entier.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Mon apport concret</div>
+        <div class="card-title">Vision data-first des flux d'information</div>
+        <div class="card-body">20+ pipelines documentés chez TEADS, expérience SAP S/4HANA, capacité à <strong>former des utilisateurs</strong> et à produire des livrables documentaires pour des comités de pilotage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     06 · MINI-PROJET
+══════════════════════════════════════ -->
 <section id="s06" class="slide alt">
   <div class="container">
-    <div class="slide-num">06 / 07</div>
+    <div class="slide-num">06 / 06</div>
     <div class="section-label">Démonstration pratique</div>
     <h2 class="section-title">Mini-cartographie SI : <em>système billettique simplifié</em></h2>
-    <p class="section-desc" style="margin-bottom:0">Modélisation d'un SI de transport fictif — pour illustrer ma compréhension des couches d'architecture et des flux d'échange.</p>
+    <p style="font-size:.87rem;color:var(--text2);line-height:1.8;margin-bottom:0;max-width:600px">Modélisation d'un SI de transport fictif pour illustrer ma compréhension des couches d'architecture et des flux d'échange.</p>
     <div class="project-layout">
       <div class="si-map">
         <div class="si-map-title">SI Autorité de Transport · Modèle simplifié</div>
@@ -535,19 +598,19 @@ footer{border-top:1px solid var(--border);padding:2rem 48px;display:flex;justify
       <div class="project-notes">
         <div class="card">
           <div class="card-label">Démarche utilisée</div>
-          <div class="card-body" style="font-size:.82rem">Modélisation en 4 couches selon les principes d'urbanisation SI. Identification des flux d'échange et des protocoles entre couches.</div>
+          <div class="card-body" style="font-size:.82rem">Modélisation en 4 couches selon les principes d'urbanisation SI. Identification des flux et protocoles entre couches.</div>
         </div>
-        <div class="card" style="border-color:rgba(124,58,237,0.25);background:#faf9ff">
+        <div class="card" style="border-color:rgba(124,58,237,0.22);background:#faf9ff">
           <div class="card-label">Ce que je ferais dans Mega Hopex</div>
-          <div class="card-body" style="font-size:.82rem">Saisir ce modèle dans le référentiel d'applications, décrire chaque échange (format, fréquence, criticité), produire les schémas aux standards DNUM.</div>
+          <div class="card-body" style="font-size:.82rem">Saisir ce modèle dans le référentiel, décrire chaque échange (format, fréquence, criticité), produire les schémas aux standards DNUM.</div>
         </div>
         <div class="card">
           <div class="card-label">Voir mes projets data</div>
-          <div class="card-body" style="font-size:.82rem;margin-bottom:.75rem">Pipelines, modélisation SQL, dashboards exécutifs et visualisations sur mon portfolio.</div>
+          <div class="card-body" style="font-size:.82rem;margin-bottom:.7rem">Pipelines, modélisation SQL, dashboards exécutifs sur mon portfolio.</div>
           <a href="https://jadebourdens.github.io" target="_blank"
-            style="display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:white;text-decoration:none;background:linear-gradient(135deg,#667eea,#764ba2);padding:10px 20px;border-radius:25px;font-weight:600;box-shadow:0 4px 15px rgba(102,126,234,0.35);transition:all .2s"
-            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(102,126,234,0.5)'"
-            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.35)'">
+            style="display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:white;text-decoration:none;background:linear-gradient(135deg,#667eea,#764ba2);padding:9px 20px;border-radius:25px;font-weight:600;box-shadow:0 4px 14px rgba(102,126,234,0.32);transition:all .2s"
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(102,126,234,0.48)'"
+            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(102,126,234,0.32)'">
             Portfolio principal →
           </a>
         </div>
@@ -555,49 +618,26 @@ footer{border-top:1px solid var(--border);padding:2rem 48px;display:flex;justify
     </div>
   </div>
 </section>
-<div class="divider"></div>
 
-<!-- 07 CONTACT -->
-<section id="s07" class="slide">
-  <div class="container">
-    <div class="slide-num">07 / 07</div>
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Travaillons <em>ensemble</em></h2>
-    <div class="contact-layout">
-      <div>
-        <div class="contact-quote">"Je suis disponible pour un entretien et impatiente de contribuer à l'urbanisation du SI d'Île-de-France Mobilités."</div>
-        <div style="margin-top:1.5rem;font-size:.87rem;color:var(--text2);line-height:1.9">
-          Disponible dès maintenant · Basée à Saint-Maur-des-Fossés (94)<br>
-          Mobilité Paris intra-muros · Télétravail partiel possible
-        </div>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:jadebourdens@gmail.com" class="contact-link">
-          <span class="contact-link-icon">EMAIL</span>jadebourdens@gmail.com
-        </a>
-        <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="contact-link">
-          <span class="contact-link-icon">LI</span>LinkedIn · Ngoc Phung
-        </a>
-        <a href="https://jadebourdens.github.io" target="_blank" class="contact-link">
-          <span class="contact-link-icon">GH</span>jadebourdens.github.io
-        </a>
-        <a href="https://www.canva.com/design/DAGgPOcgud0/xedaqEo5YmuMtMaZf4gjDw/edit" target="_blank" class="contact-link">
-          <span class="contact-link-icon">CV</span>Télécharger mon CV complet
-        </a>
-      </div>
-    </div>
+<!-- CONTACT STRIP (compact, not a full slide) -->
+<div class="contact-strip">
+  <div class="contact-strip-left">"Impatiente de contribuer à l'urbanisation du SI d'Île-de-France Mobilités."</div>
+  <div class="contact-strip-right">
+    <a href="mailto:jadebourdens@gmail.com" class="clink"><span class="clink-icon">EMAIL</span>jadebourdens@gmail.com</a>
+    <a href="https://www.linkedin.com/in/ngoc-phung/" target="_blank" class="clink"><span class="clink-icon">LI</span>LinkedIn</a>
+    <a href="https://jadebourdens.github.io" target="_blank" class="clink"><span class="clink-icon">GH</span>GitHub</a>
   </div>
-</section>
+</div>
 
 <footer>
   <div class="footer-text">© 2025 Jade Bourdens — Candidate Urbaniste SI · IDFM</div>
   <div class="footer-text" style="color:var(--accent2)">jadebourdens.github.io/idfm</div>
 </footer>
 
-<svg id="progress" viewBox="0 0 40 40" style="position:fixed;bottom:2rem;right:2rem;z-index:200;width:40px;height:40px;filter:drop-shadow(0 2px 8px rgba(102,126,234,0.3))">
+<svg id="progress" viewBox="0 0 40 40">
   <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#667eea"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs>
-  <circle cx="20" cy="20" r="18" fill="white" stroke="rgba(102,126,234,0.15)" stroke-width="1"/>
-  <circle id="progress-circle" cx="20" cy="20" r="15" fill="none" stroke="url(#grad)" stroke-width="2.5" stroke-dasharray="94" stroke-dashoffset="94" style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .1s linear"/>
+  <circle cx="20" cy="20" r="18" fill="white" stroke="rgba(102,126,234,0.13)" stroke-width="1"/>
+  <circle id="pc" cx="20" cy="20" r="15" fill="none" stroke="url(#grad)" stroke-width="2.5" stroke-dasharray="94" stroke-dashoffset="94" style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .1s linear"/>
 </svg>
 
 <script>
@@ -605,7 +645,7 @@ const cv=document.getElementById('bgCanvas'),cx=cv.getContext('2d');
 let W,H,dots=[];
 function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight}
 rsz();addEventListener('resize',rsz);
-for(let i=0;i<50;i++)dots.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.4,dx:(Math.random()-.5)*.28,dy:(Math.random()-.5)*.28,o:Math.random()*.18+.05});
+for(let i=0;i<50;i++)dots.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.35,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,o:Math.random()*.14+.04});
 (function draw(){
   cx.clearRect(0,0,W,H);
   dots.forEach(d=>{
@@ -616,14 +656,14 @@ for(let i=0;i<50;i++)dots.push({x:Math.random()*W,y:Math.random()*H,r:Math.rando
   });
   for(let i=0;i<dots.length;i++)for(let j=i+1;j<dots.length;j++){
     const dist=Math.hypot(dots[i].x-dots[j].x,dots[i].y-dots[j].y);
-    if(dist<110){cx.beginPath();cx.moveTo(dots[i].x,dots[i].y);cx.lineTo(dots[j].x,dots[j].y);cx.strokeStyle=`rgba(102,126,234,${.07*(1-dist/110)})`;cx.lineWidth=.7;cx.stroke()}
+    if(dist<110){cx.beginPath();cx.moveTo(dots[i].x,dots[i].y);cx.lineTo(dots[j].x,dots[j].y);cx.strokeStyle=`rgba(102,126,234,${.06*(1-dist/110)})`;cx.lineWidth=.7;cx.stroke()}
   }
   requestAnimationFrame(draw);
 })();
 
 window.addEventListener('scroll',()=>{
   const pct=scrollY/(document.body.scrollHeight-innerHeight);
-  document.getElementById('progress-circle').style.strokeDashoffset=94*(1-pct);
+  document.getElementById('pc').style.strokeDashoffset=94*(1-pct);
 });
 
 const sections=document.querySelectorAll('.slide[id]');
