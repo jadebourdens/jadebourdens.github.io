@@ -501,6 +501,248 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
 </section>
 <div class="divider"></div>
 
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organigramme DNUM · IDFM</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fff;--bg2:#f7f7fc;
+  --text:#1a1a2e;--text2:#4a4a6a;--text3:#9090b0;
+  --accent:#7c3aed;--accent2:#667eea;
+  --border:rgba(102,126,234,0.14);
+}
+body{background:var(--bg);font-family:'Outfit',sans-serif;color:var(--text);padding:2rem}
+
+.wrap{
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  padding:1.5rem;box-shadow:0 2px 20px rgba(102,126,234,0.08);
+}
+.chart-title{
+  font-family:'DM Mono',monospace;font-size:.65rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:1.25rem;
+}
+svg{display:block;width:100%}
+
+.tip{
+  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:.75rem 1rem;font-size:.82rem;color:var(--text2);
+  line-height:1.65;margin-top:.75rem;min-height:48px;transition:all .15s;
+}
+.tip strong{color:var(--text);font-weight:600;display:block;margin-bottom:.15rem}
+
+.leg{
+  display:flex;gap:1.2rem;flex-wrap:wrap;
+  margin-top:.75rem;padding-top:.75rem;
+  border-top:1px solid var(--border);font-size:.72rem;color:var(--text3);
+}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+
+.nclick{cursor:pointer;transition:opacity .15s}
+.nclick:hover{opacity:.78}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="chart-title">Organigramme Direction du Numérique · IDFM — où je me situe</div>
+
+  <svg viewBox="0 0 680 540" id="chart">
+
+    <!-- ── TOP: Direction du Numérique ── -->
+    <rect x="215" y="20" width="250" height="52" rx="8"
+      fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text x="340" y="43" text-anchor="middle" dominant-baseline="central"
+      font-size="13" font-weight="500" fill="#2C2C2A"
+      font-family="Outfit, sans-serif">Direction du Numérique</text>
+    <text x="340" y="61" text-anchor="middle" dominant-baseline="central"
+      font-size="11" fill="#888780"
+      font-family="DM Mono, monospace">DNUM · IDFM</text>
+
+    <!-- trunk down from DNUM -->
+    <line x1="340" y1="72" x2="340" y2="110" stroke="#B4B2A9" stroke-width="0.5"/>
+
+    <!-- horizontal bar spanning all 4 depts -->
+    <line x1="55" y1="110" x2="625" y2="110" stroke="#B4B2A9" stroke-width="0.5"/>
+
+    <!-- verticals to each dept -->
+    <line x1="80"  y1="110" x2="80"  y2="130" stroke="#B4B2A9" stroke-width="0.5"/>
+    <line x1="230" y1="110" x2="230" y2="130" stroke="#B4B2A9" stroke-width="0.5"/>
+    <line x1="450" y1="110" x2="450" y2="130" stroke="#B4B2A9" stroke-width="0.5"/>
+    <line x1="600" y1="110" x2="600" y2="130" stroke="#B4B2A9" stroke-width="0.5"/>
+
+    <!-- DID — highlighted purple (Jade's dept) -->
+    <g class="nclick" onclick="show('did')">
+      <rect x="20" y="130" width="120" height="56" rx="8"
+        fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.2"/>
+      <text x="80" y="151" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#3C3489" font-family="Outfit, sans-serif">DID</text>
+      <text x="80" y="168" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#534AB7" font-family="DM Mono, monospace">Ingénierie Digitale</text>
+    </g>
+
+    <!-- DIP -->
+    <g class="nclick" onclick="show('dip')">
+      <rect x="170" y="130" width="120" height="56" rx="8"
+        fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+      <text x="230" y="151" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#444441" font-family="Outfit, sans-serif">DIP</text>
+      <text x="230" y="168" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#888780" font-family="DM Mono, monospace">Ingénierie SI &amp; Prod.</text>
+    </g>
+
+    <!-- DIA -->
+    <g class="nclick" onclick="show('dia')">
+      <rect x="390" y="130" width="120" height="56" rx="8"
+        fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+      <text x="450" y="151" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#444441" font-family="Outfit, sans-serif">DIA</text>
+      <text x="450" y="168" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#888780" font-family="DM Mono, monospace">Data &amp; IA</text>
+    </g>
+
+    <!-- SIOT -->
+    <g class="nclick" onclick="show('siot')">
+      <rect x="540" y="130" width="120" height="56" rx="8"
+        fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+      <text x="600" y="151" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#444441" font-family="Outfit, sans-serif">SIOT</text>
+      <text x="600" y="168" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#888780" font-family="DM Mono, monospace">SI Opérateurs</text>
+    </g>
+
+    <!-- ── 2 PÔLES (dashed, transverse) ── -->
+    <line x1="340" y1="110" x2="340" y2="250"
+      stroke="#1D9E75" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <line x1="270" y1="250" x2="410" y2="250"
+      stroke="#1D9E75" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <line x1="270" y1="250" x2="270" y2="270"
+      stroke="#1D9E75" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <line x1="410" y1="250" x2="410" y2="270"
+      stroke="#1D9E75" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <text x="362" y="243" text-anchor="middle"
+      font-size="10" fill="#0F6E56" font-family="DM Mono, monospace"
+      letter-spacing=".06em">2 pôles transverses</text>
+
+    <!-- PRPP -->
+    <g class="nclick" onclick="show('prpp')">
+      <rect x="195" y="270" width="150" height="56" rx="8"
+        fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+      <text x="270" y="291" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#085041" font-family="Outfit, sans-serif">PRPP</text>
+      <text x="270" y="308" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#0F6E56" font-family="DM Mono, monospace">Pilotage &amp; portefeuille</text>
+    </g>
+
+    <!-- SSI -->
+    <g class="nclick" onclick="show('ssi')">
+      <rect x="360" y="270" width="150" height="56" rx="8"
+        fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+      <text x="435" y="291" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#085041" font-family="Outfit, sans-serif">SSI</text>
+      <text x="435" y="308" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#0F6E56" font-family="DM Mono, monospace">Sécurité &amp; conformité</text>
+    </g>
+
+    <!-- ── DID → Architecture domain ── -->
+    <line x1="80" y1="186" x2="80" y2="380"
+      stroke="#7F77DD" stroke-width="0.5"/>
+    <text x="96" y="295" font-size="10" fill="#7F77DD"
+      font-family="DM Mono, monospace" letter-spacing=".04em">rattachée à</text>
+
+    <!-- Architecture domain -->
+    <g class="nclick" onclick="show('archi')">
+      <rect x="20" y="380" width="120" height="56" rx="8"
+        fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+      <text x="80" y="401" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#3C3489" font-family="Outfit, sans-serif">Architecture</text>
+      <text x="80" y="418" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#534AB7" font-family="DM Mono, monospace">Domaine · DID</text>
+    </g>
+
+    <!-- Architecture → Alternante arrow -->
+    <line x1="80" y1="436" x2="80" y2="466"
+      stroke="#7F77DD" stroke-width="0.8"/>
+    <polygon points="75,466 85,466 80,474" fill="#7F77DD"/>
+
+    <!-- Alternante — coral highlight -->
+    <g class="nclick" onclick="show('jade')">
+      <rect x="14" y="474" width="132" height="56" rx="8"
+        fill="#FAECE7" stroke="#D85A30" stroke-width="1.5"/>
+      <text x="80" y="495" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="500" fill="#712B13" font-family="Outfit, sans-serif">Alternante</text>
+      <text x="80" y="513" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#993C1D" font-family="DM Mono, monospace">Urbaniste SI · Jade</text>
+    </g>
+
+  </svg>
+
+  <!-- click tooltip -->
+  <div class="tip" id="tip">
+    <strong>Cliquez un bloc</strong>
+    Explorez l'organigramme — chaque département a un rôle distinct au sein de la DNUM.
+  </div>
+
+  <!-- legend -->
+  <div class="leg">
+    <div class="li"><div class="ld" style="background:#7F77DD;border:1px solid #7F77DD"></div>DID + Architecture</div>
+    <div class="li"><div class="ld" style="background:#D85A30"></div>Alternante Jade</div>
+    <div class="li"><div class="ld" style="background:#5DCAA5"></div>Pôles transverses</div>
+    <div class="li"><div class="ld" style="background:#888780"></div>Autres départements</div>
+  </div>
+</div>
+
+<script>
+const d = {
+  did: {
+    t: "DID — Département Ingénierie Digitale",
+    b: "Conçoit, développe et déploie les nouveaux SI et services numériques d'IDFM. Garantit la cohérence d'ensemble et la sécurité des SI. C'est ici qu'est rattachée l'alternance, au sein du domaine Architecture."
+  },
+  dip: {
+    t: "DIP — Département Ingénierie SI & Production",
+    b: "Administre, exploite et supervise les infrastructures et systèmes d'information en production. S'assure de la continuité de service et du maintien en conditions opérationnelles des SI existants. Côté Run vs le DID côté Build."
+  },
+  dia: {
+    t: "DIA — Département Data & IA",
+    b: "Pilote la gouvernance des données, leur valorisation et leur partage. Développe les usages de l'IA au service des métiers IDFM et des voyageurs. En forte croissance avec les enjeux open data et analytics temps réel."
+  },
+  siot: {
+    t: "SIOT — Systèmes d'Information Opérateurs",
+    b: "Accompagne les métiers dans les projets impactant les SI des opérateurs (RATP, SNCF, bus…). Interface entre IDFM et les DSI des délégataires pour garantir l'interopérabilité des systèmes."
+  },
+  prpp: {
+    t: "PRPP — Pilotage des ressources & portefeuille projets",
+    b: "Pôle transverse qui coordonne le portefeuille de projets numériques de toute la DNUM. Utilise l'outil Triskell pour le suivi des avant-projets et la gouvernance. Assure la cohérence et la visibilité du plan de transformation."
+  },
+  ssi: {
+    t: "SSI — Sécurité des systèmes d'information & conformité",
+    b: "Pôle transverse qui assure la cybersécurité et la gestion des risques SI pour l'ensemble de la DNUM. Définit les politiques de sécurité, veille à la conformité réglementaire et pilote les audits."
+  },
+  archi: {
+    t: "Domaine Architecture — au sein du DID",
+    b: "Pilote l'urbanisme SI, les référentiels d'architecture et les standards techniques d'IDFM. Utilise Mega Hopex pour cartographier les applications, décrire les flux et définir le plan d'urbanisation cible. C'est ici que l'alternante est directement rattachée."
+  },
+  jade: {
+    t: "Jade Bourdens — Alternante Urbaniste SI",
+    b: "Rattachée au domaine Architecture du DID. Missions : maintenir la cartographie SI (Mega Hopex), assister l'urbaniste dans la gouvernance, organiser les formations à l'outil, contribuer à la définition des standards du SI d'IDFM."
+  }
+};
+
+function show(k) {
+  const x = d[k];
+  if (!x) return;
+  document.getElementById('tip').innerHTML = `<strong>${x.t}</strong>${x.b}`;
+}
+</script>
+</body>
+</html>
+
 <!-- 06 MINI-PROJET -->
 <section id="s06" class="slide alt">
   <div class="container">
