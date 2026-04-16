@@ -440,97 +440,148 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
         <div class="card-body">Analyse de centaines d'études internationales ✦ Production de livrables stratégiques pour comités de pilotage.</div>
       </div>
 
-      <!-- ORGCHART — embedded as a card, SVG only, no nested HTML -->
-      <div class="card" style="grid-column:1/-1;padding:1.2rem 1.4rem">
-        <div class="card-label">Structure de la DNUM · où je me situe</div>
-        <svg width="100%" viewBox="0 0 640 460" style="display:block;margin-top:.75rem;overflow:visible">
-          <!-- DNUM root -->
-          <g class="nk" onclick="orgTip('dnum')">
-            <rect x="195" y="8" width="250" height="44" rx="7" fill="var(--surface)" stroke="var(--border2)" stroke-width="0.8"/>
-            <text x="320" y="24" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text)" font-family="Outfit,sans-serif">Direction du Numérique</text>
-            <text x="320" y="42" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace" letter-spacing=".06em">DNUM · IDFM</text>
-          </g>
-          <!-- trunk + bar -->
-          <line x1="320" y1="52" x2="320" y2="84" stroke="var(--border2)" stroke-width="0.6"/>
-          <line x1="44" y1="84" x2="596" y2="84" stroke="var(--border2)" stroke-width="0.6"/>
-          <!-- drops -->
-          <line x1="68" y1="84" x2="68" y2="100" stroke="var(--border2)" stroke-width="0.6"/>
-          <line x1="210" y1="84" x2="210" y2="100" stroke="var(--border2)" stroke-width="0.6"/>
-          <line x1="430" y1="84" x2="430" y2="100" stroke="var(--border2)" stroke-width="0.6"/>
-          <line x1="572" y1="84" x2="572" y2="100" stroke="var(--border2)" stroke-width="0.6"/>
-          <!-- DID — accent -->
-          <g class="nk" onclick="orgTip('did')">
-            <rect x="14" y="100" width="108" height="52" rx="7" fill="var(--surface2)" stroke="rgba(124,58,237,0.35)" stroke-width="1"/>
-            <text x="68" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--accent)" font-family="Outfit,sans-serif">DID</text>
-            <text x="68" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--accent3)" font-family="DM Mono,monospace">Ingénierie Digitale</text>
-          </g>
-          <!-- DIP -->
-          <g class="nk" onclick="orgTip('dip')">
-            <rect x="156" y="100" width="108" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-            <text x="210" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text2)" font-family="Outfit,sans-serif">DIP</text>
-            <text x="210" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">SI &amp; Production</text>
-          </g>
-          <!-- DIA -->
-          <g class="nk" onclick="orgTip('dia')">
-            <rect x="376" y="100" width="108" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-            <text x="430" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text2)" font-family="Outfit,sans-serif">DIA</text>
-            <text x="430" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">Data &amp; IA</text>
-          </g>
-          <!-- SIOT -->
-          <g class="nk" onclick="orgTip('siot')">
-            <rect x="518" y="100" width="108" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-            <text x="572" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text2)" font-family="Outfit,sans-serif">SIOT</text>
-            <text x="572" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">SI Opérateurs</text>
-          </g>
-          <!-- pôles dashed -->
-          <line x1="320" y1="84" x2="320" y2="218" stroke="var(--border)" stroke-width="0.6" stroke-dasharray="3 3"/>
-          <line x1="258" y1="218" x2="382" y2="218" stroke="var(--border)" stroke-width="0.6" stroke-dasharray="3 3"/>
-          <line x1="258" y1="218" x2="258" y2="232" stroke="var(--border)" stroke-width="0.6" stroke-dasharray="3 3"/>
-          <line x1="382" y1="218" x2="382" y2="232" stroke="var(--border)" stroke-width="0.6" stroke-dasharray="3 3"/>
-          <text x="320" y="213" text-anchor="middle" font-size="8" fill="var(--text3)" font-family="DM Mono,monospace" letter-spacing=".07em">pôles transverses</text>
-          <!-- PRPP -->
-          <g class="nk" onclick="orgTip('prpp')">
-            <rect x="186" y="232" width="130" height="44" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6" stroke-dasharray="4 2"/>
-            <text x="251" y="249" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--accent2)" font-family="Outfit,sans-serif">PRPP</text>
-            <text x="251" y="266" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="DM Mono,monospace">Pilotage &amp; projets</text>
-          </g>
-          <!-- SSI -->
-          <g class="nk" onclick="orgTip('ssi')">
-            <rect x="324" y="232" width="112" height="44" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6" stroke-dasharray="4 2"/>
-            <text x="380" y="249" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--accent2)" font-family="Outfit,sans-serif">SSI</text>
-            <text x="380" y="266" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="DM Mono,monospace">Sécurité &amp; conformité</text>
-          </g>
-          <!-- DID → Architecture → Jade -->
-          <line x1="68" y1="152" x2="68" y2="320" stroke="rgba(124,58,237,0.25)" stroke-width="0.6"/>
-          <text x="80" y="254" font-size="8" fill="var(--soft)" font-family="DM Mono,monospace" letter-spacing=".05em">rattachée à</text>
-          <g class="nk" onclick="orgTip('archi')">
-            <rect x="14" y="320" width="108" height="44" rx="7" fill="var(--surface2)" stroke="rgba(124,58,237,0.28)" stroke-width="0.8"/>
-            <text x="68" y="337" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--accent)" font-family="Outfit,sans-serif">Architecture</text>
-            <text x="68" y="354" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--accent3)" font-family="DM Mono,monospace">Domaine · DID</text>
-          </g>
-          <line x1="68" y1="364" x2="68" y2="390" stroke="rgba(124,58,237,0.4)" stroke-width="0.8"/>
-          <polygon points="63,390 73,390 68,397" fill="rgba(124,58,237,0.5)"/>
-          <g class="nk" onclick="orgTip('jade')">
-            <rect x="8" y="397" width="120" height="50" rx="7" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.45)" stroke-width="1.2"/>
-            <text x="68" y="416" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--accent)" font-family="Outfit,sans-serif">Alternante · Jade</text>
-            <text x="68" y="433" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--accent3)" font-family="DM Mono,monospace">Urbaniste SI</text>
-          </g>
-          <circle cx="120" cy="399" r="7" fill="var(--accent)"/>
-          <text x="120" y="402" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#fff" font-family="Outfit,sans-serif">★</text>
-        </svg>
-        <div class="orgtip" id="orgtip"><strong>cliquez un bloc</strong>Explorez la structure — chaque département a un rôle distinct au sein de la DNUM.</div>
-        <div class="org-leg">
-          <div class="org-li"><div class="org-ld" style="background:var(--surface2);border:1px solid rgba(124,58,237,0.35)"></div>DID + Architecture</div>
-          <div class="org-li"><div class="org-ld" style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.45)"></div>Jade ★</div>
-          <div class="org-li"><div class="org-ld" style="background:var(--surface);border:1px dashed rgba(102,126,234,0.3)"></div>Pôles transverses</div>
-          <div class="org-li"><div class="org-ld" style="background:var(--surface);border:1px solid var(--border)"></div>Autres depts</div>
-        </div>
-      </div>
+     <!-- ── Organigramme DNUM · IDFM ── -->
+<style>
+  .orgcard { background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:12px; padding:1.25rem 1.5rem; max-width:720px; margin:0 auto; }
+  .orgcard-label { font-size:11px; font-family:monospace; color:#888780; letter-spacing:.07em; margin-bottom:.6rem; }
+  .nk { cursor:pointer; }
+  .nk:hover rect, .nk:hover polygon { opacity:.82; }
+  .orgtip { margin-top:.9rem; padding:.65rem .9rem; border-radius:8px; border:1px solid rgba(0,0,0,0.1); background:#fafaf8; font-size:13px; color:#444441; line-height:1.6; min-height:52px; transition:border-color .2s; }
+  .orgtip strong { display:block; font-size:10.5px; font-family:monospace; letter-spacing:.06em; color:#888780; margin-bottom:4px; font-weight:500; }
+  .orgtip.purple-border { border-color:rgba(124,58,237,0.4); }
+  .org-legend { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:.8rem; }
+  .org-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:#888780; font-family:monospace; }
+  .org-legend-dot { width:13px; height:13px; border-radius:3px; flex-shrink:0; }
+</style>
 
-    </div>
+<div class="orgcard">
+  <div class="orgcard-label">Structure de la DNUM · où je me situe</div>
+
+  <svg width="100%" viewBox="0 0 640 480" style="display:block;margin-top:.5rem;overflow:visible"
+       role="img" aria-label="Organigramme DNUM IDFM">
+
+    <!-- DNUM root -->
+    <g class="nk" onclick="orgTip('dnum')">
+      <rect x="195" y="8" width="250" height="44" rx="7" fill="#f5f4f0" stroke="rgba(0,0,0,0.15)" stroke-width="0.8"/>
+      <text x="320" y="24" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#1a1a18" font-family="system-ui,sans-serif">Direction du Numérique</text>
+      <text x="320" y="42" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#888780" font-family="monospace" letter-spacing=".06em">DNUM · IDFM</text>
+    </g>
+
+    <line x1="320" y1="52" x2="320" y2="84" stroke="rgba(0,0,0,0.15)" stroke-width="0.6"/>
+    <line x1="44"  y1="84" x2="596" y2="84" stroke="rgba(0,0,0,0.15)" stroke-width="0.6"/>
+    <line x1="68"  y1="84" x2="68"  y2="100" stroke="rgba(0,0,0,0.15)" stroke-width="0.6"/>
+    <line x1="210" y1="84" x2="210" y2="100" stroke="rgba(0,0,0,0.15)" stroke-width="0.6"/>
+    <line x1="430" y1="84" x2="430" y2="100" stroke="rgba(0,0,0,0.15)" stroke-width="0.6"/>
+    <line x1="572" y1="84" x2="572" y2="100" stroke="rgba(0,0,0,0.15)" stroke-width="0.6"/>
+
+    <!-- DID -->
+    <g class="nk" onclick="orgTip('did')">
+      <rect x="14" y="100" width="108" height="52" rx="7" fill="#EEEDFE" stroke="rgba(124,58,237,0.35)" stroke-width="1"/>
+      <text x="68" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#3C3489" font-family="system-ui,sans-serif">DID</text>
+      <text x="68" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#534AB7" font-family="monospace">Ingénierie Digitale</text>
+    </g>
+
+    <!-- DIP -->
+    <g class="nk" onclick="orgTip('dip')">
+      <rect x="156" y="100" width="108" height="52" rx="7" fill="#f5f4f0" stroke="rgba(0,0,0,0.12)" stroke-width="0.6"/>
+      <text x="210" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#444441" font-family="system-ui,sans-serif">DIP</text>
+      <text x="210" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#888780" font-family="monospace">SI &amp; Production</text>
+    </g>
+
+    <!-- DIA -->
+    <g class="nk" onclick="orgTip('dia')">
+      <rect x="376" y="100" width="108" height="52" rx="7" fill="#f5f4f0" stroke="rgba(0,0,0,0.12)" stroke-width="0.6"/>
+      <text x="430" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#444441" font-family="system-ui,sans-serif">DIA</text>
+      <text x="430" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#888780" font-family="monospace">Data &amp; IA</text>
+    </g>
+
+    <!-- SIOT -->
+    <g class="nk" onclick="orgTip('siot')">
+      <rect x="518" y="100" width="108" height="52" rx="7" fill="#f5f4f0" stroke="rgba(0,0,0,0.12)" stroke-width="0.6"/>
+      <text x="572" y="119" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#444441" font-family="system-ui,sans-serif">SIOT</text>
+      <text x="572" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#888780" font-family="monospace">SI Opérateurs</text>
+    </g>
+
+    <!-- Pôles transverses -->
+    <line x1="320" y1="84"  x2="320" y2="218" stroke="rgba(0,0,0,0.1)" stroke-width="0.6" stroke-dasharray="3 3"/>
+    <line x1="258" y1="218" x2="382" y2="218" stroke="rgba(0,0,0,0.1)" stroke-width="0.6" stroke-dasharray="3 3"/>
+    <line x1="258" y1="218" x2="258" y2="232" stroke="rgba(0,0,0,0.1)" stroke-width="0.6" stroke-dasharray="3 3"/>
+    <line x1="382" y1="218" x2="382" y2="232" stroke="rgba(0,0,0,0.1)" stroke-width="0.6" stroke-dasharray="3 3"/>
+    <text x="320" y="213" text-anchor="middle" font-size="8" fill="#aaa9a2" font-family="monospace" letter-spacing=".07em">pôles transverses</text>
+
+    <!-- PRPP -->
+    <g class="nk" onclick="orgTip('prpp')">
+      <rect x="186" y="232" width="130" height="44" rx="7" fill="#f5f4f0" stroke="rgba(83,74,183,0.3)" stroke-width="0.6" stroke-dasharray="4 2"/>
+      <text x="251" y="249" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#534AB7" font-family="system-ui,sans-serif">PRPP</text>
+      <text x="251" y="266" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#888780" font-family="monospace">Pilotage &amp; projets</text>
+    </g>
+
+    <!-- SSI -->
+    <g class="nk" onclick="orgTip('ssi')">
+      <rect x="324" y="232" width="112" height="44" rx="7" fill="#f5f4f0" stroke="rgba(83,74,183,0.3)" stroke-width="0.6" stroke-dasharray="4 2"/>
+      <text x="380" y="249" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#534AB7" font-family="system-ui,sans-serif">SSI</text>
+      <text x="380" y="266" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#888780" font-family="monospace">Sécurité &amp; conformité</text>
+    </g>
+
+    <!-- DID → Architecture → Jade -->
+    <line x1="68" y1="152" x2="68" y2="320" stroke="rgba(124,58,237,0.22)" stroke-width="0.6"/>
+    <text x="80" y="254" font-size="8" fill="#aaa9a2" font-family="monospace" letter-spacing=".05em">rattachée à</text>
+
+    <!-- Architecture -->
+    <g class="nk" onclick="orgTip('archi')">
+      <rect x="14" y="320" width="108" height="44" rx="7" fill="#EEEDFE" stroke="rgba(124,58,237,0.28)" stroke-width="0.8"/>
+      <text x="68" y="337" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#3C3489" font-family="system-ui,sans-serif">Architecture</text>
+      <text x="68" y="354" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#534AB7" font-family="monospace">Domaine · DID</text>
+    </g>
+
+    <line x1="68" y1="364" x2="68" y2="390" stroke="rgba(124,58,237,0.4)" stroke-width="0.8"/>
+    <polygon points="63,390 73,390 68,397" fill="rgba(124,58,237,0.5)"/>
+
+    <!-- Jade -->
+    <g class="nk" onclick="orgTip('jade')">
+      <rect x="8" y="397" width="120" height="50" rx="7" fill="rgba(124,58,237,0.06)" stroke="rgba(124,58,237,0.45)" stroke-width="1.2"/>
+      <text x="68" y="416" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#3C3489" font-family="system-ui,sans-serif">Alternante · Jade</text>
+      <text x="68" y="433" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#534AB7" font-family="monospace">Urbaniste SI</text>
+    </g>
+    <circle cx="120" cy="399" r="7" fill="#7C3AED"/>
+    <text x="120" y="402" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#ffffff" font-family="system-ui,sans-serif">★</text>
+
+  </svg>
+
+  <div class="orgtip" id="orgtip">
+    <strong>cliquez un bloc pour en savoir plus</strong>
+    Explorez la structure — chaque département a un rôle distinct au sein de la DNUM.
   </div>
-</section>
-<div class="divider"></div>
+
+  <div class="org-legend">
+    <div class="org-legend-item"><div class="org-legend-dot" style="background:#EEEDFE;border:1px solid rgba(124,58,237,0.35)"></div>DID + Architecture</div>
+    <div class="org-legend-item"><div class="org-legend-dot" style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.45)"></div>Jade ★</div>
+    <div class="org-legend-item"><div class="org-legend-dot" style="background:#f5f4f0;border:1px dashed rgba(83,74,183,0.3)"></div>Pôles transverses</div>
+    <div class="org-legend-item"><div class="org-legend-dot" style="background:#f5f4f0;border:1px solid rgba(0,0,0,0.12)"></div>Autres depts</div>
+  </div>
+</div>
+
+<script>
+  const tips = {
+    dnum:  { label: 'DNUM · Direction du Numérique',         text: "Direction chapeau de l'ensemble des entités numériques d'Île-de-France Mobilités. Pilote la stratégie SI, les investissements technologiques et la gouvernance des données.", purple: false },
+    did:   { label: 'DID · Direction de l\'Ingénierie Digitale', text: "Conçoit et développe les produits et services digitaux (apps voyageurs, plateformes internes). Regroupe les domaines Architecture, Dev, UX et les squads produit.", purple: true },
+    dip:   { label: 'DIP · Direction des SI & de la Production', text: "Assure la fiabilité et l'exploitation des systèmes en production : infrastructure, run, MCO, et gestion des capacités.", purple: false },
+    dia:   { label: 'DIA · Direction Data & IA',              text: "Pilote la stratégie de la donnée et de l'intelligence artificielle : datawarehouse, datamarts, modèles prédictifs, et gouvernance de la donnée.", purple: false },
+    siot:  { label: 'SIOT · SI des Opérateurs de Transport',  text: "Gère les systèmes d'information partagés avec les opérateurs (RATP, SNCF, etc.) : billettique, information voyageurs temps réel, interfaces métier.", purple: false },
+    prpp:  { label: 'PRPP · Pilotage & Projets',              text: "Pôle transverse qui coordonne la gestion de portefeuille de projets, le suivi budgétaire et les méthodes de pilotage (Agile, cycles projets).", purple: true },
+    ssi:   { label: 'SSI · Sécurité des SI',                  text: "Pôle transverse responsable de la cybersécurité, de la conformité RGPD, des audits et de la politique de sécurité des systèmes d'information.", purple: true },
+    archi: { label: 'Architecture · Domaine DID',             text: "Domaine en charge de l'urbanisation du SI, des référentiels d'architecture, des choix technologiques et de la roadmap d'évolution du paysage applicatif.", purple: true },
+    jade:  { label: 'Jade · Alternante Urbaniste SI',         text: "Rattachée au domaine Architecture (DID). Contribue à l'urbanisation du SI : cartographie applicative, dossiers d'architecture, participation aux études d'évolution.", purple: true }
+  };
+
+  function orgTip(key) {
+    const tip = tips[key];
+    if (!tip) return;
+    const el = document.getElementById('orgtip');
+    el.innerHTML = '<strong>' + tip.label + '</strong>' + tip.text;
+    el.classList.toggle('purple-border', tip.purple);
+  }
+</script>
 
 <!-- 06 MINI-PROJET -->
 <section id="s06" class="slide alt">
