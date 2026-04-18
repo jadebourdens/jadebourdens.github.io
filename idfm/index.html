@@ -425,147 +425,157 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
       </div>
     </div><!-- end .why-grid -->
 
-<!-- ── ORGCHART IDFM · DNUM · Jade · v3 ── -->
+<!-- ── ORGCHART IDFM · DNUM · Magali · Jade · v6 ── -->
 <!-- Replace the existing orgchart <div> block with this snippet -->
 <div style="margin-top:2rem;background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 2px 10px rgba(102,126,234,0.06)">
   <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.75rem">Structure IDFM · DNUM · où je me situe</div>
 
-  <svg width="100%" viewBox="0 0 680 660" style="display:block;overflow:visible" role="img" aria-label="Organigramme IDFM DNUM Jade">
+  <svg width="100%" viewBox="0 0 680 620" style="display:block;overflow:visible" role="img" aria-label="Organigramme IDFM DNUM Magali Jade">
 
     <!-- T0: État & Région -->
     <g class="nk" onclick="orgTip('region')">
-      <rect x="130" y="20" width="180" height="48" rx="8" fill="var(--surface)" stroke="var(--border2)" stroke-width="0.8"/>
-      <text x="220" y="38" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text)" font-family="'Outfit',sans-serif">État &amp; Région IDF</text>
-      <text x="220" y="58" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="'DM Mono',monospace">Décident la politique de mobilité</text>
+      <rect x="215" y="16" width="250" height="48" rx="8" fill="var(--surface)" stroke="var(--border2)" stroke-width="0.8"/>
+      <text x="340" y="34" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text)" font-family="'Outfit',sans-serif">État &amp; Région IDF</text>
+      <text x="340" y="52" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="'DM Mono',monospace">Décident la politique de mobilité</text>
     </g>
-
-    <!-- T0 → T1 -->
-    <line x1="220" y1="68" x2="220" y2="96" stroke="var(--border2)" stroke-width="0.6"/>
+    <line x1="340" y1="64" x2="340" y2="90" stroke="var(--border2)" stroke-width="0.6"/>
 
     <!-- T1: IDFM -->
     <g class="nk" onclick="orgTip('idfm')">
-      <rect x="80" y="96" width="280" height="52" rx="8" fill="#E1F5EE" stroke="rgba(15,110,86,0.35)" stroke-width="1"/>
-      <text x="220" y="114" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#085041" font-family="'Outfit',sans-serif">Île-de-France Mobilités</text>
-      <text x="220" y="134" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#0F6E56" font-family="'DM Mono',monospace">AOM · met en œuvre la politique de mobilité</text>
+      <rect x="190" y="90" width="300" height="48" rx="8" fill="#E1F5EE" stroke="rgba(15,110,86,0.35)" stroke-width="1"/>
+      <text x="340" y="108" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#085041" font-family="'Outfit',sans-serif">Île-de-France Mobilités</text>
+      <text x="340" y="126" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#0F6E56" font-family="'DM Mono',monospace">AOM · donneur d'ordre · opérateurs sous contrat</text>
     </g>
 
-    <!-- IDFM → fork -->
-    <line x1="220" y1="148" x2="220" y2="174" stroke="var(--border2)" stroke-width="0.6"/>
-    <line x1="110" y1="174" x2="490" y2="174" stroke="var(--border2)" stroke-width="0.6"/>
-    <line x1="110" y1="174" x2="110" y2="190" stroke="var(--border2)" stroke-width="0.6"/>
-    <line x1="280" y1="174" x2="280" y2="190" stroke="var(--border2)" stroke-width="0.6"/>
-    <line x1="490" y1="174" x2="490" y2="190" stroke="var(--border2)" stroke-width="0.6"/>
+    <!-- IDFM → 3 branches -->
+    <line x1="340" y1="138" x2="340" y2="160" stroke="var(--border2)" stroke-width="0.6"/>
+    <line x1="110" y1="160" x2="570" y2="160" stroke="var(--border2)" stroke-width="0.6"/>
+    <line x1="110" y1="160" x2="110" y2="176" stroke="var(--border2)" stroke-width="0.6"/>
+    <line x1="340" y1="160" x2="340" y2="176" stroke="var(--border2)" stroke-width="0.6"/>
+    <line x1="570" y1="160" x2="570" y2="176" stroke="var(--border2)" stroke-width="0.6"/>
+    <text x="110" y="170" text-anchor="middle" dominant-baseline="central" font-size="8" fill="var(--text3)" font-family="'DM Mono',monospace" font-style="italic">contrats</text>
 
-    <!-- Fork labels -->
-    <text x="110" y="184" text-anchor="middle" dominant-baseline="central" font-size="8" fill="var(--text3)" font-family="'DM Mono',monospace" font-style="italic">contrats</text>
-    <text x="490" y="184" text-anchor="middle" dominant-baseline="central" font-size="8" fill="var(--text3)" font-family="'DM Mono',monospace" font-style="italic">directions internes</text>
-
-    <!-- T2 left: Opérateurs (external, contracted) -->
+    <!-- T2a: Opérateurs -->
     <g class="nk" onclick="orgTip('operateurs')">
-      <rect x="20" y="190" width="180" height="52" rx="8" fill="#FAECE7" stroke="rgba(153,60,29,0.3)" stroke-width="0.8"/>
-      <text x="110" y="208" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#4A1B0C" font-family="'Outfit',sans-serif">Opérateurs</text>
-      <text x="110" y="228" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#993C1D" font-family="'DM Mono',monospace">RATP · SNCF · EOLIS…</text>
+      <rect x="20" y="176" width="180" height="48" rx="8" fill="#FAECE7" stroke="rgba(153,60,29,0.3)" stroke-width="0.8"/>
+      <text x="110" y="194" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#4A1B0C" font-family="'Outfit',sans-serif">Opérateurs</text>
+      <text x="110" y="212" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#993C1D" font-family="'DM Mono',monospace">RATP · SNCF · EOLIS…</text>
     </g>
 
-    <!-- T2 center: DNUM -->
+    <!-- T2b: DNUM -->
     <g class="nk" onclick="orgTip('dnum')">
-      <rect x="190" y="190" width="180" height="52" rx="8" fill="#EEEDFE" stroke="rgba(124,58,237,0.4)" stroke-width="1"/>
-      <text x="280" y="208" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Direction du Numérique</text>
-      <text x="280" y="228" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#534AB7" font-family="'DM Mono',monospace">DNUM · systèmes d'information</text>
+      <rect x="250" y="176" width="180" height="48" rx="8" fill="#EEEDFE" stroke="rgba(124,58,237,0.35)" stroke-width="1"/>
+      <text x="340" y="194" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Direction du Numérique</text>
+      <text x="340" y="212" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#534AB7" font-family="'DM Mono',monospace">DNUM</text>
     </g>
 
-    <!-- T2 right: Autres directions -->
+    <!-- T2c: Autres directions -->
     <g class="nk" onclick="orgTip('directions')">
-      <rect x="400" y="190" width="180" height="52" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-      <text x="490" y="208" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Autres directions</text>
-      <text x="490" y="228" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="'DM Mono',monospace">Plusieurs directions IDFM</text>
+      <rect x="480" y="176" width="180" height="48" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+      <text x="570" y="194" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Autres directions</text>
+      <text x="570" y="212" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="'DM Mono',monospace">Plusieurs directions IDFM</text>
     </g>
 
-    <!-- DNUM → Jade -->
-    <line x1="280" y1="242" x2="280" y2="290" stroke="rgba(124,58,237,0.5)" stroke-width="0.8"/>
-    <polygon points="275,290 285,290 280,297" fill="rgba(124,58,237,0.5)"/>
+    <!-- DNUM → DID -->
+    <line x1="340" y1="224" x2="340" y2="260" stroke="rgba(124,58,237,0.4)" stroke-width="0.8"/>
+    <polygon points="335,260 345,260 340,267" fill="rgba(124,58,237,0.4)"/>
 
-    <!-- T3: Jade -->
-    <g class="nk" onclick="orgTip('jade')">
-      <rect x="170" y="297" width="220" height="56" rx="8" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.5)" stroke-width="1.2"/>
-      <text x="280" y="317" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Alternante · Jade ★</text>
-      <text x="280" y="337" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#534AB7" font-family="'DM Mono',monospace">Urbaniste SI · 1ère du poste · DNUM</text>
+    <!-- T3: Département Ingénierie Digitale -->
+    <g class="nk" onclick="orgTip('did')">
+      <rect x="210" y="267" width="260" height="48" rx="8" fill="#EEEDFE" stroke="rgba(124,58,237,0.3)" stroke-width="0.8"/>
+      <text x="340" y="285" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Département Ingénierie Digitale</text>
+      <text x="340" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#534AB7" font-family="'DM Mono',monospace">DID · DNUM</text>
     </g>
 
-    <!-- Transverse: Architectes -->
-    <line x1="390" y1="318" x2="440" y2="318" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
-    <g class="nk" onclick="orgTip('archi')">
-      <rect x="440" y="298" width="120" height="42" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-      <text x="500" y="315" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Architectes</text>
-      <text x="500" y="331" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Échanges transverses</text>
+    <!-- DID → Cellule Architecture -->
+    <line x1="340" y1="315" x2="340" y2="350" stroke="rgba(124,58,237,0.4)" stroke-width="0.8"/>
+    <polygon points="335,350 345,350 340,357" fill="rgba(124,58,237,0.4)"/>
+
+    <!-- T4: Cellule Architecture -->
+    <g class="nk" onclick="orgTip('archi_cell')">
+      <rect x="210" y="357" width="260" height="48" rx="8" fill="#EEEDFE" stroke="rgba(124,58,237,0.3)" stroke-width="0.8"/>
+      <text x="340" y="375" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Cellule d'Architecture</text>
+      <text x="340" y="393" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#534AB7" font-family="'DM Mono',monospace">DID · DNUM</text>
     </g>
 
-    <!-- Transverse: Data scientists -->
-    <line x1="390" y1="338" x2="440" y2="358" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <!-- Cellule Architecture → Magali -->
+    <line x1="340" y1="405" x2="340" y2="440" stroke="rgba(124,58,237,0.5)" stroke-width="0.8"/>
+    <polygon points="335,440 345,440 340,447" fill="rgba(124,58,237,0.5)"/>
+
+    <!-- Architectes (left, same row as Magali) -->
+    <g class="nk" onclick="orgTip('architectes')">
+      <rect x="20" y="440" width="150" height="56" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+      <text x="95" y="460" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Architectes</text>
+      <text x="95" y="478" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Cellule d'Architecture</text>
+    </g>
+    <line x1="170" y1="468" x2="210" y2="468" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+
+    <!-- T5: Magali Bouvat -->
+    <g class="nk" onclick="orgTip('magali')">
+      <rect x="210" y="440" width="260" height="56" rx="8" fill="#EEEDFE" stroke="rgba(124,58,237,0.45)" stroke-width="1"/>
+      <text x="340" y="460" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Magali Bouvat</text>
+      <text x="340" y="478" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#534AB7" font-family="'DM Mono',monospace">Urbaniste SI · 1ère du poste · outil MEGA</text>
+    </g>
+
+    <!-- Data scientists + SSI (right, same row as Magali) -->
+    <line x1="470" y1="455" x2="510" y2="455" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <line x1="470" y1="475" x2="510" y2="475" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+
     <g class="nk" onclick="orgTip('data')">
-      <rect x="440" y="342" width="120" height="42" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-      <text x="500" y="359" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data scientists</text>
-      <text x="500" y="375" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Échanges transverses</text>
+      <rect x="510" y="440" width="150" height="44" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+      <text x="585" y="458" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data scientists</text>
+      <text x="585" y="474" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Échanges transverses</text>
     </g>
 
-    <!-- Transverse: SSI -->
-    <line x1="390" y1="340" x2="440" y2="398" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
     <g class="nk" onclick="orgTip('ssi')">
-      <rect x="440" y="386" width="120" height="42" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-      <text x="500" y="403" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Cellule SSI</text>
-      <text x="500" y="419" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Cyber · conformité</text>
+      <rect x="510" y="496" width="150" height="44" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+      <text x="585" y="514" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Cellule SSI</text>
+      <text x="585" y="530" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Cyber · conformité</text>
     </g>
 
-    <!-- Missions box -->
-    <rect x="60" y="374" width="260" height="136" rx="8" fill="none" stroke="rgba(124,58,237,0.2)" stroke-width="0.8" stroke-dasharray="5 3"/>
-    <text x="80" y="392" font-size="8" fill="var(--text3)" font-family="'DM Mono',monospace" font-style="italic">Missions principales</text>
-    <text x="80" y="412" font-size="8.5" fill="var(--text2)" font-family="'DM Mono',monospace">· Inventaire des applicatifs</text>
-    <text x="80" y="430" font-size="8.5" fill="var(--text2)" font-family="'DM Mono',monospace">· Cartographie des flux de données</text>
-    <text x="80" y="448" font-size="8.5" fill="var(--text2)" font-family="'DM Mono',monospace">· Généralisation des patterns archi.</text>
-    <text x="80" y="466" font-size="8.5" fill="var(--text2)" font-family="'DM Mono',monospace">· Outil MEGA (cartographie SI)</text>
-    <text x="80" y="484" font-size="8.5" fill="var(--text2)" font-family="'DM Mono',monospace">· Accompagnement au changement</text>
+    <!-- Magali → Jade -->
+    <line x1="340" y1="496" x2="340" y2="532" stroke="rgba(124,58,237,0.5)" stroke-width="1"/>
+    <polygon points="335,532 345,532 340,539" fill="rgba(124,58,237,0.5)"/>
 
-    <!-- Legend -->
-    <rect x="20" y="560" width="10" height="10" rx="2" fill="#E1F5EE" stroke="rgba(15,110,86,0.35)" stroke-width="0.8"/>
-    <text x="36" y="565" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace" dominant-baseline="central">IDFM (AOM)</text>
+    <!-- T6: Jade -->
+    <g class="nk" onclick="orgTip('jade')">
+      <rect x="210" y="539" width="260" height="56" rx="8" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.5)" stroke-width="1.2"/>
+      <text x="340" y="559" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#3C3489" font-family="'Outfit',sans-serif">Jade · alternante ★</text>
+      <text x="340" y="577" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#534AB7" font-family="'DM Mono',monospace">Assiste Magali · Cartographie SI · MEGA</text>
+    </g>
 
-    <rect x="130" y="560" width="10" height="10" rx="2" fill="#FAECE7" stroke="rgba(153,60,29,0.3)" stroke-width="0.8"/>
-    <text x="146" y="565" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace" dominant-baseline="central">Opérateurs (sous contrat)</text>
-
-    <rect x="310" y="560" width="10" height="10" rx="2" fill="#EEEDFE" stroke="rgba(124,58,237,0.4)" stroke-width="0.8"/>
-    <text x="326" y="565" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace" dominant-baseline="central">DNUM + Jade ★</text>
-
-    <rect x="430" y="560" width="10" height="10" rx="2" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
-    <text x="446" y="565" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace" dominant-baseline="central">Autres entités</text>
-
-    <line x1="20" y1="584" x2="46" y2="584" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
-    <text x="52" y="584" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace" dominant-baseline="central">Relation transverse (pas hiérarchique)</text>
+    <!-- Star badge -->
+    <circle cx="468" cy="541" r="9" fill="#534AB7"/>
+    <text x="468" y="544" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#fff" font-family="'Outfit',sans-serif">★</text>
 
   </svg>
 
   <!-- Tooltip zone -->
   <div class="orgtip" id="orgtip"><strong>Cliquez un bloc</strong> pour en savoir plus sur chaque entité.</div>
 
-  <!-- Legend row -->
+  <!-- Legend -->
   <div class="org-leg">
     <div class="org-li"><div class="org-ld" style="background:#E1F5EE;border:1px solid rgba(15,110,86,0.35)"></div>IDFM (AOM)</div>
     <div class="org-li"><div class="org-ld" style="background:#FAECE7;border:1px solid rgba(153,60,29,0.3)"></div>Opérateurs (sous contrat)</div>
-    <div class="org-li"><div class="org-ld" style="background:#EEEDFE;border:1px solid rgba(124,58,237,0.4)"></div>DNUM + Jade ★</div>
-    <div class="org-li"><div class="org-ld" style="background:var(--surface);border:1px solid var(--border)"></div>Autres entités</div>
+    <div class="org-li"><div class="org-ld" style="background:#EEEDFE;border:1px solid rgba(124,58,237,0.35)"></div>DNUM · DID · Cellule Archi · Magali · Jade ★</div>
+    <div class="org-li"><div class="org-ld" style="background:var(--surface);border:1px dashed rgba(100,100,100,0.3)"></div>Partenaires transverses</div>
   </div>
 </div>
 
 <script>
 const orgData = {
-  region:     { title:'État &amp; Région Île-de-France', body:'Décident la politique de mobilité au niveau national et régional. Le conseil d\'administration d\'IDFM est présidé par Valérie Pécresse, présidente de la région.' },
-  idfm:       { title:'Île-de-France Mobilités', body:'AOM (Autorité Organisatrice de la Mobilité) responsable de toute la mobilité en Île-de-France. Met en œuvre les politiques décidées par l\'État et la Région. Donneur d\'ordre vis-à-vis des opérateurs.' },
-  operateurs: { title:'Opérateurs de transport', body:'RATP, SNCF, EOLIS et autres. Liés à IDFM par des contrats et marchés. IDFM décide des nouveaux tracés et sélectionne l\'opérateur pour les mettre en œuvre — pas forcément la RATP.' },
-  dnum:       { title:'Direction du Numérique (DNUM)', body:'Met en œuvre les systèmes d\'information en support de la politique de mobilité. Regroupe plusieurs métiers : architectes, data scientists, cellule SSI, et l\'urbaniste SI.' },
-  directions: { title:'Autres directions IDFM', body:'IDFM compte plusieurs directions internes. La direction du numérique en est une parmi d\'autres.' },
-  jade:       { title:'Jade · Urbaniste SI (alternante)', body:'Première urbaniste SI de la DNUM — poste créé l\'année dernière. Mission : vision complète et cohérente de tous les systèmes d\'information. Inventaire des applicatifs, cartographie des flux, généralisation des patterns architecturaux. Utilise le logiciel MEGA.' },
-  archi:      { title:'Architectes', body:'Jade échange beaucoup avec les architectes mais ne valide pas les architectures — c\'est leur rôle. Elle prend de la hauteur : si un pattern se répète, elle peut proposer de le généraliser comme norme IDFM.' },
-  data:       { title:'Data scientists', body:'Jade échange régulièrement avec les data scientists dans le cadre de sa mission transverse de cartographie des systèmes d\'information.' },
-  ssi:        { title:'Cellule SSI · Cyber', body:'Jade interagit avec la cellule de cybersécurité pour comprendre les enjeux SSI, sans intervenir dans les décisions de conformité — elle reste à un niveau de gouvernance.' },
+  region:      { title:'État &amp; Région Île-de-France', body:'Décident la politique de mobilité au niveau national et régional. Le conseil d\'administration d\'IDFM est présidé par Valérie Pécresse, présidente de la région Île-de-France.' },
+  idfm:        { title:'Île-de-France Mobilités', body:'AOM (Autorité Organisatrice de la Mobilité) : responsable de toute la mobilité en Île-de-France. Donneur d\'ordre vis-à-vis des opérateurs. Définit les tracés, les lignes, les marchés, et sélectionne les opérateurs via appels d\'offres.' },
+  operateurs:  { title:'Opérateurs de transport', body:'RATP, SNCF, EOLIS et autres. Liés à IDFM par des contrats. IDFM décide des nouveaux tracés et sélectionne l\'opérateur pour les mettre en œuvre — pas nécessairement la RATP.' },
+  dnum:        { title:'Direction du Numérique (DNUM)', body:'Met en œuvre les systèmes d\'information en support de la politique de mobilité d\'IDFM. Regroupe plusieurs départements dont le Département Ingénierie Digitale.' },
+  directions:  { title:'Autres directions IDFM', body:'IDFM compte plusieurs directions internes. La Direction du Numérique en est une parmi d\'autres.' },
+  did:         { title:'Département Ingénierie Digitale', body:'Département au sein de la DNUM, regroupant notamment la Cellule d\'Architecture chargée de la gouvernance et de la cohérence des systèmes d\'information.' },
+  archi_cell:  { title:'Cellule d\'Architecture', body:'Au sein du Département Ingénierie Digitale. C\'est ici que travaillent Magali Bouvat (Urbaniste SI) et les architectes, avec pour mission la cohérence transversale du SI d\'IDFM.' },
+  architectes: { title:'Architectes', body:'Membres de la Cellule d\'Architecture. Ils valident les architectures des projets et interviennent dans les documents d\'architecture. Magali échange avec eux mais ne valide pas elle-même — elle prend du recul pour identifier des patterns et proposer des normes.' },
+  magali:      { title:'Magali Bouvat · Urbaniste SI', body:'Première urbaniste SI de la DNUM — poste créé l\'année dernière. Sa mission : donner la vision complète et cohérente de tous les systèmes d\'information d\'IDFM. Elle pilote l\'outil MEGA, identifie les patterns architecturaux récurrents et les transforme en normes pour toute l\'organisation.' },
+  data:        { title:'Data scientists', body:'Magali échange régulièrement avec les data scientists dans le cadre de sa mission transverse de cartographie et de gouvernance du SI.' },
+  ssi:         { title:'Cellule SSI · Cyber', body:'Magali interagit avec la cellule de cybersécurité pour comprendre les enjeux SSI, sans intervenir dans les décisions de conformité — elle reste au niveau de la gouvernance et de la cohérence globale.' },
+  jade:        { title:'Jade · Alternante ★', body:'Assiste Magali Bouvat dans ses missions d\'urbanisme SI. Missions : cartographier et inventorier les SI avec MEGA, déployer et assurer le support de MEGA en interne, former les contributeurs (chefs de projet), et contribuer à la définition de normes d\'architecture pour IDFM.' },
 };
 
 function orgTip(key) {
