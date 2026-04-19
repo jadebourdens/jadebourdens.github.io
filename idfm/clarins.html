@@ -216,90 +216,150 @@ footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justi
           <div class="tl-layer">Mesure d'Impact &amp; Insights Métiers</div>
           <div class="tl-desc">Pipelines Python/SQL via API · études pub (Brand Lift, A/B Testing, Lumen, Kantar) · rapports stratégiques pour centaines de clients multi-secteur. Expérience forte en extraction, nettoyage et documentation de données issues de plateformes internes.</div>
           <div style="margin-top:1rem;background:#fff;border:1px solid rgba(196,120,80,0.18);border-radius:14px;padding:1rem;overflow:hidden">
-            <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem">Écosystème Data TEADS · Mon périmètre data</div>
-            <svg width="100%" viewBox="0 0 700 400" style="display:block">
-              <defs><marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-              <!-- Data sources layer -->
-              <rect x="8" y="20" width="684" height="80" rx="9" fill="rgba(196,64,26,0.04)" stroke="#c4401a" stroke-width="0.7" stroke-dasharray="5 3"/>
-              <text x="350" y="14" text-anchor="middle" font-size="9" fill="#c4401a" font-family="monospace" letter-spacing=".09em">SOURCES DE DONNÉES</text>
-              <g class="nclick" onclick="tip('platform')"><rect x="20" y="30" width="140" height="56" rx="7" fill="#fef6f0" stroke="#c4401a" stroke-width="1.3"/><text x="90" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Plateforme Teads</text><text x="90" y="68" text-anchor="middle" font-size="9" fill="#c4401a">Portail interne</text></g>
-              <g class="nclick" onclick="tip('bigquery')"><rect x="178" y="30" width="140" height="56" rx="7" fill="#fef6f0" stroke="#d4703a" stroke-width="0.7"/><text x="248" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">BigQuery</text><text x="248" y="68" text-anchor="middle" font-size="9" fill="#d4703a">Data Warehouse</text></g>
-              <g class="nclick" onclick="tip('snowflake')"><rect x="336" y="30" width="140" height="56" rx="7" fill="#fef6f0" stroke="#d4703a" stroke-width="0.7"/><text x="406" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Snowflake</text><text x="406" y="68" text-anchor="middle" font-size="9" fill="#d4703a">Data Lake</text></g>
-              <g class="nclick" onclick="tip('studies')"><rect x="494" y="30" width="192" height="56" rx="7" fill="rgba(196,64,26,0.07)" stroke="#c4401a" stroke-width="1"/><text x="590" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Études pub</text><text x="590" y="68" text-anchor="middle" font-size="9" fill="#c4401a">Brand lift · Attention · A/B</text></g>
+            <div style="margin-top:1rem;background:#fff;border:1px solid rgba(196,120,80,0.18);border-radius:14px;padding:1rem;overflow:hidden">
+            <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem">Écosystème AdTech TEADS · Où je me situais</div>
+            <svg width="100%" viewBox="0 0 700 510" style="display:block">
+              <defs>
+                <marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+              </defs>
 
-              <!-- Processing layer -->
-              <rect x="8" y="120" width="684" height="80" rx="9" fill="rgba(212,112,58,0.04)" stroke="#d4703a" stroke-width="0.6" stroke-dasharray="5 3"/>
-              <text x="350" y="114" text-anchor="middle" font-size="9" fill="#d4703a" font-family="monospace" letter-spacing=".09em">TRAITEMENT &amp; QUALITÉ</text>
-              <g class="nclick" onclick="tip('pipeline')"><rect x="20" y="130" width="180" height="56" rx="7" fill="#fdf8f5" stroke="#d4703a" stroke-width="0.7"/><text x="110" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Pipelines Python/SQL</text><text x="110" y="168" text-anchor="middle" font-size="9" fill="#d4703a">Extraction · nettoyage · standardisation</text></g>
-              <g class="nclick" onclick="tip('referentiel')"><rect x="218" y="130" width="180" height="56" rx="7" fill="#fdf8f5" stroke="#d4703a" stroke-width="0.7"/><text x="308" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Référentiel de données</text><text x="308" y="168" text-anchor="middle" font-size="9" fill="#d4703a">Standardisation des indicateurs</text></g>
-              <g class="nclick" onclick="tip('dq')"><rect x="416" y="130" width="180" height="56" rx="7" fill="rgba(196,64,26,0.07)" stroke="#c4401a" stroke-width="1.2"/><text x="506" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Contrôle qualité ★</text><text x="506" y="168" text-anchor="middle" font-size="9" fill="#c4401a">Vérification fiabilité données</text></g>
+              <!-- SUPPLY zone -->
+              <rect x="8" y="30" width="130" height="220" rx="9" fill="none" stroke="#5DCAA5" stroke-width="0.7" stroke-dasharray="5 3"/>
+              <text x="73" y="22" text-anchor="middle" font-size="9" fill="#0F6E56" font-family="monospace" letter-spacing=".09em">SUPPLY</text>
 
-              <!-- Output layer -->
-              <rect x="8" y="220" width="684" height="80" rx="9" fill="rgba(232,168,124,0.06)" stroke="#e8a87c" stroke-width="0.6" stroke-dasharray="5 3"/>
-              <text x="350" y="214" text-anchor="middle" font-size="9" fill="#a07040" font-family="monospace" letter-spacing=".09em">RESTITUTION &amp; DOCUMENTATION</text>
-              <g class="nclick" onclick="tip('jade')"><rect x="20" y="230" width="200" height="56" rx="7" fill="rgba(196,64,26,0.08)" stroke="rgba(196,64,26,0.4)" stroke-width="1"/><text x="120" y="252" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Jade · Insight Analyst ★</text><text x="120" y="268" text-anchor="middle" font-size="9" fill="#c4401a">Centaines de clients</text></g>
-              <g class="nclick" onclick="tip('ppt')"><rect x="238" y="230" width="200" height="56" rx="7" fill="rgba(212,112,58,0.08)" stroke="#d4703a" stroke-width="1.2"/><text x="338" y="252" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Rapport &amp; Documentation</text><text x="338" y="268" text-anchor="middle" font-size="9" fill="#d4703a">Storytelling décisionnel</text></g>
-              <g class="nclick" onclick="tip('client')"><rect x="456" y="230" width="220" height="56" rx="7" fill="#fdf8f5" stroke="#e8a87c" stroke-width="0.7"/><text x="566" y="252" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Client / C-Level</text><text x="566" y="268" text-anchor="middle" font-size="9" fill="#a07040">Luxe · FMCG · Auto · Retail...</text></g>
+              <!-- EXCHANGE zone -->
+              <rect x="244" y="100" width="212" height="66" rx="9" fill="none" stroke="#a07040" stroke-width="0.6" stroke-dasharray="5 3"/>
+              <text x="350" y="93" text-anchor="middle" font-size="9" fill="#7a5530" font-family="monospace" letter-spacing=".09em">AD EXCHANGE · RTB</text>
 
-              <!-- Arrows -->
-              <line class="tf2" x1="90" y1="86" x2="90" y2="130" stroke="#c4401a" stroke-width="1.4" marker-end="url(#ta)"/>
-              <line class="tf2" x1="248" y1="86" x2="248" y2="130" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
-              <line class="tf2" x1="406" y1="86" x2="406" y2="130" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
-              <line class="tf2" x1="590" y1="86" x2="590" y2="130" stroke="#c4401a" stroke-width="1.2" marker-end="url(#ta)"/>
-              <line class="tf2" x1="110" y1="186" x2="110" y2="230" stroke="#c4401a" stroke-width="1.4" marker-end="url(#ta)"/>
-              <line class="tf2" x1="338" y1="186" x2="338" y2="230" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
-              <line class="tf2" x1="506" y1="186" x2="506" y2="230" stroke="#c4401a" stroke-width="1.2" marker-end="url(#ta)"/>
-              <line class="tf2" x1="220" y1="258" x2="238" y2="258" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
-              <line class="tf2" x1="438" y1="258" x2="456" y2="258" stroke="#e8a87c" stroke-width="1" marker-end="url(#ta)"/>
+              <!-- DEMAND zone -->
+              <rect x="562" y="30" width="130" height="220" rx="9" fill="none" stroke="#d4703a" stroke-width="0.7" stroke-dasharray="5 3"/>
+              <text x="627" y="22" text-anchor="middle" font-size="9" fill="#8b2500" font-family="monospace" letter-spacing=".09em">DEMAND</text>
 
-              <!-- Row at bottom: client labels -->
-              <text x="90" y="306" text-anchor="middle" font-size="8.5" fill="#a07040" font-family="monospace">Source principale</text>
-              <text x="506" y="306" text-anchor="middle" font-size="8.5" fill="#c4401a" font-family="monospace">★ Compétence clé</text>
+              <!-- JADE PERIMETER zone -->
+              <rect x="8" y="268" width="684" height="228" rx="11" fill="rgba(196,64,26,0.04)" stroke="#c4401a" stroke-width="1.3"/>
+              <text x="350" y="260" text-anchor="middle" font-size="9" fill="#c4401a" font-family="monospace" letter-spacing=".11em">PÉRIMÈTRE JADE — INSIGHT ANALYST · TEADS</text>
+
+              <!-- SUPPLY nodes -->
+              <g class="nclick" onclick="tip('pub')">
+                <rect x="16" y="40" width="114" height="36" rx="7" fill="#F1F8F5" stroke="#5DCAA5" stroke-width="0.7"/>
+                <text x="73" y="54" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Éditeur Web</text>
+                <text x="73" y="68" text-anchor="middle" font-size="9" fill="#0F6E56">Site / App</text>
+              </g>
+              <g class="nclick" onclick="tip('adserver')">
+                <rect x="16" y="86" width="114" height="36" rx="7" fill="#F1F8F5" stroke="#5DCAA5" stroke-width="0.7"/>
+                <text x="73" y="100" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Ad Server</text>
+                <text x="73" y="114" text-anchor="middle" font-size="9" fill="#0F6E56">GAM</text>
+              </g>
+              <g class="nclick" onclick="tip('ssp')">
+                <rect x="16" y="134" width="114" height="36" rx="7" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+                <text x="73" y="148" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">SSP Teads</text>
+                <text x="73" y="162" text-anchor="middle" font-size="9" fill="#0F6E56">Supply web</text>
+              </g>
+              <g class="nclick" onclick="tip('ctv')">
+                <rect x="16" y="182" width="114" height="36" rx="7" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+                <text x="73" y="196" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Teads TV / CTV</text>
+                <text x="73" y="210" text-anchor="middle" font-size="9" fill="#0F6E56">Vidéo · TV</text>
+              </g>
+
+              <!-- EXCHANGE node -->
+              <g class="nclick" onclick="tip('exchange')">
+                <rect x="252" y="108" width="196" height="50" rx="8" fill="#FDF5EE" stroke="#a07040" stroke-width="0.8"/>
+                <text x="350" y="128" text-anchor="middle" font-size="12" font-weight="500" fill="#5a2010">Ad Exchange</text>
+                <text x="350" y="145" text-anchor="middle" font-size="9" fill="#7a5530">OpenRTB · &lt;100ms</text>
+              </g>
+              <!-- RTB pulse dots -->
+              <circle cx="236" cy="133" r="4" fill="#c4401a" class="blink2" style="animation-delay:0s"/>
+              <circle cx="464" cy="133" r="4" fill="#d4703a" class="blink2" style="animation-delay:.2s"/>
+
+              <!-- DEMAND nodes -->
+              <g class="nclick" onclick="tip('dsp')">
+                <rect x="570" y="40" width="114" height="36" rx="7" fill="#FEF6F0" stroke="#d4703a" stroke-width="0.8"/>
+                <text x="627" y="54" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">DSP Teads</text>
+                <text x="627" y="68" text-anchor="middle" font-size="9" fill="#c4401a">Demand side</text>
+              </g>
+              <g class="nclick" onclick="tip('crm')">
+                <rect x="570" y="86" width="114" height="36" rx="7" fill="#FEF6F0" stroke="#d4703a" stroke-width="0.8"/>
+                <text x="627" y="100" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">CRM</text>
+                <text x="627" y="114" text-anchor="middle" font-size="9" fill="#c4401a">Salesforce</text>
+              </g>
+              <g class="nclick" onclick="tip('cdp')">
+                <rect x="570" y="134" width="114" height="36" rx="7" fill="#FEF6F0" stroke="#d4703a" stroke-width="0.8"/>
+                <text x="627" y="148" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">CDP</text>
+                <text x="627" y="162" text-anchor="middle" font-size="9" fill="#c4401a">Audiences</text>
+              </g>
+              <g class="nclick" onclick="tip('adv')">
+                <rect x="570" y="182" width="114" height="36" rx="7" fill="#FEF6F0" stroke="#d4703a" stroke-width="0.8"/>
+                <text x="627" y="196" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Annonceur</text>
+                <text x="627" y="210" text-anchor="middle" font-size="9" fill="#c4401a">Multi-secteur</text>
+              </g>
+
+              <!-- Arrows Supply → Exchange → Demand -->
+              <line x1="70" y1="76" x2="70" y2="86" stroke="#5DCAA5" stroke-width="0.8"/>
+              <line x1="70" y1="122" x2="70" y2="134" stroke="#1D9E75" stroke-width="0.8"/>
+              <path class="tf2" d="M130 152 L252 133" stroke="#a07040" stroke-width="1.4" marker-end="url(#ta)"/>
+              <path class="tf2" d="M130 200 L252 143" stroke="#a07040" stroke-width="1.4" marker-end="url(#ta)"/>
+              <path class="tf2" d="M448 133 L570 60" stroke="#d4703a" stroke-width="1.4" marker-end="url(#ta)"/>
+              <path class="tfs2" fill="none" d="M570 100 L500 100 L500 133 L448 133" stroke="#d4703a" stroke-width="0.8" stroke-dasharray="3 4"/>
+
+              <!-- JADE PERIMETER — Row 1: Infra + Plateforme + Études -->
+              <g class="nclick" onclick="tip('blackbox')">
+                <rect x="16" y="280" width="188" height="48" rx="8" fill="#F5F0EC" stroke="#a07040" stroke-width="0.7"/>
+                <text x="68" y="300" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Infra Teads 🔒</text>
+                <text x="84" y="316" text-anchor="middle" font-size="9" fill="#7a5530">BigQuery · Snowflake · pipelines</text>
+              </g>
+              <g class="nclick" onclick="tip('platform')">
+                <rect x="216" y="280" width="184" height="48" rx="8" fill="rgba(196,64,26,0.08)" stroke="#c4401a" stroke-width="1.5"/>
+                <text x="308" y="300" text-anchor="middle" font-size="12" font-weight="500" fill="#8b2500">Plateforme Teads</text>
+                <text x="308" y="316" text-anchor="middle" font-size="9" fill="#c4401a">Portail interne · extraction résultats</text>
+                <rect x="364" y="280" width="34" height="16" rx="8" fill="#c4401a"/>
+                <text x="381" y="291" text-anchor="middle" font-size="7" fill="#fff" font-weight="600">interne</text>
+              </g>
+              <g class="nclick" onclick="tip('studies')">
+                <rect x="412" y="280" width="272" height="48" rx="8" fill="rgba(29,158,117,0.08)" stroke="#1D9E75" stroke-width="1.2"/>
+                <text x="548" y="300" text-anchor="middle" font-size="11" font-weight="500" fill="#085041">Études pub</text>
+                <text x="548" y="316" text-anchor="middle" font-size="9" fill="#0F6E56">Brand lift · Attention · Kantar · Lumen · A/B</text>
+              </g>
+
+              <!-- JADE PERIMETER — Row 2: Jade + Rapport + Client -->
+              <g class="nclick" onclick="tip('jade')">
+                <rect x="16" y="352" width="188" height="48" rx="8" fill="rgba(196,64,26,0.1)" stroke="rgba(196,64,26,0.5)" stroke-width="1.3"/>
+                <text x="110" y="372" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2500">Jade · Insight Analyst ★</text>
+                <text x="110" y="388" text-anchor="middle" font-size="9" fill="#c4401a">Python · SQL · API · 100s clients</text>
+              </g>
+              <g class="nclick" onclick="tip('ppt')">
+                <rect x="216" y="352" width="184" height="48" rx="8" fill="rgba(212,112,58,0.09)" stroke="#d4703a" stroke-width="1.3"/>
+                <text x="308" y="372" text-anchor="middle" font-size="12" font-weight="500" fill="#5a2010">Rapport PowerPoint</text>
+                <text x="308" y="388" text-anchor="middle" font-size="9" fill="#d4703a">Captures · analyse · storytelling</text>
+              </g>
+              <g class="nclick" onclick="tip('client')">
+                <rect x="412" y="352" width="272" height="48" rx="8" fill="#F5F0EC" stroke="#a07040" stroke-width="0.7"/>
+                <text x="548" y="372" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Client / C-Level</text>
+                <text x="548" y="388" text-anchor="middle" font-size="9" fill="#7a5530">Luxe · FMCG · Auto · Finance · Retail · Santé…</text>
+              </g>
+
+              <!-- Arrows inside perimeter -->
+              <line class="tf2" x1="204" y1="304" x2="216" y2="304" stroke="#c4401a" stroke-width="1.4" marker-end="url(#ta)"/>
+              <line class="tf2" x1="400" y1="304" x2="412" y2="304" stroke="#1D9E75" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="110" y1="328" x2="110" y2="352" stroke="#c4401a" stroke-width="1.4" marker-end="url(#ta)"/>
+              <line class="tf2" x1="308" y1="328" x2="308" y2="352" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <path class="tf2" d="M448 328 L380 372" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="548" y1="328" x2="548" y2="352" stroke="#a07040" stroke-width="1" marker-end="url(#ta)"/>
+              <line class="tf2" x1="400" y1="376" x2="412" y2="376" stroke="#a07040" stroke-width="1" marker-end="url(#ta)"/>
+
+              <!-- Ecosystem → perimeter connectors -->
+              <path class="tfs2" fill="none" d="M73 228 L73 280" stroke="#a07040" stroke-width="0.9" stroke-dasharray="3 4" marker-end="url(#ta)"/>
+              <path class="tfs2" fill="none" d="M350 158 L350 280" stroke="#a07040" stroke-width="0.9" stroke-dasharray="3 4" marker-end="url(#ta)"/>
             </svg>
-            <div class="maptip" id="maptip"><strong>Cliquez un composant</strong>Chaque bloc représente une source, un traitement ou un livrable de mon workflow data chez TEADS.</div>
+
+            <div class="maptip" id="maptip"><strong>Cliquez un composant</strong>Chaque nœud représente un acteur ou système de l'écosystème TEADS.</div>
             <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(196,120,80,0.1);font-size:10px;color:var(--text3)">
-              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#c4401a;display:inline-block"></span>Sources &amp; contrôle qualité</span>
-              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#d4703a;display:inline-block"></span>Traitement &amp; pipelines</span>
-              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#e8a87c;display:inline-block"></span>Restitution</span>
-              <span style="display:flex;align-items:center;gap:4px;color:var(--text2);font-weight:500"><span style="width:8px;height:8px;border-radius:2px;background:rgba(196,64,26,0.4);display:inline-block"></span>Périmètre Jade ★</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#5DCAA5;display:inline-block"></span>Supply web</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#a07040;display:inline-block"></span>Ad Exchange RTB</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#d4703a;display:inline-block"></span>Demand</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#c4401a;display:inline-block"></span>Plateforme interne</span>
+              <span style="display:flex;align-items:center;gap:4px;font-weight:500;color:var(--text2)"><span style="width:8px;height:8px;border-radius:2px;background:rgba(196,64,26,0.5);display:inline-block"></span>Périmètre Jade ★</span>
             </div>
           </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot d3"></div>
-          <div class="tl-period">Sep 2021 — Sep 2022</div>
-          <div class="tl-company">T&amp;T Foods · Grande distribution</div>
-          <div class="tl-role">Marketing Insight Analyst</div>
-          <div class="tl-layer">Couche stratégique</div>
-          <div class="tl-desc">ROI multi-canal, pricing compétitif, recommandations pour lancement produit Paris. Premiers pas dans la documentation de standards de reporting.</div>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-dot d3"></div>
-          <div class="tl-period">Jan 2020 — Août 2021</div>
-          <div class="tl-company">Cookâme FoodTech</div>
-          <div class="tl-role">Sales Reporting Analyst</div>
-          <div class="tl-layer">Couche analytique</div>
-          <div class="tl-desc">Segmentation clients, comportements d'achat, comparaisons multi-sites pour 5 restaurants. Mise en place de définitions partagées des indicateurs de vente.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot d2"></div>
-          <div class="tl-period">Jan 2018 — Nov 2019</div>
-          <div class="tl-company">JL Retail Fashion · Vietnam</div>
-          <div class="tl-role">Supply Chain &amp; Retail Analyst</div>
-          <div class="tl-layer">Couche opérationnelle</div>
-          <div class="tl-desc">Gestion stocks, optimisation supply chain, collaboration fournisseurs. Première expérience de la qualité de la donnée terrain.</div>
-        </div>
-        <div class="card" style="margin-top:1.2rem;border-color:rgba(196,64,26,0.18)">
-          <div class="card-label">La progression logique</div>
-          <div class="card-body" style="font-size:.82rem">Chaque poste a ajouté une <strong>couche de maturité data</strong> : des flux physiques aux pipelines analytiques, jusqu'à la gouvernance globale de la donnée.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
 
 <!-- 03 COMPÉTENCES -->
 <section id="s03" class="slide">
