@@ -1,1 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade Bourdens — Candidate Data Governance & Analytics · Clarins</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--bg2:#fdf8f5;--bg3:#faf3ef;
+  --surface:#fef6f0;--surface2:#fdeadf;
+  --border:rgba(196,120,80,0.13);--border2:rgba(196,120,80,0.28);
+  --text:#1e1410;--text2:#5a4030;--text3:#a08070;
+  --accent:#c4401a;--accent2:#d4703a;--accent3:#8b2500;--soft:#e8a87c;
+  --grad:linear-gradient(135deg,#c4401a 0%,#d4703a 60%,#e8a87c 100%);
+  --grad2:linear-gradient(135deg,#8b2500,#c4401a,#e8a87c);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+#bgCanvas{position:fixed;inset:0;z-index:0;opacity:.25;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,120,80,0.1)}
+.logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent);letter-spacing:.01em}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.slide{min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;padding:110px 0 70px}
+.slide.alt{background:var(--bg2)}
+.container{max-width:1100px;margin:0 auto;padding:0 48px;width:100%}
+#s01{justify-content:center;text-align:center;background:var(--bg);overflow:hidden}
+.slide-num{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.15em;margin-bottom:1.5rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.55)}}
+.section-label{font-family:'DM Mono',monospace;font-size:.66rem;color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.65rem;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;max-width:36px;height:1px;background:var(--accent2);opacity:.5}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;margin-bottom:.9rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-title em{font-style:italic}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 2px 10px rgba(196,120,80,0.06);transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{border-color:var(--border2);box-shadow:0 8px 28px rgba(196,120,80,0.13);transform:translateY(-2px)}
+.card-label{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.55rem}
+.card-title{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.45rem}
+.card-body{font-size:.85rem;color:var(--text2);line-height:1.75}
+.card-body strong{color:var(--text);font-weight:600}
+.pills-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{font-size:.73rem;padding:4px 13px;border-radius:20px;background:var(--surface);border:1px solid rgba(196,120,80,0.18);color:var(--text2);font-weight:500;transition:all .15s}
+.pill:hover{background:var(--surface2);color:var(--accent);border-color:rgba(196,64,26,0.28)}
+.pill-accent{background:rgba(196,64,26,0.07);border-color:rgba(196,64,26,0.2);color:var(--accent)}
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.5rem}
+.timeline{position:relative;padding-left:1.75rem}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,rgba(196,120,80,0.4),rgba(196,120,80,0.08))}
+.tl-item{position:relative;margin-bottom:2.2rem;padding-left:1.2rem}
+.tl-dot{position:absolute;left:-2.15rem;top:5px;width:9px;height:9px;border-radius:50%;border:2px solid}
+.d1{border-color:var(--accent);background:rgba(196,64,26,0.12)}
+.d2{border-color:var(--accent2);background:rgba(212,112,58,0.12)}
+.d3{border-color:var(--soft);background:rgba(232,168,124,0.12)}
+.tl-period{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.1em;margin-bottom:.25rem}
+.tl-company{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.12rem}
+.tl-role{font-size:.78rem;color:var(--accent);margin-bottom:.28rem;font-weight:500}
+.tl-layer{display:inline-block;font-size:.68rem;padding:2px 10px;border-radius:20px;background:var(--surface);border:1px solid rgba(196,120,80,0.18);color:var(--accent2);margin-bottom:.4rem;font-weight:500;margin-right:4px}
+.tl-desc{font-size:.8rem;color:var(--text2);line-height:1.65}
+@keyframes tdash2{to{stroke-dashoffset:-20}}
+@keyframes tpulse2{0%,100%{opacity:1}50%{opacity:.18}}
+.tf2{stroke-dasharray:4 5;animation:tdash2 1.3s linear infinite;fill:none}
+.tfs2{stroke-dasharray:3 7;animation:tdash2 2.2s linear infinite;fill:none}
+.blink2{animation:tpulse2 .75s ease-in-out infinite}
+.nclick{cursor:pointer;transition:opacity .15s}.nclick:hover{opacity:.8}
+.maptip{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:.8rem;color:var(--text2);line-height:1.65;margin-top:.6rem;min-height:52px}
+.maptip strong{color:var(--text);font-weight:600;display:block;margin-bottom:.15rem}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.skill-bar-row{margin-bottom:1rem}
+.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:.35rem}
+.skill-bar-name{font-size:.8rem;color:var(--text2)}
+.skill-bar-pct{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text3)}
+.skill-track{height:4px;background:rgba(196,120,80,0.09);border-radius:2px;overflow:hidden}
+.skill-fill{height:4px;border-radius:2px;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.fa{background:linear-gradient(90deg,#c4401a,#e8a87c)}
+.fb{background:linear-gradient(90deg,#8b2500,#e8a87c)}
+.fc{background:rgba(232,168,124,0.38)}
+.flux-intro{font-size:.88rem;color:var(--text2);line-height:1.85;max-width:680px;margin-bottom:2rem}
+.flux-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:start;margin-bottom:2rem}
+.flux-col-head{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem;text-align:center}
+.flux-col{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem;box-shadow:0 2px 10px rgba(196,120,80,0.06)}
+.flux-col.accent-col{border-color:rgba(196,64,26,0.22);background:#fff9f7}
+.fnode{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid rgba(196,120,80,0.14);border-radius:10px;padding:9px 13px;font-size:.78rem;color:var(--text);margin-bottom:6px;transition:all .18s}
+.fnode:hover{background:var(--surface2);border-color:rgba(196,64,26,0.28);transform:translateX(3px)}
+.fnode-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.fnode-label{flex:1;line-height:1.4}
+.fnode-sub{font-size:.66rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:2px}
+.farrow{display:flex;align-items:center;justify-content:center;gap:5px;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);padding:3px 0;margin-bottom:3px}
+.farrow::before,.farrow::after{content:'';flex:1;height:1px;background:rgba(196,120,80,0.13)}
+.flux-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding-top:2.8rem}
+.flux-mid-arrow{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#c4401a,#8b2500);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(196,64,26,0.3)}
+.flux-mid-arrow svg{width:16px;height:16px;fill:white}
+.flux-mid-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);letter-spacing:.1em;text-align:center;line-height:1.5}
+.flux-takeaway{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.ftake{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;box-shadow:0 2px 8px rgba(196,120,80,0.05)}
+.ftake-icon{font-size:18px;margin-bottom:.4rem}
+.ftake-title{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.ftake-body{font-size:.75rem;color:var(--text2);line-height:1.6}
+.flux-col.accent-col .fnode{background:rgba(196,64,26,0.04);border-color:rgba(196,64,26,0.14)}
+.flux-col.accent-col .fnode:hover{background:rgba(196,64,26,0.09)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.5rem}
+.why-big{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem;grid-column:1/-1;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(196,120,80,0.06)}
+.why-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c4401a,#d4703a,#e8a87c)}
+.why-stat{font-family:'DM Serif Display',serif;font-size:3rem;font-weight:400;line-height:1;margin-bottom:.25rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.why-stat-label{font-size:.72rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.nk{cursor:pointer;transition:opacity .15s}.nk:hover{opacity:.75}
+.orgtip{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;font-size:.78rem;color:var(--text2);line-height:1.65;margin-top:.75rem;min-height:44px}
+.orgtip strong{font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);display:block;margin-bottom:.2rem}
+.org-leg{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.65rem;padding-top:.65rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--text3);font-family:'DM Mono',monospace}
+.org-li{display:flex;align-items:center;gap:4px}
+.org-ld{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.project-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;margin-top:2.5rem;align-items:start}
+.si-map{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.6rem;box-shadow:0 2px 10px rgba(196,120,80,0.06)}
+.si-map-title{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem;text-align:center}
+.si-zone{margin-bottom:1.1rem}
+.si-zone-label{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;border-radius:20px;margin-bottom:.45rem;display:inline-block;font-weight:600}
+.z1{background:rgba(196,64,26,0.08);color:var(--accent);border:1px solid rgba(196,64,26,0.18)}
+.z2{background:rgba(212,112,58,0.08);color:var(--accent2);border:1px solid rgba(212,112,58,0.18)}
+.z3{background:rgba(232,168,124,0.1);color:#8b2500;border:1px solid rgba(232,168,124,0.22)}
+.z4{background:var(--surface);color:var(--text2);border:1px solid var(--border)}
+.si-apps{display:flex;flex-wrap:wrap;gap:5px}
+.si-app{font-size:.7rem;padding:4px 11px;border-radius:20px;background:var(--surface);border:1px solid rgba(196,120,80,0.16);color:var(--text2);cursor:pointer;transition:all .15s;font-weight:500}
+.si-app:hover{color:var(--accent);border-color:rgba(196,64,26,0.32);background:var(--surface2)}
+.si-flux-line{border-top:1px dashed rgba(196,120,80,0.16);margin:7px 0;display:flex;justify-content:center;position:relative}
+.si-flux-label{position:relative;top:-.62rem;background:#fff;padding:0 7px;font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text3);white-space:nowrap}
+.project-notes{display:flex;flex-direction:column;gap:.9rem}
+footer{border-top:1px solid var(--border);padding:1.4rem 48px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;background:#fff}
+.footer-text{font-size:.7rem;color:var(--text3);letter-spacing:.06em}
+#progress{position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;width:40px;height:40px;filter:drop-shadow(0 2px 8px rgba(196,120,80,0.25))}
+.divider{height:1px;background:var(--border);position:relative;z-index:1;max-width:1100px;margin:0 auto}
+@media(max-width:800px){
+  nav{padding:13px 18px}.nav-links{display:none}.container{padding:0 18px}
+  .tl-grid,.skills-layout,.flux-compare,.flux-takeaway,.why-grid,.project-layout{grid-template-columns:1fr}
+  .flux-mid{flex-direction:row;padding-top:0}
+  .why-grid .why-big{grid-column:auto}
+  footer{padding:1.2rem 18px;flex-direction:column;gap:.7rem;text-align:center}
+}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
 
+<nav>
+  <div class="logo">Jade Bourdens</div>
+  <ul class="nav-links">
+    <li><a href="#s01">Accueil</a></li>
+    <li><a href="#s02">Parcours</a></li>
+    <li><a href="#s03">Compétences</a></li>
+    <li><a href="#s04">Vision Data</a></li>
+    <li><a href="#s05">Pourquoi Clarins</a></li>
+    <li><a href="#s06">Mini-projet</a></li>
+  </ul>
+</nav>
+
+<!-- 01 ACCUEIL -->
+<section id="s01" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;background:#fff;overflow:hidden">
+  <div style="position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,168,124,0.1) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(196,64,26,0.07) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="max-width:780px;width:100%;padding:0 48px;text-align:left">
+    <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text3);letter-spacing:.18em;margin-bottom:2rem;animation:fadeUp .5s .05s both">01 / 06</div>
+    <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(196,64,26,0.07);border:1px solid rgba(196,64,26,0.2);color:var(--accent2);padding:6px 16px;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2.2rem;animation:fadeUp .5s .12s both">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;display:inline-block"></span>
+      Candidate · Alternance 12 mois · Clarins
+    </div>
+    <h1 style="font-family:'DM Serif Display',serif;font-size:clamp(2.6rem,5vw,5rem);font-weight:400;line-height:1.08;margin-bottom:1.6rem;animation:fadeUp .6s .2s both;color:var(--text)">
+      Je transforme la donnée<br>en insights depuis 5 ans —<br><em style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">maintenant, je gouverne<br>la donnée à la source.</em>
+    </h1>
+    <p style="font-size:.98rem;color:var(--text2);line-height:1.8;margin-bottom:1.4rem;max-width:560px;animation:fadeUp .6s .32s both">
+      Apprenti(e) Data Governance &amp; Analytics ·
+      <span style="color:var(--accent);font-weight:500">Groupe Clarins</span>
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:3rem;animation:fadeUp .6s .38s both;max-width:680px">
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(196,64,26,0.08);border:1px solid rgba(196,64,26,0.2);color:var(--accent)">Data Governance</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(212,112,58,0.08);border:1px solid rgba(212,112,58,0.2);color:var(--accent2)">Data Catalog</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(232,168,124,0.12);border:1px solid rgba(232,168,124,0.25);color:#8b2500">Data Quality</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(196,64,26,0.08);border:1px solid rgba(196,64,26,0.2);color:var(--accent)">Data Glossary</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(212,112,58,0.08);border:1px solid rgba(212,112,58,0.2);color:var(--accent2)">Data Products</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(232,168,124,0.12);border:1px solid rgba(232,168,124,0.25);color:#8b2500">Data Observability</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(196,64,26,0.08);border:1px solid rgba(196,64,26,0.2);color:var(--accent)">Data Pipelines</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(212,112,58,0.08);border:1px solid rgba(212,112,58,0.2);color:var(--accent2)">Conduite du changement</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(232,168,124,0.12);border:1px solid rgba(232,168,124,0.25);color:#8b2500">Vision Transversale</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(196,64,26,0.08);border:1px solid rgba(196,64,26,0.2);color:var(--accent)">Modélisation de données</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 13px;border-radius:6px;font-size:.75rem;font-weight:500;background:rgba(212,112,58,0.08);border:1px solid rgba(212,112,58,0.2);color:var(--accent2)">Acculturation Data</span>
+    </div>
+    <a href="#s02" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#c4401a,#8b2500);color:white;padding:14px 32px;border-radius:6px;font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 6px 22px rgba(196,64,26,0.35);transition:all .22s;animation:fadeUp .6s .46s both" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(196,64,26,0.5)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 6px 22px rgba(196,64,26,0.35)'">
+      Découvrir ma candidature →
+    </a>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- 02 PARCOURS -->
+<section id="s02" class="slide alt">
+  <div class="container">
+    <div class="slide-num">02 / 06</div>
+    <div class="section-label">Parcours professionnel</div>
+    <h2 class="section-title">Mon parcours <em></em></h2>
+    <div class="tl-grid">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot d1"></div>
+          <div class="tl-period">Depuis Jan 2024</div>
+          <div class="tl-company">Parcours d'Upskilling · Paris</div>
+          <div class="tl-role">Data, Gouvernance &amp; Systèmes d'Information</div>
+          <div class="tl-layer">Couche transformation</div>
+          <div class="tl-layer">Auto-formation</div>
+          <div class="tl-desc">Projets data bout en bout (Python, SQL, ML prédictif) · Formation MS Information Systems Management &amp; Engineering — Institut Mines-Télécom (9/2026).</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot d2"></div>
+          <div class="tl-period">Oct 2022 — Oct 2023</div>
+          <div class="tl-company">TEADS · Global AdTech</div>
+          <div class="tl-role">Insight Analyst</div>
+          <div class="tl-layer">Couche intégration</div>
+          <div class="tl-layer">Mesure d'Impact &amp; Insights Métiers</div>
+          <div class="tl-desc">Pipelines Python/SQL via API · études pub (Brand Lift, A/B Testing, Lumen, Kantar) · rapports stratégiques pour centaines de clients multi-secteur. Expérience forte en extraction, nettoyage et documentation de données issues de plateformes internes.</div>
+          <div style="margin-top:1rem;background:#fff;border:1px solid rgba(196,120,80,0.18);border-radius:14px;padding:1rem;overflow:hidden">
+            <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem">Écosystème Data TEADS · Mon périmètre data</div>
+            <svg width="100%" viewBox="0 0 700 400" style="display:block">
+              <defs><marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+              <!-- Data sources layer -->
+              <rect x="8" y="20" width="684" height="80" rx="9" fill="rgba(196,64,26,0.04)" stroke="#c4401a" stroke-width="0.7" stroke-dasharray="5 3"/>
+              <text x="350" y="14" text-anchor="middle" font-size="9" fill="#c4401a" font-family="monospace" letter-spacing=".09em">SOURCES DE DONNÉES</text>
+              <g class="nclick" onclick="tip('platform')"><rect x="20" y="30" width="140" height="56" rx="7" fill="#fef6f0" stroke="#c4401a" stroke-width="1.3"/><text x="90" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Plateforme Teads</text><text x="90" y="68" text-anchor="middle" font-size="9" fill="#c4401a">Portail interne</text></g>
+              <g class="nclick" onclick="tip('bigquery')"><rect x="178" y="30" width="140" height="56" rx="7" fill="#fef6f0" stroke="#d4703a" stroke-width="0.7"/><text x="248" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">BigQuery</text><text x="248" y="68" text-anchor="middle" font-size="9" fill="#d4703a">Data Warehouse</text></g>
+              <g class="nclick" onclick="tip('snowflake')"><rect x="336" y="30" width="140" height="56" rx="7" fill="#fef6f0" stroke="#d4703a" stroke-width="0.7"/><text x="406" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Snowflake</text><text x="406" y="68" text-anchor="middle" font-size="9" fill="#d4703a">Data Lake</text></g>
+              <g class="nclick" onclick="tip('studies')"><rect x="494" y="30" width="192" height="56" rx="7" fill="rgba(196,64,26,0.07)" stroke="#c4401a" stroke-width="1"/><text x="590" y="52" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Études pub</text><text x="590" y="68" text-anchor="middle" font-size="9" fill="#c4401a">Brand lift · Attention · A/B</text></g>
+
+              <!-- Processing layer -->
+              <rect x="8" y="120" width="684" height="80" rx="9" fill="rgba(212,112,58,0.04)" stroke="#d4703a" stroke-width="0.6" stroke-dasharray="5 3"/>
+              <text x="350" y="114" text-anchor="middle" font-size="9" fill="#d4703a" font-family="monospace" letter-spacing=".09em">TRAITEMENT &amp; QUALITÉ</text>
+              <g class="nclick" onclick="tip('pipeline')"><rect x="20" y="130" width="180" height="56" rx="7" fill="#fdf8f5" stroke="#d4703a" stroke-width="0.7"/><text x="110" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Pipelines Python/SQL</text><text x="110" y="168" text-anchor="middle" font-size="9" fill="#d4703a">Extraction · nettoyage · standardisation</text></g>
+              <g class="nclick" onclick="tip('referentiel')"><rect x="218" y="130" width="180" height="56" rx="7" fill="#fdf8f5" stroke="#d4703a" stroke-width="0.7"/><text x="308" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Référentiel de données</text><text x="308" y="168" text-anchor="middle" font-size="9" fill="#d4703a">Standardisation des indicateurs</text></g>
+              <g class="nclick" onclick="tip('dq')"><rect x="416" y="130" width="180" height="56" rx="7" fill="rgba(196,64,26,0.07)" stroke="#c4401a" stroke-width="1.2"/><text x="506" y="152" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Contrôle qualité ★</text><text x="506" y="168" text-anchor="middle" font-size="9" fill="#c4401a">Vérification fiabilité données</text></g>
+
+              <!-- Output layer -->
+              <rect x="8" y="220" width="684" height="80" rx="9" fill="rgba(232,168,124,0.06)" stroke="#e8a87c" stroke-width="0.6" stroke-dasharray="5 3"/>
+              <text x="350" y="214" text-anchor="middle" font-size="9" fill="#a07040" font-family="monospace" letter-spacing=".09em">RESTITUTION &amp; DOCUMENTATION</text>
+              <g class="nclick" onclick="tip('jade')"><rect x="20" y="230" width="200" height="56" rx="7" fill="rgba(196,64,26,0.08)" stroke="rgba(196,64,26,0.4)" stroke-width="1"/><text x="120" y="252" text-anchor="middle" font-size="11" font-weight="500" fill="#8b2500">Jade · Insight Analyst ★</text><text x="120" y="268" text-anchor="middle" font-size="9" fill="#c4401a">Centaines de clients</text></g>
+              <g class="nclick" onclick="tip('ppt')"><rect x="238" y="230" width="200" height="56" rx="7" fill="rgba(212,112,58,0.08)" stroke="#d4703a" stroke-width="1.2"/><text x="338" y="252" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Rapport &amp; Documentation</text><text x="338" y="268" text-anchor="middle" font-size="9" fill="#d4703a">Storytelling décisionnel</text></g>
+              <g class="nclick" onclick="tip('client')"><rect x="456" y="230" width="220" height="56" rx="7" fill="#fdf8f5" stroke="#e8a87c" stroke-width="0.7"/><text x="566" y="252" text-anchor="middle" font-size="11" font-weight="500" fill="#5a2010">Client / C-Level</text><text x="566" y="268" text-anchor="middle" font-size="9" fill="#a07040">Luxe · FMCG · Auto · Retail...</text></g>
+
+              <!-- Arrows -->
+              <line class="tf2" x1="90" y1="86" x2="90" y2="130" stroke="#c4401a" stroke-width="1.4" marker-end="url(#ta)"/>
+              <line class="tf2" x1="248" y1="86" x2="248" y2="130" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="406" y1="86" x2="406" y2="130" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="590" y1="86" x2="590" y2="130" stroke="#c4401a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="110" y1="186" x2="110" y2="230" stroke="#c4401a" stroke-width="1.4" marker-end="url(#ta)"/>
+              <line class="tf2" x1="338" y1="186" x2="338" y2="230" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="506" y1="186" x2="506" y2="230" stroke="#c4401a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="220" y1="258" x2="238" y2="258" stroke="#d4703a" stroke-width="1.2" marker-end="url(#ta)"/>
+              <line class="tf2" x1="438" y1="258" x2="456" y2="258" stroke="#e8a87c" stroke-width="1" marker-end="url(#ta)"/>
+
+              <!-- Row at bottom: client labels -->
+              <text x="90" y="306" text-anchor="middle" font-size="8.5" fill="#a07040" font-family="monospace">Source principale</text>
+              <text x="506" y="306" text-anchor="middle" font-size="8.5" fill="#c4401a" font-family="monospace">★ Compétence clé</text>
+            </svg>
+            <div class="maptip" id="maptip"><strong>Cliquez un composant</strong>Chaque bloc représente une source, un traitement ou un livrable de mon workflow data chez TEADS.</div>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(196,120,80,0.1);font-size:10px;color:var(--text3)">
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#c4401a;display:inline-block"></span>Sources &amp; contrôle qualité</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#d4703a;display:inline-block"></span>Traitement &amp; pipelines</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:2px;background:#e8a87c;display:inline-block"></span>Restitution</span>
+              <span style="display:flex;align-items:center;gap:4px;color:var(--text2);font-weight:500"><span style="width:8px;height:8px;border-radius:2px;background:rgba(196,64,26,0.4);display:inline-block"></span>Périmètre Jade ★</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot d3"></div>
+          <div class="tl-period">Sep 2021 — Sep 2022</div>
+          <div class="tl-company">T&amp;T Foods · Grande distribution</div>
+          <div class="tl-role">Marketing Insight Analyst</div>
+          <div class="tl-layer">Couche stratégique</div>
+          <div class="tl-desc">ROI multi-canal, pricing compétitif, recommandations pour lancement produit Paris. Premiers pas dans la documentation de standards de reporting.</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot d3"></div>
+          <div class="tl-period">Jan 2020 — Août 2021</div>
+          <div class="tl-company">Cookâme FoodTech</div>
+          <div class="tl-role">Sales Reporting Analyst</div>
+          <div class="tl-layer">Couche analytique</div>
+          <div class="tl-desc">Segmentation clients, comportements d'achat, comparaisons multi-sites pour 5 restaurants. Mise en place de définitions partagées des indicateurs de vente.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot d2"></div>
+          <div class="tl-period">Jan 2018 — Nov 2019</div>
+          <div class="tl-company">JL Retail Fashion · Vietnam</div>
+          <div class="tl-role">Supply Chain &amp; Retail Analyst</div>
+          <div class="tl-layer">Couche opérationnelle</div>
+          <div class="tl-desc">Gestion stocks, optimisation supply chain, collaboration fournisseurs. Première expérience de la qualité de la donnée terrain.</div>
+        </div>
+        <div class="card" style="margin-top:1.2rem;border-color:rgba(196,64,26,0.18)">
+          <div class="card-label">La progression logique</div>
+          <div class="card-body" style="font-size:.82rem">Chaque poste a ajouté une <strong>couche de maturité data</strong> : des flux physiques aux pipelines analytiques, jusqu'à la gouvernance globale de la donnée.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- 03 COMPÉTENCES -->
+<section id="s03" class="slide">
+  <div class="container">
+    <div class="slide-num">03 / 06</div>
+    <div class="section-label">Compétences</div>
+    <h2 class="section-title">Mes compétences <em>mappées sur le poste</em></h2>
+    <div class="skills-layout">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--text3);letter-spacing:.1em;margin-bottom:1.1rem">ALIGNEMENT AVEC LA FICHE DE POSTE CLARINS</div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Data Analytics &amp; reporting</span><span class="skill-bar-pct">88%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="88"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Documentation &amp; rédaction (standards, glossaires)</span><span class="skill-bar-pct">82%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="82"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Qualité de données &amp; référentiels</span><span class="skill-bar-pct">80%</span></div><div class="skill-track"><div class="skill-fill fa" style="width:0" data-w="80"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Travail transversal multi-équipes</span><span class="skill-bar-pct">80%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="80"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Vulgarisation &amp; acculturation data</span><span class="skill-bar-pct">78%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="78"></div></div></div>
+        <div class="skill-bar-row"><div class="skill-bar-header"><span class="skill-bar-name">Conduite du changement &amp; collaboration</span><span class="skill-bar-pct">75%</span></div><div class="skill-track"><div class="skill-fill fb" style="width:0" data-w="75"></div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.9rem">
+        <div class="card">
+          <div class="card-label">Stack technique</div>
+          <div class="pills-wrap">
+            <span class="pill">SQL avancé</span><span class="pill">Python</span><span class="pill">BigQuery</span>
+            <span class="pill">Snowflake</span><span class="pill">Tableau</span><span class="pill">Power BI</span>
+            <span class="pill">Google Looker</span><span class="pill">Excel VBA</span><span class="pill">SAP S/4HANA</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Savoir-être</div>
+          <div class="pills-wrap">
+            <span class="pill pill-accent">Curieuse</span><span class="pill pill-accent">Rigoureuse</span>
+            <span class="pill pill-accent">Autonome</span><span class="pill pill-accent">Diplomate</span>
+            <span class="pill pill-accent">Bonne communicante</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Formation</div>
+          <div class="card-body" style="font-size:.82rem">Mastère Spécialisé IS Management &amp; Engineering — <strong>Institut Mines-Télécom (9/2026)</strong><br>MSc Data Analytics &amp; Marketing Management — <strong>INSEEC Paris</strong><br>Master Digital Media — <strong>Aix-Marseille Université</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- 04 VISION DATA -->
+<section id="s04" class="slide alt">
+  <div class="container">
+    <div class="slide-num">04 / 06</div>
+    <div class="section-label">Vision Data-First</div>
+    <h2 class="section-title">De l'analyse de données <em>à la gouvernance à la source</em></h2>
+    <p class="flux-intro">Produire des insights fiables pour des centaines de clients chez TEADS m'a appris une vérité fondamentale : la qualité d'une analyse dépend entièrement de la qualité de la donnée en amont. Chez Clarins, je veux intervenir à cette source — en structurant les règles, les définitions et les catalogues qui rendent la donnée digne de confiance.</p>
+    <div class="flux-compare">
+      <div>
+        <div class="flux-col-head">Mon expérience chez TEADS</div>
+        <div class="flux-col">
+          <div class="fnode"><div class="fnode-dot" style="background:#c4401a"></div><div class="fnode-label">Extraction depuis la Plateforme<div class="fnode-sub">Source · données campagnes</div></div></div>
+          <div class="farrow">Nettoyage &amp; standardisation</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#d4703a"></div><div class="fnode-label">Référentiel d'indicateurs<div class="fnode-sub">Définitions partagées entre équipes</div></div></div>
+          <div class="farrow">Contrôle qualité &amp; fiabilité</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#e8a87c"></div><div class="fnode-label">Études &amp; Analyses internationales<div class="fnode-sub">Centaines de rapports</div></div></div>
+          <div class="farrow">Restitution décisionnelle</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#8b2500"></div><div class="fnode-label">Livrables C-Level<div class="fnode-sub">Aide à la décision stratégique</div></div></div>
+        </div>
+      </div>
+      <div class="flux-mid">
+        <div class="flux-mid-arrow"><svg viewBox="0 0 16 16"><path d="M8 3l5 5-5 5M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></div>
+        <div class="flux-mid-label">Logique<br>Similaire</div>
+        <div class="flux-mid-arrow"><svg viewBox="0 0 16 16"><path d="M8 3l5 5-5 5M3 8h10" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></div>
+      </div>
+      <div>
+        <div class="flux-col-head">Mon rôle · Data Office Clarins</div>
+        <div class="flux-col accent-col">
+          <div class="fnode"><div class="fnode-dot" style="background:#c4401a"></div><div class="fnode-label">Data Catalog<div class="fnode-sub">Référencer &amp; documenter les actifs data</div></div></div>
+          <div class="farrow">Structuration du Data Glossary</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#d4703a"></div><div class="fnode-label">Data Governance<div class="fnode-sub">Rôles, responsabilités, standards</div></div></div>
+          <div class="farrow">Règles de qualité &amp; observabilité</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#e8a87c"></div><div class="fnode-label">Data Products<div class="fnode-sub">Modélisation &amp; documentation</div></div></div>
+          <div class="farrow">Acculturation &amp; conduite du changement</div>
+          <div class="fnode"><div class="fnode-dot" style="background:#8b2500"></div><div class="fnode-label">Équipes Métiers &amp; Directions<div class="fnode-sub">Supports pédagogiques, communication interne</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="flux-takeaway">
+      <div class="ftake"><div class="ftake-icon">📚</div><div class="ftake-title">Structurer la connaissance</div><div class="ftake-body">Construire le Data Catalog et le Data Glossary pour que chaque métier parle le même langage data — une compétence que j'ai exercée en définissant des indicateurs partagés chez TEADS.</div></div>
+      <div class="ftake"><div class="ftake-icon">🔍</div><div class="ftake-title">Garantir la Qualité</div><div class="ftake-body">Définir des règles de qualité et déployer des outils de Data Observability — j'ai appris l'importance de cette rigueur en amont en produisant des insights pour des centaines de clients exigeants.</div></div>
+      <div class="ftake"><div class="ftake-icon">🌱</div><div class="ftake-title">Acculturer &amp; embarquer</div><div class="ftake-body">Vulgariser des sujets techniques auprès d'interlocuteurs métiers variés — un exercice quotidien chez TEADS pour rendre des résultats complexes compréhensibles par des C-Level non-data.</div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- 05 POURQUOI CLARINS -->
+<section id="s05" class="slide">
+  <div class="container">
+    <div class="slide-num">05 / 06</div>
+    <div class="section-label">Motivation</div>
+    <h2 class="section-title">Pourquoi <em>Clarins</em> ?</h2>
+    <div class="why-grid">
+      <div class="why-big">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-items:start">
+          <div><div class="why-stat">2023</div><div class="why-stat-label">Lancement Data Governance</div><div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Ce qui m'attire chez Clarins, c'est la phase à laquelle se trouve son programme de Data Governance : en construction active depuis 2023, avec une équipe Data Office dédiée. Rejoindre cette aventure maintenant, c'est pouvoir contribuer à la fondation même — définir les standards, poser les premières briques du Data Catalog, façonner la culture data d'une maison d'exception. C'est une opportunité rare de voir un programme prendre forme, pas seulement de l'hériter.</div></div>
+          <div><div class="why-stat">Global</div><div class="why-stat-label">Groupe international</div><div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Travailler sur la donnée d'un groupe de luxe présent dans le monde entier représente un défi particulièrement stimulant : harmoniser des terminologies et des pratiques entre des entités métiers aux cultures différentes. Mon expérience internationale — Vietnam, et centaines de clients multi-culturels chez TEADS — me permet d'aborder cette dimension avec aisance et curiosité.</div></div>
+          <div><div class="why-stat">Data<br>Office</div><div class="why-stat-label">Équipe dédiée à la gouvernance</div><div style="font-size:.8rem;color:var(--text2);margin-top:.55rem;line-height:1.7">Ce qui me convainc, c'est l'existence d'une équipe structurée — Data Office — avec une mission claire : opérationnaliser la gouvernance et accompagner le changement. Travailler en proximité avec des Data Engineers, Data Product Owners et Data Scientists est exactement l'environnement dans lequel je souhaite apprendre et grandir.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ORG CHART Clarins Data Office -->
+<section id="s05-org" class="slide" style="min-height:auto;padding:60px 0">
+  <div class="container">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 2px 10px rgba(196,120,80,0.06)">
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem">Data Office Clarins · où je me situe</div>
+
+      <svg width="100%" viewBox="0 0 680 560" style="display:block;overflow:visible" role="img" aria-label="Organigramme Clarins Data Office Jade">
+
+        <!-- T0: Groupe Clarins -->
+        <g class="nk" onclick="orgTip('groupe')">
+          <rect x="190" y="16" width="300" height="48" rx="8" fill="var(--surface)" stroke="var(--border2)" stroke-width="0.8"/>
+          <text x="340" y="34" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text)" font-family="'Outfit',sans-serif">Groupe Clarins</text>
+          <text x="340" y="52" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="'DM Mono',monospace">Maison de luxe · Paris 17e · International</text>
+        </g>
+        <line x1="340" y1="64" x2="340" y2="100" stroke="var(--border2)" stroke-width="0.6"/>
+
+        <!-- T1: DGA / Direction Digitale -->
+        <g class="nk" onclick="orgTip('direction')">
+          <rect x="190" y="100" width="300" height="48" rx="8" fill="#fef6f0" stroke="rgba(196,64,26,0.25)" stroke-width="0.8"/>
+          <text x="340" y="118" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#8b2500" font-family="'Outfit',sans-serif">Direction Data &amp; Analytics</text>
+          <text x="340" y="136" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#c4401a" font-family="'DM Mono',monospace">Stratégie &amp; valorisation de la donnée</text>
+        </g>
+
+        <!-- Branch lines -->
+        <line x1="340" y1="148" x2="340" y2="168" stroke="var(--border2)" stroke-width="0.6"/>
+        <line x1="130" y1="168" x2="560" y2="168" stroke="var(--border2)" stroke-width="0.6"/>
+        <line x1="130" y1="168" x2="130" y2="184" stroke="var(--border2)" stroke-width="0.6"/>
+        <line x1="340" y1="168" x2="340" y2="184" stroke="var(--border2)" stroke-width="0.6"/>
+        <line x1="560" y1="168" x2="560" y2="184" stroke="var(--border2)" stroke-width="0.6"/>
+
+        <!-- T2a: Entities Metiers -->
+        <g class="nk" onclick="orgTip('metiers')">
+          <rect x="30" y="184" width="200" height="48" rx="8" fill="#fdf8f5" stroke="rgba(196,120,80,0.3)" stroke-width="0.8"/>
+          <text x="130" y="202" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#5a2010" font-family="'Outfit',sans-serif">Entités Métiers</text>
+          <text x="130" y="220" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#a07040" font-family="'DM Mono',monospace">Marketing · Finance · Supply…</text>
+        </g>
+
+        <!-- T2b: Data Office -->
+        <g class="nk" onclick="orgTip('dataoffice')">
+          <rect x="240" y="184" width="200" height="48" rx="8" fill="#fef6f0" stroke="rgba(196,64,26,0.4)" stroke-width="1.2"/>
+          <text x="340" y="202" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#8b2500" font-family="'Outfit',sans-serif">Data Office</text>
+          <text x="340" y="220" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#c4401a" font-family="'DM Mono',monospace">Gouvernance · Qualité · Catalog</text>
+        </g>
+
+        <!-- T2c: Data Engineering -->
+        <g class="nk" onclick="orgTip('engineering')">
+          <rect x="460" y="184" width="200" height="48" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+          <text x="560" y="202" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data Engineering &amp; Science</text>
+          <text x="560" y="220" text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--text3)" font-family="'DM Mono',monospace">Data Products · Analytics</text>
+        </g>
+
+        <!-- Data Office → Sub-missions -->
+        <line x1="340" y1="232" x2="340" y2="268" stroke="rgba(196,64,26,0.4)" stroke-width="0.8"/>
+        <polygon points="335,268 345,268 340,275" fill="rgba(196,64,26,0.4)"/>
+
+        <!-- T3: Périmètre Data Office -->
+        <g class="nk" onclick="orgTip('perimetre')">
+          <rect x="190" y="275" width="300" height="48" rx="8" fill="#fef6f0" stroke="rgba(196,64,26,0.3)" stroke-width="0.8"/>
+          <text x="340" y="293" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="#8b2500" font-family="'Outfit',sans-serif">Modèle Opérationnel de Gouvernance</text>
+          <text x="340" y="311" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#c4401a" font-family="'DM Mono',monospace">Référencement · Qualité · Modélisation</text>
+        </g>
+
+        <!-- → 4 missions -->
+        <line x1="340" y1="323" x2="340" y2="355" stroke="rgba(196,64,26,0.4)" stroke-width="0.8"/>
+        <line x1="100" y1="355" x2="580" y2="355" stroke="rgba(196,64,26,0.25)" stroke-width="0.6"/>
+        <line x1="100" y1="355" x2="100" y2="371" stroke="rgba(196,64,26,0.25)" stroke-width="0.6"/>
+        <line x1="260" y1="355" x2="260" y2="371" stroke="rgba(196,64,26,0.25)" stroke-width="0.6"/>
+        <line x1="420" y1="355" x2="420" y2="371" stroke="rgba(196,64,26,0.25)" stroke-width="0.6"/>
+        <line x1="580" y1="355" x2="580" y2="371" stroke="rgba(196,64,26,0.25)" stroke-width="0.6"/>
+
+        <!-- 4 mission boxes -->
+        <g class="nk" onclick="orgTip('catalog')">
+          <rect x="20" y="371" width="160" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+          <text x="100" y="391" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data Catalog</text>
+          <text x="100" y="408" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Glossaire · Définitions</text>
+        </g>
+        <g class="nk" onclick="orgTip('quality')">
+          <rect x="180" y="371" width="160" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+          <text x="260" y="391" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data Quality</text>
+          <text x="260" y="408" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Règles · Observabilité</text>
+        </g>
+        <g class="nk" onclick="orgTip('products')">
+          <rect x="340" y="371" width="160" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+          <text x="420" y="391" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data Products</text>
+          <text x="420" y="408" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Modélisation · Datasets</text>
+        </g>
+        <g class="nk" onclick="orgTip('culture')">
+          <rect x="500" y="371" width="160" height="52" rx="7" fill="var(--surface)" stroke="var(--border)" stroke-width="0.6"/>
+          <text x="580" y="391" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="var(--text2)" font-family="'Outfit',sans-serif">Data Culture</text>
+          <text x="580" y="408" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="var(--text3)" font-family="'DM Mono',monospace">Acculturation · Supports</text>
+        </g>
+
+        <!-- All boxes → Jade -->
+        <line x1="100" y1="423" x2="100" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="100" y1="455" x2="340" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="260" y1="423" x2="260" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="420" y1="423" x2="420" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="420" y1="455" x2="340" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="580" y1="423" x2="580" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="580" y1="455" x2="340" y2="455" stroke="rgba(196,64,26,0.3)" stroke-width="0.6"/>
+        <line x1="340" y1="455" x2="340" y2="471" stroke="rgba(196,64,26,0.45)" stroke-width="0.8"/>
+        <polygon points="335,471 345,471 340,478" fill="rgba(196,64,26,0.45)"/>
+
+        <!-- T5: Jade -->
+        <g class="nk" onclick="orgTip('jade')">
+          <rect x="190" y="478" width="300" height="56" rx="8" fill="rgba(196,64,26,0.07)" stroke="rgba(196,64,26,0.5)" stroke-width="1.2"/>
+          <text x="340" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="500" fill="#8b2500" font-family="'Outfit',sans-serif">Jade · apprentie Data Governance ★</text>
+          <text x="340" y="516" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#c4401a" font-family="'DM Mono',monospace">Data Catalog · Quality · Products · Acculturation</text>
+        </g>
+        <circle cx="488" cy="480" r="9" fill="#c4401a"/>
+        <text x="488" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#fff" font-family="'Outfit',sans-serif">★</text>
+
+      </svg>
+
+      <div class="orgtip" id="orgtip"><strong>Cliquez un bloc</strong> pour en savoir plus sur chaque entité.</div>
+      <div class="org-leg">
+        <div class="org-li"><div class="org-ld" style="background:#fef6f0;border:1px solid rgba(196,64,26,0.35)"></div>Direction Data &amp; Data Office</div>
+        <div class="org-li"><div class="org-ld" style="background:var(--surface);border:1px solid var(--border)"></div>Missions &amp; Partenaires transverses</div>
+        <div class="org-li"><div class="org-ld" style="background:rgba(196,64,26,0.07);border:1px solid rgba(196,64,26,0.5)"></div>Jade ★</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- 06 MINI-PROJET -->
+<section id="s06" class="slide alt">
+  <div class="container">
+    <div class="slide-num">06 / 06</div>
+    <div class="section-label">Démonstration pratique</div>
+    <h2 class="section-title">Mini Data Governance : <em>Data Catalog simplifié Clarins</em></h2>
+    <p style="font-size:.87rem;color:var(--text2);line-height:1.8;margin-bottom:0;max-width:600px">Modélisation d'un cadre de Data Governance fictif pour un groupe cosmétique international, illustrant ma compréhension des couches de gouvernance et des flux de documentation.</p>
+    <div class="project-layout">
+      <div class="si-map">
+        <div class="si-map-title">Cadre Data Governance · Clarins fictif simplifié</div>
+        <div class="si-zone"><div class="si-zone-label z1">Couche gouvernance</div><div class="si-apps"><div class="si-app">Data Catalog</div><div class="si-app">Data Glossary</div><div class="si-app">Règles de qualité</div><div class="si-app">Référentiel Métiers</div></div></div>
+        <div class="si-flux-line"><span class="si-flux-label">Définitions &amp; standards partagés</span></div>
+        <div class="si-zone"><div class="si-zone-label z2">Couche Data Products</div><div class="si-apps"><div class="si-app">Dataset Ventes</div><div class="si-app">Dataset Marketing</div><div class="si-app">Dataset Supply</div><div class="si-app">Data Models</div></div></div>
+        <div class="si-flux-line"><span class="si-flux-label">Pipelines certifiés · ETL qualifié</span></div>
+        <div class="si-zone"><div class="si-zone-label z3">Couche analytique</div><div class="si-apps"><div class="si-app">Data Warehouse</div><div class="si-app">Data Observability</div><div class="si-app">Dashboards exécutifs</div></div></div>
+        <div class="si-flux-line"><span class="si-flux-label">Données certifiées &amp; tracées</span></div>
+        <div class="si-zone"><div class="si-zone-label z4">Couche sources</div><div class="si-apps"><div class="si-app">ERP Clarins</div><div class="si-app">CRM / E-com</div><div class="si-app">Sources partenaires</div></div></div>
+      </div>
+      <div class="project-notes">
+        <div class="card"><div class="card-label">Démarche utilisée</div><div class="card-body" style="font-size:.82rem">Modélisation en 4 couches selon les principes de Data Governance. Identification des flux de certification et des points de contrôle qualité.</div></div>
+        <div class="card" style="border-color:rgba(196,64,26,0.22);background:#fff9f7"><div class="card-label">Ce que j'apporterais concrètement</div><div class="card-body" style="font-size:.82rem">Contribuer au Data Catalog (structuration, enrichissement), formaliser des définitions dans le Data Glossary, participer à l'analyse des problèmes de qualité avec les équipes métiers, et animer des sessions d'acculturation pour embarquer les non-data.</div></div>
+        <div class="card">
+          <div class="card-label">Voir mes projets data</div>
+          <div class="card-body" style="font-size:.82rem;margin-bottom:.7rem">Pipelines, modélisation SQL, dashboards exécutifs sur mon portfolio.</div>
+          <a href="https://jadebourdens.github.io" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:white;text-decoration:none;background:linear-gradient(135deg,#c4401a,#8b2500);padding:9px 20px;border-radius:25px;font-weight:600;box-shadow:0 4px 14px rgba(196,64,26,0.32);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(196,64,26,0.48)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(196,64,26,0.32)'">Portfolio principal →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-text">© 2026 Jade Bourdens — Candidate Data Governance &amp; Analytics · Clarins</div>
+  <div class="footer-text" style="color:var(--accent2)">jadebourdens.github.io/clarins</div>
+</footer>
+
+<svg id="progress" viewBox="0 0 40 40">
+  <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#c4401a"/><stop offset="100%" style="stop-color:#e8a87c"/></linearGradient></defs>
+  <circle cx="20" cy="20" r="18" fill="white" stroke="rgba(196,120,80,0.13)" stroke-width="1"/>
+  <circle id="pc" cx="20" cy="20" r="15" fill="none" stroke="url(#grad)" stroke-width="2.5" stroke-dasharray="94" stroke-dashoffset="94" style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .1s linear"/>
+</svg>
+
+<script>
+const cv=document.getElementById('bgCanvas'),cx=cv.getContext('2d');
+let W,H,dots=[];
+function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+rsz();addEventListener('resize',rsz);
+for(let i=0;i<50;i++)dots.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.35,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,o:Math.random()*.12+.03});
+(function draw(){cx.clearRect(0,0,W,H);dots.forEach(d=>{cx.beginPath();cx.arc(d.x,d.y,d.r,0,Math.PI*2);cx.fillStyle=`rgba(196,120,80,${d.o})`;cx.fill();d.x+=d.dx;d.y+=d.dy;if(d.x<0||d.x>W)d.dx*=-1;if(d.y<0||d.y>H)d.dy*=-1});for(let i=0;i<dots.length;i++)for(let j=i+1;j<dots.length;j++){const dist=Math.hypot(dots[i].x-dots[j].x,dots[i].y-dots[j].y);if(dist<110){cx.beginPath();cx.moveTo(dots[i].x,dots[i].y);cx.lineTo(dots[j].x,dots[j].y);cx.strokeStyle=`rgba(196,120,80,${.05*(1-dist/110)})`;cx.lineWidth=.7;cx.stroke()}}requestAnimationFrame(draw);})();
+
+window.addEventListener('scroll',()=>{const pct=scrollY/(document.body.scrollHeight-innerHeight);document.getElementById('pc').style.strokeDashoffset=94*(1-pct)});
+
+const sections=document.querySelectorAll('.slide[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+sections.forEach(sec=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navAs.forEach(a=>a.classList.remove('active'));const m=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(m)m.classList.add('active')}})},{threshold:.3}).observe(sec));
+
+const fills=document.querySelectorAll('.skill-fill');
+const bo=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';bo.unobserve(e.target)}})},{threshold:.2});
+fills.forEach(f=>bo.observe(f));
+
+/* Data map tooltips */
+const td={
+  platform:{t:"Plateforme Teads (portail interne) ★",b:"Interface web propriétaire utilisée quotidiennement pour extraire les résultats de campagnes : métriques de diffusion, performance par format, études d'attention. Source principale de mes données."},
+  bigquery:{t:"BigQuery",b:"Data Warehouse Google Cloud utilisé chez TEADS pour stocker et requêter de très grands volumes de données de campagnes publicitaires."},
+  snowflake:{t:"Snowflake",b:"Data Lake cloud pour l'agrégation de sources hétérogènes. J'interagissais avec des exports Snowflake pour enrichir mes analyses."},
+  studies:{t:"Études publicitaires ★",b:"Brand lift (Kantar), attention réelle (Lumen), reach & frequency, recall, A/B testing. J'interprétais ces métriques avancées pour évaluer l'impact réel des campagnes — une pratique de data quality appliquée."},
+  pipeline:{t:"Pipelines Python/SQL ★",b:"Scripts d'extraction, nettoyage et transformation de données. Chaque pipeline incluait des étapes de contrôle qualité pour garantir la fiabilité des métriques livrées aux clients."},
+  referentiel:{t:"Référentiel d'indicateurs ★",b:"Définitions partagées des métriques entre équipes (ex: définition exacte du 'reach', de l'attention, du CPM). Une forme empirique de Data Glossary que je maintenais pour cohérence inter-clients."},
+  dq:{t:"Contrôle qualité ★",b:"Vérification systématique de la cohérence et fiabilité des données avant livraison : détection d'anomalies, validation des seuils, croisement de sources. Compétence directement transférable à la Data Quality chez Clarins."},
+  jade:{t:"Jade · Insight Analyst TEADS ★",b:"Mon périmètre réel : extraction, nettoyage, analyse et restitution de données pour centaines de clients dans toutes les industries."},
+  ppt:{t:"Rapport &amp; Documentation ★",b:"Captures de la Plateforme + résultats études + analyses + recommandations. Storytelling décisionnel et documentation claire pour des interlocuteurs non-data (C-Level, directeurs marketing)."},
+  client:{t:"Client / C-Level — multi-secteur",b:"Destinataires finaux : directeurs marketing, CMO, media planners de grandes marques mondiales. Expérience de la vulgarisation data auprès d'interlocuteurs variés."}
+};
+function tip(k){const x=td[k];if(!x)return;document.getElementById('maptip').innerHTML=`<strong>${x.t}</strong>${x.b}`}
+
+/* Orgchart tooltips */
+const od={
+  groupe:     {t:"Groupe Clarins",b:"Maison de beauté de luxe française, fondée en 1954. Présente dans plus de 150 pays. Paris 17e. Groupe familial indépendant, reconnu pour ses valeurs de qualité et de responsabilité."},
+  direction:  {t:"Direction Data &amp; Analytics",b:"Direction responsable de la stratégie data du groupe : valoriser la donnée comme actif stratégique. Supervise le Data Office et les équipes Data Engineering &amp; Science."},
+  metiers:    {t:"Entités Métiers",b:"Marketing, Finance, Supply Chain, e-commerce, retail... Les équipes métiers sont les producteurs et consommateurs de données. Le Data Office les accompagne dans la mise en œuvre de la gouvernance et l'acculturation."},
+  dataoffice: {t:"Data Office",b:"Mission lancée en 2023 : mettre en place le modèle opérationnel de Data Governance. En charge du référencement, de la qualité et de la modélisation des données. Accompagne les métiers dans la conduite du changement."},
+  engineering:{t:"Data Engineering &amp; Science",b:"Équipes qui construisent les Data Products et les pipelines analytiques. Jade collaborera avec elles pour la documentation des datasets et la contribution aux projets analytiques."},
+  perimetre:  {t:"Modèle Opérationnel de Gouvernance",b:"Le cœur de la mission : définir les rôles et responsabilités autour de la donnée, formaliser les standards, déployer les outils (Data Catalog, règles qualité, observabilité)."},
+  catalog:    {t:"Data Catalog",b:"Référencer et documenter l'ensemble des actifs data de l'entreprise. Enrichir le Data Glossary avec des définitions métiers claires et partagées. Mission clé de l'alternance."},
+  quality:    {t:"Data Quality",b:"Définir et formaliser des règles de qualité. Contribuer au déploiement d'outils de Data Observability. Analyser les problèmes de qualité avec les équipes métiers et techniques."},
+  products:   {t:"Data Products",b:"Contribuer à la structuration des datasets analytiques. Participer aux travaux de modélisation et documentation des données, en collaboration avec Data Engineers et Data Product Owners."},
+  culture:    {t:"Data Culture",b:"Animer ou contribuer à des sessions d'acculturation. Créer des supports pédagogiques. Contribuer à la communication interne autour des initiatives Data — un volet essentiel de la conduite du changement."},
+  jade:       {t:"Jade · Apprentie Data Governance ★",b:"Contribue sur l'ensemble des 4 missions du Data Office : Data Catalog (structuration, enrichissement du glossaire), Data Quality (règles, observabilité), Data Products (documentation, modélisation) et Data Culture (supports pédagogiques, sessions d'acculturation)."}
+};
+function orgTip(k){const x=od[k];if(!x)return;document.getElementById('orgtip').innerHTML=`<strong>${x.t}</strong>${x.b}`}
+</script>
+</body>
+</html>
